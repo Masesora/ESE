@@ -886,33 +886,50 @@ function enviarDiagnostico(){
     diagnostico: diagnosticoActual
   };
   
-  // ⚠️ CAMBIA ESTA URL POR LA DE TU GOOGLE APPS SCRIPT
-  const GOOGLE_SCRIPT_URL = "AKfycbwtlhONhF11CYUrfYWYe_IqQ8RfddqldUfBnaN6orFZtE9aiGCHUma1WbvasQxvoUzs";
+  // 🔴 IMPORTANTE: CAMBIA ESTA URL POR LA DE TU GOOGLE APPS SCRIPT
+  // Pasos: 1. Ve a Apps Script → Implementar → Administrar implementaciones
+  //        2. Edita (lápiz) → Nueva versión → Implementar
+  //        3. Copia la URL que termina en /exec
+  //        4. Pégala aquí abajo:
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7StqiPEISqUiRm5MFbG1pFsJ8G5kIKITgx5Y_oJQC5XMLjUm03n6e54PWN4whKrmN3Q/exec";
+  
+  // Convertir los datos a formato URL encoded
+  const formData = new FormData();
+  formData.append('timestamp', data.timestamp);
+  formData.append('nombreEmpresa', data.nombreEmpresa);
+  formData.append('facturacion', data.facturacion);
+  formData.append('email', data.email);
+  formData.append('codigo', data.codigo);
+  formData.append('diagnostico', JSON.stringify(data.diagnostico));
   
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data)
+    body: formData
   })
-  .then(() => {
-    document.getElementById("activationBox").style.display="block";
-    document.getElementById("codigoExc").innerText=codigo;
-    document.getElementById("emailAviso").innerHTML=`✅ ¡Enviado! Recibirás tu informe completo en: <strong>${email}</strong><br>Tu código de activación: <strong>${codigo}</strong>`;
+  .then(response => response.json())
+  .then(result => {
+    console.log('Respuesta del servidor:', result);
     
-    btnEnviar.innerHTML = '✓ Enviado correctamente';
-    btnEnviar.style.background = '#21ae52';
+    if(result.status === 'success') {
+      document.getElementById("activationBox").style.display="block";
+      document.getElementById("codigoExc").innerText=codigo;
+      document.getElementById("emailAviso").innerHTML=`✅ ¡Enviado! Recibirás tu informe completo en: <strong>${email}</strong><br>Tu código de activación: <strong>${codigo}</strong>`;
+      
+      btnEnviar.innerHTML = '✓ Enviado correctamente';
+      btnEnviar.style.background = '#21ae52';
+    } else {
+      throw new Error(result.message || 'Error desconocido');
+    }
   })
   .catch((error) => {
-    console.error("Error:", error);
+    console.error("Error completo:", error);
     document.getElementById("activationBox").style.display="block";
     document.getElementById("codigoExc").innerText=codigo;
-    document.getElementById("emailAviso").innerHTML=`⚠️ Datos enviados. Tu código: <strong>${codigo}</strong><br>Si no recibes el email, contacta con info@masesora.com`;
+    document.getElementById("emailAviso").innerHTML=`⚠️ Error al enviar. Tu código: <strong>${codigo}</strong><br>Contacta con info@masesora.com con este código.`;
     
-    btnEnviar.innerHTML = '✓ Enviado';
-    btnEnviar.style.background = '#fa8128';
+    btnEnviar.innerHTML = '⚠️ Error - Reintentar';
+    btnEnviar.style.background = '#d90033';
+    btnEnviar.disabled = false;
   });
 }
 </script>
