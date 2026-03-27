@@ -1732,66 +1732,88 @@
     function enviarDiagnostico(){
   const email = document.getElementById("emailCliente").value.trim();
   const btnEnviar = document.getElementById("btnEnviar");
-  
+
   if(!/\S+@\S+\.\S+/.test(email)){
     alert("Por favor, introduce un email válido.");
     return;
   }
-  
+
+  if(!diagnosticoActual){
+    alert("Por favor, genera primero tu diagnóstico.");
+    return;
+  }
+
   btnEnviar.disabled = true;
   btnEnviar.innerHTML = '<span class="spinner"></span> Enviando...';
-  
-  const codigo = "MAS-" + Math.random().toString(36).substr(2,8).toUpperCase();
-  
-  const data = {
-    timestamp: diagnosticoActual.timestamp,
-    nombreEmpresa: diagnosticoActual.nombre,
-    facturacion: diagnosticoActual.facturacion,
-    email: email,
-    codigo: codigo,
-    diagnostico: diagnosticoActual
-  };
-  
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7StqiPEISqUiRm5MFbG1pFsJ8G5kIKITgx5Y_oJQC5XMLjUm03n6e54PWN4whKrmN3Q/exec";
-  
-  const params = new URLSearchParams();
-  params.append('timestamp', data.timestamp);
-  params.append('nombreEmpresa', data.nombreEmpresa);
-  params.append('facturacion', String(data.facturacion));
-  params.append('email', data.email);
-  params.append('codigo', data.codigo);
-  params.append('diagnostico', JSON.stringify(data.diagnostico));
 
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params.toString()
+  const BACKEND_URL = "https://masframe-zz8d.onrender.com/ese/submit";
+
+  // Construir payload con la estructura del backend
+  const payload = {
+    email:        email,
+    empresa:      diagnosticoActual.nombre,
+    facturacion:  diagnosticoActual.facturacion || 0,
+
+    scores_areas: {
+      rentabilidad: diagnosticoActual.areaScores[0] || 0,
+      procesos:     diagnosticoActual.areaScores[1] || 0,
+      tiempos:      diagnosticoActual.areaScores[2] || 0,
+      personas:     diagnosticoActual.areaScores[3] || 0,
+      comunicacion: diagnosticoActual.areaScores[4] || 0,
+    },
+
+    score_global:  diagnosticoActual.areaScores.reduce((a,b)=>a+b,0) / diagnosticoActual.areaScores.length,
+    estado_global: diagnosticoActual.estadoGlobal,
+
+    especialidades: diagnosticoActual.especialidades.map(e => ({
+      nombre:      e.nombre,
+      descripcion: e.descripcion || "",
+      score:       e.score || 0,
+      nivel:       e.nivel?.nivel || e.nivel || "OK",
+    })),
+
+    insights: {
+      hallazgos: diagnosticoActual.insights?.hallazgos || [],
+      riesgos:   diagnosticoActual.insights?.riesgos   || [],
+      palancas:  diagnosticoActual.insights?.palancas  || [],
+    },
+
+    timestamp: diagnosticoActual.timestamp || new Date().toISOString(),
+  };
+
+  fetch(BACKEND_URL, {
+    method:  "POST",
+    headers: { "Content-Type": "application/json" },
+    body:    JSON.stringify(payload),
   })
-  .then(response => response.json())
+  .then(r => r.json())
   .then(result => {
-    console.log('Respuesta del servidor:', result);
-    
-    if(result.status === 'success') {
-      document.getElementById("activationBox").style.display="block";
-      document.getElementById("codigoExc").innerText=codigo;
-      document.getElementById("emailAviso").innerHTML=`✅ ¡Enviado! Recibirás tu informe completo en: <strong>${email}</strong><br>Tu código de activación: <strong>${codigo}</strong>`;
-      
-      btnEnviar.innerHTML = '✓ Enviado correctamente';
-      btnEnviar.style.background = '#21ae52';
+    if(result.status === "ok"){
+      const codigo = result.codigo;
+      document.getElementById("activationBox").style.display = "block";
+      document.getElementById("codigoExc").innerText = codigo;
+      document.getElementById("emailAviso").innerHTML =
+        `✅ ¡Enviado! Recibirás tu informe clínico en: <strong>${email}</strong><br>
+         Tu código de acceso: <strong>${codigo}</strong>`;
+      btnEnviar.innerHTML = "✓ Enviado correctamente";
+      btnEnviar.style.background = "#21ae52";
     } else {
-      throw new Error(result.message || 'Error desconocido');
+      throw new Error(result.detail || "Error desconocido");
     }
   })
-  .catch((error) => {
-    console.error("Error completo:", error);
-    document.getElementById("activationBox").style.display="block";
-    document.getElementById("codigoExc").innerText=codigo;
-    document.getElementById("emailAviso").innerHTML=`⚠️ Error al enviar. Tu código: <strong>${codigo}</strong><br>Escríbenos y te ayudaremos a completar el proceso.`;
-    btnEnviar.innerHTML = 'Reintentar envío';
+  .catch(err => {
+    console.error("Error ESE submit:", err);
+    // Fallback — mostrar código generado localmente
+    const codigoLocal = "MAS-" + Math.random().toString(36).substr(2,8).toUpperCase();
+    document.getElementById("activationBox").style.display = "block";
+    document.getElementById("codigoExc").innerText = codigoLocal;
+    document.getElementById("emailAviso").innerHTML =
+      `⚠️ Error al conectar. Tu código provisional: <strong>${codigoLocal}</strong><br>
+       Escríbenos a <a href="mailto:info@masesora.com">info@masesora.com</a> y te ayudamos.`;
+    btnEnviar.innerHTML = "Reintentar";
     btnEnviar.disabled = false;
   });
 }
-
 
     window.enviarDiagnostico = enviarDiagnostico;
   </script>
