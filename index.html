@@ -3,1819 +3,2027 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MASESORA · Escáner Clínico Empresarial MAS@FRAME®</title>
+  <title>MAS@FRAME® · Escáner de Salud Empresarial — La Clínica de Empresas</title>
+  <meta name="description" content="Diagnostica la salud de tu empresa en 5 minutos. 10 especialidades clínicas, informe detallado y protocolo de intervención C0–C6 gratuito. MAS@FRAME® · MASESORA®.">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ese-cc2u.onrender.com">
 
-  <!-- Tipografía y librerías -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="MASESORA · La Clínica de Empresas">
+  <meta property="og:title"       content="MAS@FRAME® · Escáner de Salud Empresarial">
+  <meta property="og:description" content="Diagnostica tu empresa en 5 minutos. 10 especialidades clínicas, informe con síntomas detectados y protocolo de intervención C0–C6. Gratuito.">
+  <meta property="og:url"         content="https://ese-cc2u.onrender.com">
+  <meta property="og:image"       content="https://ese-cc2u.onrender.com/social-card.png">
+  <meta property="og:image:type"  content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height"content="630">
+  <meta property="og:image:alt"   content="MAS@FRAME® · Escáner de Salud Empresarial — La Clínica de Empresas">
+  <meta property="og:locale"      content="es_ES">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="MAS@FRAME® · Escáner de Salud Empresarial">
+  <meta name="twitter:description" content="Diagnostica tu empresa en 5 minutos. 10 especialidades clínicas, informe con síntomas detectados y protocolo de intervención C0–C6. Gratuito.">
+  <meta name="twitter:image"       content="https://ese-cc2u.onrender.com/social-card.png">
+  <meta name="twitter:image:alt"   content="MAS@FRAME® · Escáner de Salud Empresarial">
+
+  <!-- Theme & favicon -->
+  <meta name="theme-color" content="#0F1A35">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='100%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%239A7E3A'/%3E%3Cstop offset='50%25' stop-color='%23E8C96A'/%3E%3Cstop offset='100%25' stop-color='%23C8A84B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='%230F1A35' rx='20'/%3E%3Cpath d='M 10,78 C 10,78 13,22 24,22 C 35,22 38,58 50,58 C 62,58 65,22 76,22 C 87,22 89,78 89,78' fill='none' stroke='url(%23g)' stroke-width='5.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Preload hero asset -->
+  <link rel="preload" href="masframe-logo-light.svg" as="image" type="image/svg+xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Escáner de Salud Empresarial MAS@FRAME®",
+    "alternateName": "ESE · MAS@FRAME®",
+    "description": "Diagnóstico clínico empresarial gratuito. Evalúa 10 especialidades, detecta síntomas y emite un protocolo de intervención C0–C6 personalizado.",
+    "url": "https://ese-cc2u.onrender.com",
+    "provider": {
+      "@type": "Organization",
+      "name": "MASESORA",
+      "alternateName": "La Clínica de Empresas",
+      "url": "https://ese-cc2u.onrender.com"
+    },
+    "serviceType": "Consultoría empresarial",
+    "areaServed": {
+      "@type": "Place",
+      "name": "España"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "inLanguage": "es"
+  }
+  </script>
 
   <style>
-    :root {
-      --color-bg: #f5f4f0;
-      --color-navy: #0F1A35;
-      --color-navy-soft: #1a2d5a;
-      --color-gold: #B89D52;
-      --color-accent: #fa8128;
-      --color-danger: #d90033;
-      --color-success: #21ae52;
-      --radius-card: 16px;
-      --shadow-soft: 0 10px 30px rgba(15, 26, 53, 0.08);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background: var(--color-bg);
-      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--color-navy);
-    }
-
-    /* NAVBAR */
-    .navbar-masesora {
-      background: var(--color-navy);
-      padding: 18px 26px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(184,157,82,0.35);
-    }
-
-    .navbar-brand-block {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .navbar-logo-box {
-      width: 52px;
-      height: 52px;
-      background: var(--color-gold);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.7rem;
-      color: var(--color-navy);
-    }
-
-    .navbar-text-main {
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: 1.5px;
-    }
-
-    .navbar-text-sub {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.65);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 500;
-    }
-
-    .navbar-pill {
-      padding: 6px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(184,157,82,0.4);
-      color: var(--color-gold);
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(184,157,82,0.1);
-    }
-
-    .navbar-pill span {
-      font-size: 1rem;
-    }
-
-    /* HERO INTRO */
-    .hero-intro {
-      background: linear-gradient(135deg, #0F1A35 0%, #192a4f 40%, #1a2d5a 100%);
-      padding: 46px 18px 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-intro::before,
-    .hero-intro::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(184,157,82,0.4), transparent 60%);
-      opacity: 0.13;
-    }
-
-    .hero-intro::before {
-      width: 420px;
-      height: 420px;
-      top: -220px;
-      right: -120px;
-    }
-
-    .hero-intro::after {
-      width: 360px;
-      height: 360px;
-      bottom: -220px;
-      left: -100px;
-    }
-
-    .hero-intro-inner {
-      position: relative;
-      max-width: 1060px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.6fr);
-      gap: 32px;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .hero-intro-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-
-    .hero-intro-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(184,157,82,0.1);
-      border: 1px solid rgba(184,157,82,0.4);
-      color: var(--color-gold);
-      font-size: 0.78rem;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .hero-intro-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 3vw, 2.7rem);
-      color: #fff;
-      margin: 0 0 12px;
-      line-height: 1.2;
-    }
-
-    .hero-intro-highlight {
-      color: var(--color-gold);
-    }
-
-    .hero-intro-subtitle {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.96rem;
-      line-height: 1.8;
-      max-width: 520px;
-    }
-
-    .hero-intro-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.82rem;
-    }
-
-    .hero-pill-meta {
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15,26,53,0.5);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .hero-intro-right {
-      background: rgba(15,26,53,0.6);
-      border-radius: 18px;
-      border: 1px solid rgba(184,157,82,0.4);
-      padding: 20px 20px 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-intro-right-title {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-      margin: 0 0 10px;
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      font-weight: 600;
-    }
-
-    .hero-intro-right-main {
-      color: #fff;
-      font-size: 1.02rem;
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-
-    .hero-intro-right-metric {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 8px;
-    }
-
-    .hero-intro-right-metric span:first-child {
-      font-size: 0.86rem;
-      color: rgba(255,255,255,0.75);
-    }
-
-    .hero-intro-right-metric span:last-child {
-      font-weight: 700;
-      color: var(--color-gold);
-      font-size: 0.94rem;
-    }
-
-    .hero-intro-money-note {
-      margin-top: 10px;
-      color: rgba(255,255,255,0.68);
-      font-size: 0.78rem;
-      line-height: 1.6;
-    }
-
-    /* MAIN LAYOUT */
-    .page-main {
-      max-width: 1060px;
-      margin: 0 auto 60px;
-      padding: 26px 18px 40px;
-    }
-
-    /* FORM CARD (full width) */
-    .card-form {
-      background: #fff;
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-soft);
-      padding: 20px 22px 18px;
-      border: 1px solid rgba(15,26,53,0.05);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .card-form-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .card-form-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--color-navy);
-    }
-
-    .card-form-step {
-      font-size: 0.8rem;
-      color: #777;
-    }
-
-    .form-note-small {
-      font-size: 0.8rem;
-      color: #777;
-      margin-bottom: 10px;
-    }
-
-    .empresa-box label {
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-      color: var(--color-navy);
-    }
-
-    .empresa-box input {
-      border-radius: 9px;
-      border: 1px solid #d3d7e4;
-      padding: 10px 12px;
-      font-size: 0.95rem;
-    }
-
-    .empresa-box input:focus {
-      border-color: var(--color-navy-soft);
-      box-shadow: 0 0 0 2px rgba(30,79,173,0.15);
-      outline: none;
-    }
-
-    .section {
-      border-radius: 14px;
-      background: #f8f9fb;
-      padding: 16px 16px 14px;
-      margin-bottom: 12px;
-      border: 1px solid #e1e3ec;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-      cursor: pointer;
-    }
-
-    .section-header h4 {
-      margin: 0;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--color-navy);
-    }
-
-    .section-tag {
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #e6ecff;
-      color: #1e4fad;
-      font-weight: 600;
-    }
-
-    .section-body {
-      margin-top: 6px;
-    }
-
-    .section label {
-      font-weight: 500;
-      font-size: 0.83rem;
-      margin-bottom: 5px;
-    }
-
-    .section select.form-select {
-      font-size: 0.84rem;
-      border-radius: 9px;
-      border-color: #d3d7e4;
-    }
-
-    /* PROGRESS & CTA */
-    .form-progress-bar {
-      height: 6px;
-      background: #e2e4ef;
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 12px 0 14px;
-    }
-
-    .form-progress-bar-inner {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--color-gold), var(--color-accent));
-      transition: width 0.25s ease;
-    }
-
-    .form-progress-label {
-      font-size: 0.78rem;
-      color: #777;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .btn-primary-main {
-      width: 100%;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #1e4fad, #264fc7);
-      border: none;
-      padding: 11px 18px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 14px 30px rgba(30,79,173,0.35);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-    }
-
-    .btn-primary-main:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 34px rgba(30,79,173,0.42);
-      background: linear-gradient(135deg, #264fc7, #1e4fad);
-    }
-
-    .btn-primary-main:disabled {
-      opacity: 0.7;
-      cursor: default;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .btn-icon {
-      font-size: 1.1rem;
-    }
-
-    /* RESULT SECTION */
-    #resultSection {
-      margin-top: 30px;
-      display: none;
-    }
-
-    #heroDiagnostico {
-      background: linear-gradient(135deg, #0F1A35 0%, #1a2d5a 100%);
-      padding: 46px 20px 34px;
-      text-align: left;
-      position: relative;
-      overflow: hidden;
-      border-radius: 22px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.4);
-      margin-bottom: 20px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    #heroDiagnostico::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(184,157,82,0.12), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(184,157,82,0.08), transparent 55%);
-      opacity: 0.85;
-      pointer-events: none;
-    }
-
-    .hero-diag-inner {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.5fr);
-      gap: 22px;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .hero-diag-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-
-    .hero-diag-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(184,157,82,0.5);
-      background: rgba(15,26,53,0.7);
-      color: var(--color-gold);
-      font-size: 0.78rem;
-      letter-spacing: 1.7px;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    #heroDashboardTitle {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
-      color: #fff;
-      margin: 0 0 10px;
-      line-height: 1.25;
-    }
-
-    #heroDashboardTitle span {
-      color: var(--color-gold);
-    }
-
-    #heroSubtitle {
-      font-size: 0.94rem;
-      color: rgba(255,255,255,0.78);
-      line-height: 1.7;
-      margin: 0 0 14px;
-    }
-
-    .hero-diag-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.7);
-    }
-
-    .hero-diag-tag {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(15,26,53,0.6);
-    }
-
-    .hero-diag-score {
-      text-align: left;
-      background: rgba(15,26,53,0.7);
-      border-radius: 16px;
-      border: 1px solid rgba(184,157,82,0.45);
-      padding: 16px 18px;
-    }
-
-    .hero-diag-score-label {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.7);
-      text-transform: uppercase;
-      letter-spacing: 1.4px;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .hero-diag-score-main {
-      font-size: 2.1rem;
-      color: var(--color-gold);
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .hero-diag-score-sub {
-      font-size: 0.83rem;
-      color: rgba(255,255,255,0.75);
-    }
-
-    /* ALERTA CRITICIDAD */
-    #alertaCriticidad {
-      max-width: 900px;
-      margin: 14px auto 4px;
-      padding: 0 4px;
-    }
-
-    /* RESUMEN CARDS */
-    .resumen-wrapper {
-      max-width: 900px;
-      margin: 22px auto 0;
-      padding: 0 2px;
-    }
-
-    #resumenCards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-      gap: 14px;
-    }
-
-    /* ESPECIALIDADES */
-    .especialidades-wrapper {
-      max-width: 900px;
-      margin: 34px auto 0;
-      padding: 0 2px;
-    }
-
-    .especialidades-header {
-      text-align: center;
-      margin-bottom: 22px;
-    }
-
-    .especialidades-header span {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
-
-    .especialidades-header p {
-      font-size: 0.86rem;
-      color: #666;
-      margin-top: 6px;
-    }
-
-    #especialidadesDetalle {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.6fr);
-      gap: 16px;
-    }
-
-    @media (max-width: 900px) {
-      #especialidadesDetalle {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .especialidad-card {
-      padding: 14px 14px 13px;
-      border-radius: 12px;
-      background: #fff;
-      border: 1px solid #e3e5f0;
-      box-shadow: 0 10px 22px rgba(15,26,53,0.04);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .especialidad-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: #ccc;
-    }
-
-    .especialidad-card.critico::before { background: var(--color-danger); }
-    .especialidad-card.recomendado::before { background: var(--color-accent); }
-    .especialidad-card.optimizador::before { background: var(--color-success); }
-    .especialidad-card.elite::before { background: var(--color-gold); }
-
-    .especialidad-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .especialidad-nombre {
-      font-weight: 700;
-      font-size: 0.96rem;
-    }
-
-    .especialidad-tag-area {
-      font-size: 0.72rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #f0f4ff;
-      color: #1e4fad;
-      font-weight: 600;
-    }
-
-    .especialidad-nivel-line {
-      font-size: 0.8rem;
-      color: #444;
-      margin-bottom: 2px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .especialidad-score-line {
-      font-size: 0.8rem;
-      color: #555;
-      margin-bottom: 6px;
-    }
-
-    .especialidad-score-value {
-      font-weight: 700;
-      margin-left: 4px;
-    }
-
-    .especialidad-descripcion {
-      font-size: 0.8rem;
-      color: #555;
-      margin-bottom: 4px;
-    }
-
-    .especialidad-mensaje {
-      font-size: 0.8rem;
-      color: #333;
-    }
-
-    /* BARRAS DE ÁREAS */
-    .barras-wrapper {
-      max-width: 900px;
-      margin: 34px auto 0;
-      padding: 0 2px;
-    }
-
-    .barras-card {
-      background: #fff;
-      border-radius: 18px;
-      border: 1px solid #e8e4dc;
-      padding: 22px 22px 18px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .barras-header h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      margin: 0 0 4px;
-    }
-
-    .barras-header p {
-      margin: 0;
-      font-size: 0.8rem;
-      color: #777;
-    }
-
-    .barras-canvas-wrap {
-      max-width: 520px;
-      margin: 10px auto 0;
-      height: 260px;
-    }
-
-    /* CTA EMAIL & CODIGO */
-    .cta-email-wrapper {
-      max-width: 900px;
-      margin: 28px auto 0;
-      padding: 0 2px;
-    }
-
-    .cta-email-card {
-      background: linear-gradient(135deg, #0F1A35, #1a2d5a);
-      border-radius: 20px;
-      padding: 34px 24px 26px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.4);
-    }
-
-    .cta-email-card::before,
-    .cta-email-card::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(184,157,82,0.1);
-    }
-
-    .cta-email-card::before {
-      width: 170px; height: 170px;
-      top: -50px; right: -40px;
-    }
-
-    .cta-email-card::after {
-      width: 130px; height: 130px;
-      bottom: -40px; left: -30px;
-    }
-
-    .cta-email-inner {
-      position: relative;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .cta-email-inner h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.55rem;
-      color: #fff;
-      margin: 0 0 10px;
-    }
-
-    .cta-email-inner p {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin: 0 0 20px;
-    }
-
-    .cta-email-form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 8px;
-    }
-
-    .cta-email-input {
-      flex: 1;
-      min-width: 220px;
-      padding: 12px 14px;
-      border-radius: 999px;
-      border: 2px solid rgba(184,157,82,0.45);
-      background: rgba(255,255,255,0.06);
-      color: #fff;
-      font-size: 0.92rem;
-      outline: none;
-    }
-
-    .cta-email-input::placeholder {
-      color: rgba(255,255,255,0.55);
-    }
-
-    .cta-email-button {
-      border-radius: 999px;
-      border: none;
-      padding: 12px 20px;
-      font-size: 0.9rem;
-      background: var(--color-gold);
-      color: var(--color-navy);
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-    }
-
-    .cta-email-button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(184,157,82,0.45);
-      background: #caa955;
-    }
-
-    .cta-email-button:disabled {
-      opacity: 0.7;
-      cursor: default;
-      transform: none;
-      box-shadow: none;
-    }
-
-    #activationBox {
-      margin-top: 16px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 16px 18px 12px;
-    }
-
-    #codigoExc {
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 4px;
-      font-family: monospace;
-    }
-
-    #emailAviso {
-      margin-top: 6px;
-      font-size: 0.83rem;
-      color: rgba(255,255,255,0.78);
-    }
-
-    /* CTA FINAL CLÍNICO + WHATSAPP */
-    .cta-final-wrapper {
-      max-width: 900px;
-      margin: 26px auto 32px;
-      padding: 0 2px;
-    }
-
-    .cta-final-card {
-      background: #0F1A35;
-      border-radius: 18px;
-      padding: 20px 22px;
-      color: #fff;
-      display: grid;
-      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.5fr);
-      gap: 16px;
-      align-items: center;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.4);
-    }
-
-    @media (max-width: 800px) {
-      .cta-final-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-
-    .cta-final-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .cta-final-text {
-      font-size: 0.86rem;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 6px;
-    }
-
-    .cta-final-note {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.65);
-    }
-
-    .cta-final-actions {
-      text-align: right;
-    }
-
-    @media (max-width: 800px) {
-      .cta-final-actions {
-        text-align: center;
-      }
-    }
-
-    .cta-final-whatsapp {
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid #25D366;
-      color: #0F1A35;
-      font-weight: 700;
-      background: #e7f9f0;
-      font-size: 0.88rem;
-    }
-
-    .cta-final-whatsapp span.icon {
-      font-size: 1.1rem;
-    }
-
-    .cta-final-sub {
-      margin-top: 6px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* Spinner simple */
-    .spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.4);
-      border-top-color: #fff;
-      animation: spin 0.9s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+/* ── TOKENS ─────────────────────────────────────────── */
+:root {
+  --navy:        #0F1A35;
+  --navy2:       #1a2d5a;
+  --gold:        #B89D52;
+  --gold-l:      #D4B96A;
+  --gold-s:      #E8C96A;
+  --gold-d:      #9A7E3A;
+  --gold-a11y:   #7A6428; /* gold sobre fondo claro — ratio 5.6:1 sobre blanco, pasa WCAG AA */
+  --white:       #FFFFFF;
+  --danger:      #d90033;
+  --warn:        #fa8128;
+  --ok:          #21ae52;
+  --r:           12px;
+  --font:        'Montserrat', system-ui, sans-serif;
+}
+
+/* ── SKIP NAV ────────────────────────────────────────── */
+.skip-nav {
+  position: absolute; top: -100px; left: 16px; z-index: 9999;
+  background: var(--gold); color: var(--navy);
+  font-size: .82rem; font-weight: 800; padding: 10px 18px;
+  border-radius: 0 0 8px 8px; text-decoration: none;
+  transition: top .18s;
+}
+.skip-nav:focus { top: 0; }
+
+/* ── RESET ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── FOCUS VISIBLE ───────────────────────────────────── */
+:focus-visible {
+  outline: 2.5px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+body {
+  background: var(--navy);
+  background-image:
+    linear-gradient(rgba(184,157,82,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,157,82,.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  font-family: var(--font);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: var(--font); cursor: pointer; }
+a { text-decoration: none; }
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+@keyframes fadeUp    { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+@keyframes waveDraw  { 0%{stroke-dashoffset:400;opacity:.3} 40%{opacity:1} 100%{stroke-dashoffset:0;opacity:.85} }
+@keyframes waveDrawEco{0%{stroke-dashoffset:380;opacity:0}30%{opacity:.18}100%{stroke-dashoffset:0;opacity:.18}}
+@keyframes pulseOrigin{0%,100%{r:5;opacity:.8}50%{r:7;opacity:1}}
+@keyframes riseImpulse{0%{stroke-dashoffset:80;opacity:0}60%{opacity:0}100%{stroke-dashoffset:0;opacity:.75}}
+@keyframes floatWave {0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes spin      { to{transform:rotate(360deg)} }
+@keyframes dotPulse  {0%,80%,100%{opacity:.3}40%{opacity:1}}
+@keyframes bounce    {0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes shimmer   {0%{background-position:-400px 0}100%{background-position:400px 0}}
+
+/* ── NAVBAR ──────────────────────────────────────────── */
+.navbar {
+  background: var(--navy);
+  border-bottom: 1px solid rgba(184,157,82,.2);
+  padding: 0 24px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 900;
+}
+.nav-logo { display:flex; align-items:center; }
+.nav-logo svg { height: 44px; width: auto; }
+.nav-badge {
+  padding: 5px 14px; border-radius: 999px;
+  border: 1px solid rgba(184,157,82,.4);
+  color: var(--gold-l); font-size: .7rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  background: rgba(184,157,82,.08);
+}
+
+/* ── HERO ────────────────────────────────────────────── */
+.hero {
+  padding: 80px 24px 72px;
+  max-width: 780px; margin: 0 auto;
+  text-align: center;
+  animation: fadeUp .7s ease both;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-size: .68rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 24px;
+  padding: 5px 16px; border-radius: 999px;
+  border: 1px solid rgba(184,157,82,.3);
+  background: rgba(184,157,82,.06);
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800; line-height: 1.12;
+  letter-spacing: -.01em; color: var(--white);
+  margin-bottom: 22px;
+}
+.hero h1 .gold { color: var(--gold-l); }
+.hero-sub {
+  font-size: clamp(.9rem, 1.5vw, 1.05rem);
+  color: rgba(255,255,255,.78); line-height: 1.8;
+  max-width: 620px; margin: 0 auto 40px;
+}
+.hero-masframe-logo {
+  width: min(100%, 560px);
+  height: auto;
+  display: block;
+  margin: 0 auto 36px;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+}
+.hero-scroll {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--gold-l); font-size: 1.00rem; letter-spacing: .18em;
+  text-transform: uppercase; font-weight: 800;
+}
+.hero-scroll-arrow {
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: rgba(184,157,82,.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 2.0rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+.hero-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,157,82,.3), transparent);
+  margin: 0 auto; max-width: 480px;
+}
+
+/* ── SECTION COMMONS ─────────────────────────────────── */
+.section-inner { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.section-eyebrow {
+  font-size: .66rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 800; color: var(--white);
+  line-height: 1.18; letter-spacing: -.01em;
+}
+.section-sub {
+  font-size: .9rem; color: rgba(255,255,255,.70);
+  line-height: 1.7; margin-top: 10px;
+}
+
+/* ── TRUST STRIP ─────────────────────────────────────── */
+.trust-strip {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+  margin: 40px auto 0; max-width: 680px;
+  padding: 16px 24px;
+  background: rgba(255,255,255,.04);
+  border-radius: var(--r);
+  border: 1px solid rgba(184,157,82,.15);
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .73rem; font-weight: 600;
+  color: rgba(255,255,255,.5); letter-spacing: .05em;
+}
+.trust-icon { font-size: .95rem; }
+
+/* ── CÓMO FUNCIONA ───────────────────────────────────── */
+.como-funciona {
+  padding: 72px 0;
+  border-top: 1px solid rgba(184,157,82,.1);
+}
+.como-header { text-align: center; margin-bottom: 52px; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(15,26,53,.12);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+@media(max-width:700px){ .steps-grid{ grid-template-columns:1fr; } }
+.step {
+  background: #FFFFFF;
+  padding: 36px 28px;
+  position: relative;
+}
+.step::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-d), var(--gold-s));
+  opacity: 0; transition: opacity .3s;
+}
+.step:hover::before { opacity: 1; }
+.step-num {
+  font-size: 2.6rem; font-weight: 800;
+  color: rgba(15,26,53,.09); line-height: 1;
+  margin-bottom: 16px; letter-spacing: -.02em;
+}
+.step-title {
+  font-size: 1rem; font-weight: 800;
+  color: var(--navy); margin-bottom: 10px;
+  letter-spacing: .02em;
+}
+.step-body {
+  font-size: .84rem; color: rgba(15,26,53,.58);
+  line-height: 1.7;
+}
+.step-tag {
+  display: inline-block; margin-top: 14px;
+  font-size: .64rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--navy2);
+  padding: 3px 10px; border-radius: 4px;
+  background: rgba(15,26,53,.07); border: 1px solid rgba(15,26,53,.14);
+}
+
+/* ── ESPECIALIDADES ──────────────────────────────────── */
+.especialidades-section {
+  padding: 72px 0;
+  background: linear-gradient(135deg, #C8A84B 0%, #9A7E3A 100%);
+}
+.esp-header { text-align: center; margin-bottom: 44px; }
+.esp-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+@media(max-width:900px){ .esp-grid{ grid-template-columns: repeat(3,1fr); } }
+@media(max-width:560px){ .esp-grid{ grid-template-columns: repeat(2,1fr); } }
+.esp-card {
+  padding: 20px 16px;
+  border-radius: var(--r);
+  border: 1px solid rgba(255,255,255,.12);
+  background: var(--navy);
+  transition: border-color .2s, background .2s;
+}
+.esp-card:hover {
+  border-color: rgba(255,255,255,.28);
+  background: var(--navy2);
+}
+.esp-name {
+  font-size: .76rem; font-weight: 800;
+  color: var(--white); letter-spacing: .04em;
+  text-transform: uppercase; margin-bottom: 6px;
+  line-height: 1.3;
+}
+.esp-lema {
+  font-size: .71rem; color: rgba(255,255,255,.68);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ── RADIO OPTIONS ───────────────────────────────────── */
+.q-text {
+  font-size: .9rem; font-weight: 700; color: #1a1f36;
+  margin: 16px 0 9px; line-height: 1.55;
+}
+.q-text:first-of-type { margin-top: 0; }
+.radio-group {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 7px; margin-bottom: 6px;
+}
+@media(max-width:520px){ .radio-group{ grid-template-columns: 1fr; } }
+.radio-opt {
+  display: flex; align-items: center; gap: 0;
+  padding: 11px 14px; border-radius: 9px;
+  border: 1.5px solid #dde1ee; background: #f9fafc;
+  font-size: .76rem; color: var(--navy); font-weight: 600;
+  line-height: 1.4; text-align: left; cursor: pointer;
+  transition: all .15s; font-family: var(--font);
+}
+.radio-opt:hover { border-color: #aab4d4; background: #eef1fa; }
+.radio-opt.selected {
+  border-color: var(--navy); background: var(--navy); color: var(--white);
+}
+.opt-letter { display: none; }
+.radio-group.pendiente {
+  outline: 2px solid #d90033;
+  outline-offset: 3px;
+  border-radius: 10px;
+  animation: shake .35s ease;
+}
+@keyframes shake {
+  0%,100%{ transform:translateX(0) }
+  20%    { transform:translateX(-5px) }
+  40%    { transform:translateX(5px) }
+  60%    { transform:translateX(-4px) }
+  80%    { transform:translateX(4px) }
+}
+.q-text.pendiente { color: #d90033; }
+.q-pendiente-badge {
+  display:inline-block; margin-left:7px;
+  font-size:.65rem; font-weight:800; color:#fff;
+  background:#d90033; border-radius:4px;
+  padding:1px 6px; vertical-align:middle; letter-spacing:.04em;
+}
+
+/* ── FORM SECTION ────────────────────────────────────── */
+.form-section {
+  padding: 72px 0 0;
+  border-top: 1px solid rgba(184,157,82,.1);
+}
+.form-header { text-align: center; margin-bottom: 40px; }
+.form-header .section-sub { max-width: 520px; margin: 10px auto 0; }
+
+.card-form {
+  background: var(--white); border-radius: 16px;
+  border: 1px solid rgba(184,157,82,.3);
+  box-shadow: 0 24px 60px rgba(0,0,0,.4);
+  padding: 32px 30px 28px;
+  max-width: 800px; margin: 0 auto;
+}
+@media(max-width:600px){ .card-form{ padding:22px 18px 18px; } }
+
+.empresa-box { margin-bottom: 24px; }
+.empresa-box label {
+  display: block; font-weight: 700; font-size: .82rem;
+  color: var(--navy); margin-bottom: 5px;
+}
+.empresa-box label + label { margin-top: 14px; }
+.inp {
+  width: 100%; padding: 11px 14px;
+  border-radius: 8px; border: 1.5px solid #dde1ee;
+  font-size: .9rem; color: var(--navy);
+  font-family: var(--font); outline: none;
+  transition: border-color .18s;
+}
+.inp:focus { border-color: var(--navy2); box-shadow: 0 0 0 3px rgba(26,45,90,.1); }
+
+.form-area {
+  border-radius: 10px; background: #f7f8fb;
+  padding: 16px 18px 14px; margin-bottom: 10px;
+  border: 1.5px solid #e4e6f0;
+}
+.form-area-title {
+  font-size: .72rem; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--white);
+  background: var(--navy); border-radius: 8px 8px 0 0;
+  margin: -16px -18px 16px; padding: 10px 18px;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.form-area-sub {
+  font-size: .62rem; font-weight: 500; letter-spacing: .06em;
+  color: rgba(255,255,255,.45); text-transform: uppercase;
+}
+.form-area label {
+  display: block; font-weight: 600; font-size: .79rem;
+  color: #333; margin-bottom: 5px;
+}
+.sel {
+  width: 100%; padding: 9px 12px;
+  border-radius: 8px; border: 1.5px solid #dde1ee;
+  font-size: .82rem; color: var(--navy);
+  background: var(--white); font-family: var(--font);
+  outline: none; margin-bottom: 12px; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+.sel:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,157,82,.12); }
+.sel:last-child { margin-bottom: 0; }
+
+/* ── FACT SCREEN ─────────────────────────────────────── */
+#factScreen { display:none; max-width:600px; margin:48px auto; padding:0 24px; }
+.fact-card {
+  background:var(--white); border-radius:16px;
+  border:1px solid rgba(184,157,82,.3);
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+  padding:40px 36px; text-align:center;
+}
+.fact-empresa-name {
+  font-size:.72rem; font-weight:800; color:var(--gold-a11y);
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:22px;
+}
+.fact-title {
+  font-size:1.25rem; font-weight:800; color:var(--navy);
+  line-height:1.3; margin-bottom:8px;
+}
+.fact-sub {
+  font-size:.84rem; color:rgba(15,26,53,.55);
+  line-height:1.65; margin-bottom:28px;
+}
+.fact-opts {
+  display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:28px;
+}
+@media(max-width:420px){ .fact-opts{ grid-template-columns:1fr; } }
+.fact-opt {
+  padding:15px 12px; border-radius:10px;
+  border:1.5px solid #dde1ee; background:#f9fafc;
+  font-size:.83rem; color:var(--navy); font-weight:700;
+  cursor:pointer; transition:all .15s; font-family:var(--font); line-height:1.3;
+}
+.fact-opt:hover { border-color:#aab4d4; background:#eef1fa; }
+.fact-opt.selected { border-color:var(--navy); background:var(--navy); color:var(--white); }
+.fact-note { font-size:.7rem; color:rgba(15,26,53,.38); margin:-10px 0 22px; }
+
+/* ── SCROLL REVEAL ───────────────────────────────────── */
+.reveal {
+  opacity:0; transform:translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-d1 { transition-delay:.1s; }
+.reveal-d2 { transition-delay:.2s; }
+.reveal-d3 { transition-delay:.3s; }
+.reveal-d4 { transition-delay:.35s; }
+.reveal-d5 { transition-delay:.42s; }
+
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold-s), var(--gold), var(--gold-d));
+  border: none; border-radius: 999px;
+  padding: 15px 22px; font-size: .95rem; font-weight: 800;
+  color: var(--navy); letter-spacing: .05em; text-transform: uppercase;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 10px 28px rgba(184,157,82,.4);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-primary:hover  { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(184,157,82,.55); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: .6; cursor: default; transform: none; box-shadow: none; }
+.spinner { display:inline-block; width:16px; height:16px; border-radius:50%; border:2px solid rgba(15,26,53,.3); border-top-color:var(--navy); animation:spin .9s linear infinite; }
+
+/* ── NIVEL 2 ─────────────────────────────────────────── */
+#nivel2Section { display:none; max-width:800px; margin:48px auto 0; padding:0 24px; }
+.nivel2-header { text-align:center; margin-bottom:36px; }
+.nivel2-header h3 { font-size:1.45rem; font-weight:800; color:var(--white); margin:8px 0 10px; line-height:1.3; }
+.nivel2-header p  { font-size:.86rem; color:rgba(255,255,255,.68); line-height:1.7; max-width:560px; margin:0 auto; }
+
+/* Contador sticky */
+.nivel2-counter {
+  position:sticky; top:68px; z-index:200;
+  background:linear-gradient(90deg, rgba(15,26,53,.97), rgba(26,45,90,.97));
+  border-bottom:1px solid rgba(184,157,82,.2);
+  padding:11px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-radius:0 0 10px 10px;
+  opacity:0; pointer-events:none;
+  transition:opacity .3s;
+  backdrop-filter:blur(8px);
+}
+.nivel2-counter.activo { opacity:1; pointer-events:auto; }
+.nivel2-counter-label { font-size:.72rem; font-weight:600; color:rgba(255,255,255,.72); letter-spacing:.06em; }
+.nivel2-counter-val { font-size:1rem; font-weight:800; color:var(--gold-s); }
+
+/* Separadores de grupo */
+.nivel2-grupo-label {
+  display:flex; align-items:center; gap:10px;
+  margin:28px 0 10px;
+  font-size:.68rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+}
+.nivel2-grupo-label.critico    { color:#ff6b81; }
+.nivel2-grupo-label.recomendado{ color:#ffb347; }
+.nivel2-grupo-sep {
+  flex:1; height:1px;
+}
+.nivel2-grupo-sep.critico    { background:linear-gradient(90deg,rgba(217,0,51,.4),transparent); }
+.nivel2-grupo-sep.recomendado{ background:linear-gradient(90deg,rgba(250,129,40,.35),transparent); }
+
+/* Bloques */
+.nivel2-bloque { margin-bottom:10px; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
+.nivel2-bloque-header { padding:13px 18px; display:flex; align-items:center; gap:10px; }
+.nivel2-bloque-header.critico {
+  background:rgba(217,0,51,.28);
+  border-bottom:1px solid rgba(217,0,51,.35);
+  box-shadow:inset 3px 0 0 #d90033;
+}
+.nivel2-bloque-header.recomendado {
+  background:rgba(250,129,40,.18);
+  border-bottom:1px solid rgba(250,129,40,.25);
+  box-shadow:inset 3px 0 0 #fa8128;
+}
+.nivel2-bloque-nombre { font-size:.77rem; font-weight:800; color:var(--white); text-transform:uppercase; letter-spacing:.07em; flex:1; }
+.nivel2-bloque-badge  { font-size:.62rem; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:.08em; text-transform:uppercase; }
+.nivel2-bloque-badge.critico     { background:rgba(217,0,51,.3);    color:#ff8fa3; border:1px solid rgba(217,0,51,.4); }
+.nivel2-bloque-badge.recomendado { background:rgba(250,129,40,.22); color:#ffbe7a; border:1px solid rgba(250,129,40,.35); }
+
+/* Síntomas — sin checkbox */
+.nivel2-sintomas { padding:8px 10px; display:flex; flex-direction:column; gap:5px; background:rgba(255,255,255,.02); }
+.nivel2-sintoma-item {
+  display:flex; align-items:flex-start; gap:0;
+  padding:13px 16px; border-radius:9px;
+  border:1.5px solid rgba(15,26,53,.12);
+  cursor:pointer; transition:border-color .18s, background .18s, box-shadow .18s;
+  background:#ffffff;
+  user-select:none;
+  box-shadow:0 1px 4px rgba(15,26,53,.06);
+}
+.nivel2-sintoma-item:hover   { border-color:rgba(184,157,82,.5); background:#fffdf5; box-shadow:0 3px 10px rgba(184,157,82,.15); }
+.nivel2-sintoma-item.selected{
+  border-color:var(--gold);
+  background:linear-gradient(135deg,#fffdf0,#fff8e1);
+  box-shadow:0 3px 12px rgba(184,157,82,.2);
+}
+.nivel2-sintoma-item.selected .nivel2-check { background:var(--gold); border-color:var(--gold); }
+.nivel2-sintoma-item.selected .nivel2-check::after { opacity:1; }
+.nivel2-check {
+  flex-shrink:0; width:18px; height:18px; border-radius:4px;
+  border:1.5px solid rgba(15,26,53,.2);
+  margin-top:2px; margin-right:13px;
+  transition:all .15s; position:relative;
+}
+.nivel2-check::after {
+  content:'✓'; position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.72rem; font-weight:800; color:var(--navy);
+  opacity:0; transition:opacity .15s;
+}
+.nivel2-sintoma-texto  { font-size:.85rem; color:var(--navy); line-height:1.58; }
+.nivel2-sintoma-nombre { display:block; font-size:.72rem; font-weight:700; color:var(--navy2); margin-top:7px; letter-spacing:.04em; text-transform:uppercase; opacity:.7; }
+.nivel2-sintoma-id-tag { font-size:.6rem; font-weight:700; color:var(--gold); letter-spacing:.1em; text-transform:uppercase; margin-right:5px; opacity:.85; }
+
+.nivel2-footer { text-align:center; margin:36px 0 0; padding-bottom:16px; }
+.btn-nivel2 {
+  background:linear-gradient(135deg,var(--gold-s),var(--gold),var(--gold-d));
+  color:var(--navy); border:none; border-radius:999px;
+  padding:16px 52px; font-size:.94rem; font-weight:800;
+  letter-spacing:.05em; text-transform:uppercase;
+  cursor:pointer; transition:all .18s;
+  box-shadow:0 8px 24px rgba(184,157,82,.4);
+}
+.btn-nivel2:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(184,157,82,.55); }
+.nivel2-aviso-cero {
+  display:none; margin-top:14px;
+  padding:10px 16px; border-radius:8px;
+  background:rgba(250,129,40,.12); border:1px solid rgba(250,129,40,.3);
+  font-size:.78rem; color:#ffbe7a; text-align:center;
+}
+
+/* ── DIAGNOSTIC OVERLAY ──────────────────────────────── */
+#diagnosticOverlay {
+  position:fixed; inset:0; z-index:9999;
+  background:var(--navy);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .4s;
+}
+#diagnosticOverlay.active { opacity:1; pointer-events:all; }
+#overlayCanvas { width:100%; max-width:560px; height:72px; }
+.overlay-text-1 { font-size:clamp(1.2rem,3vw,1.7rem); font-weight:800; color:var(--white); margin:22px 0 8px; text-align:center; }
+.overlay-text-2 { font-size:.76rem; color:var(--gold); letter-spacing:.22em; text-transform:uppercase; font-weight:600; text-align:center; }
+.overlay-dots span { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--gold); margin:0 4px; opacity:.3; animation:dotPulse 1.4s ease-in-out infinite; }
+.overlay-dots span:nth-child(2){ animation-delay:.3s; }
+.overlay-dots span:nth-child(3){ animation-delay:.6s; }
+
+/* ── INFORME CLÍNICO ─────────────────────────────────── */
+#informeSection { display:none; max-width:800px; margin:48px auto 0; padding:0 24px; }
+
+.informe-header {
+  background:var(--navy2); border-radius:14px 14px 0 0;
+  padding:18px 24px;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  border:1px solid rgba(184,157,82,.3); border-bottom:none;
+}
+.informe-wave-logo { width:32px; height:32px; flex-shrink:0; animation:floatWave 4s ease-in-out infinite; }
+.informe-empresa-label { font-size:.62rem; color:rgba(255,255,255,.45); letter-spacing:.16em; text-transform:uppercase; }
+.informe-empresa-name  { font-size:.92rem; font-weight:800; color:var(--white); letter-spacing:.04em; margin-top:2px; }
+.informe-exp-right { text-align:right; }
+.informe-exp-meta  { display:flex; align-items:center; gap:8px; flex-wrap:nowrap; justify-content:flex-end; }
+.informe-exp-num  { font-size:.68rem; color:var(--gold); letter-spacing:.12em; text-transform:uppercase; font-weight:700; white-space:nowrap; }
+.informe-exp-sep  { font-size:.68rem; color:rgba(255,255,255,.25); }
+.informe-exp-fecha{ font-size:.68rem; color:rgba(255,255,255,.45); white-space:nowrap; }
+
+.informe-body {
+  background:var(--white);
+  border:1px solid rgba(184,157,82,.25); border-top:none;
+  border-radius:0 0 14px 14px;
+  box-shadow:0 24px 56px rgba(0,0,0,.4);
+}
+.informe-global { padding:24px 26px 20px; border-bottom:1px solid #f0ece4; }
+.informe-global-label  { font-size:.64rem; color:#aaa; letter-spacing:.18em; text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+.informe-estado-badge  { display:inline-flex; align-items:center; gap:10px; padding:8px 18px; border-radius:999px; font-weight:800; font-size:.9rem; }
+.informe-estado-badge.critico    { background:#fff0f3; color:#d90033; border:1.5px solid rgba(217,0,51,.22); }
+.informe-estado-badge.urgente    { background:#fff4ec; color:#c96000; border:1.5px solid rgba(250,129,40,.28); }
+.informe-estado-badge.recomendado{ background:#fffaec; color:#9c7200; border:1.5px solid rgba(184,157,82,.32); }
+.informe-estado-badge.aceptable  { background:#f0faf4; color:#21ae52; border:1.5px solid rgba(33,174,82,.22); }
+.informe-hallazgo-global { margin-top:12px; font-size:.86rem; color:#444; line-height:1.75; }
+
+.informe-divider { height:2px; background:linear-gradient(90deg,var(--gold),transparent); margin:0 26px; opacity:.3; }
+.informe-esp-sec-header { padding:18px 26px 10px; }
+.informe-esp-sec-title { font-size:1rem; font-weight:800; color:var(--navy); }
+.informe-esp-sec-sub   { font-size:.78rem; color:#999; margin-top:2px; }
+
+.informe-esp-block  { margin:0 22px 14px; border:1px solid #eae6de; border-radius:11px; overflow:hidden; }
+.informe-esp-header { padding:12px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #f0ece4; }
+.informe-esp-header.critico    { background:#fff8fa; }
+.informe-esp-header.recomendado{ background:#fffcf8; }
+.informe-esp-emoji  { font-size:1.05rem; flex-shrink:0; }
+.informe-esp-nombre { font-weight:800; font-size:.88rem; color:var(--navy); flex:1; letter-spacing:.03em; }
+.informe-esp-score  { font-size:.74rem; font-weight:700; padding:3px 10px; border-radius:999px; }
+.informe-esp-score.critico    { background:rgba(217,0,51,.1);   color:#d90033; }
+.informe-esp-score.recomendado{ background:rgba(250,129,40,.1); color:#fa8128; }
+
+.informe-esp-body  { padding:14px 18px 16px; }
+.informe-hallazgos-label { font-size:.63rem; font-weight:700; color:#bbb; letter-spacing:.18em; text-transform:uppercase; margin-bottom:8px; }
+.informe-hallazgo-item {
+  display:flex; flex-direction:column; gap:4px;
+  padding:9px 12px; border-radius:8px;
+  background:#fafafa; border-left:3px solid var(--gold);
+  margin-bottom:6px; font-size:.83rem; color:#333; line-height:1.5;
+}
+.informe-sintoma-badge {
+  font-size:.64rem; font-weight:800; color:var(--navy);
+  letter-spacing:.08em; text-transform:uppercase;
+  background:rgba(15,26,53,.07); padding:2px 8px; border-radius:4px;
+  display:inline-block; margin-bottom:2px;
+}
+.informe-no-sintomas { font-size:.8rem; color:#888; font-style:italic; margin-bottom:4px; }
+.informe-impact-treatment {
+  display:block; margin-top:6px;
+  font-size:.78rem; color:var(--navy2); font-weight:600;
+  border-top:1px solid rgba(15,26,53,.07); padding-top:6px;
+  line-height:1.55;
+}
+
+.informe-saludables { margin:0 22px 22px; padding:14px 18px; border-radius:11px; background:#f4faf6; border:1px solid rgba(33,174,82,.18); }
+.informe-saludables-title { font-size:.82rem; font-weight:700; color:var(--ok); margin-bottom:8px; }
+.informe-saludables-list { display:flex; flex-wrap:wrap; gap:6px; }
+.informe-saludable-pill { padding:4px 12px; border-radius:999px; background:rgba(33,174,82,.1); font-size:.74rem; color:var(--ok); font-weight:600; border:1px solid rgba(33,174,82,.18); }
+
+.informe-actions {
+  padding:16px 22px; border-top:1px solid #f0ece4;
+  display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+}
+.btn-pdf {
+  display:inline-flex; align-items:center; gap:8px; padding:10px 20px;
+  border-radius:999px; border:2px solid var(--navy); background:#fff;
+  color:var(--navy); font-weight:700; font-size:.82rem; cursor:pointer;
+  transition:all .15s;
+}
+.btn-pdf:hover { background:var(--navy); color:#fff; }
+.informe-firma {
+  padding:10px 22px; border-top:1px solid #f5f0e8;
+  display:flex; align-items:center; justify-content:space-between;
+  background:#fafaf8; border-radius:0 0 14px 14px;
+}
+.informe-firma-text { font-size:.68rem; color:#bbb; font-style:italic; }
+.informe-firma-seal { font-size:.66rem; color:var(--gold-a11y); font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+
+/* ── EMAIL GATE ───────────────────────────────────────── */
+#ctaEmailWrapper { display:none; max-width:800px; margin:32px auto 0; padding:0 24px; }
+.cta-email-card {
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-radius:18px; padding:40px 28px 32px;
+  position:relative; overflow:hidden;
+  box-shadow:0 22px 50px rgba(0,0,0,.5);
+  border:1px solid rgba(184,157,82,.28);
+}
+.cta-email-card::before {
+  content:''; position:absolute;
+  width:220px; height:220px; border-radius:50%;
+  background:rgba(184,157,82,.07);
+  top:-70px; right:-60px;
+}
+.cta-email-inner { position:relative; text-align:center; max-width:560px; margin:0 auto; }
+.cta-email-eyebrow { font-size:.64rem; color:var(--gold); letter-spacing:.2em; text-transform:uppercase; font-weight:700; margin-bottom:10px; }
+.cta-email-inner h3 { font-size:1.5rem; font-weight:800; color:var(--white); margin:0 0 8px; }
+.cta-email-inner p { color:rgba(255,255,255,.65); font-size:.86rem; line-height:1.75; margin:0 0 22px; }
+.cta-legal-check { display:flex; align-items:flex-start; gap:10px; text-align:left; margin-bottom:18px; font-size:.75rem; color:rgba(255,255,255,.6); line-height:1.55; }
+.cta-legal-check input { margin-top:2px; flex-shrink:0; accent-color:var(--gold); cursor:pointer; }
+.cta-legal-check a { color:var(--gold); text-decoration:underline; }
+.cta-email-form { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:8px; }
+.cta-email-input {
+  flex:1; min-width:220px; padding:13px 18px; border-radius:999px;
+  border:2px solid rgba(184,157,82,.4); background:rgba(255,255,255,.07);
+  color:var(--white); font-size:.9rem; outline:none; font-family:var(--font);
+}
+.cta-email-input::placeholder { color:rgba(255,255,255,.4); }
+.cta-email-input:focus { border-color:var(--gold); background:rgba(255,255,255,.1); }
+.btn-enviar {
+  border-radius:999px; border:none; padding:13px 26px; font-size:.9rem;
+  background:linear-gradient(135deg,var(--gold-s),var(--gold),var(--gold-d));
+  color:var(--navy); font-weight:800; cursor:pointer; white-space:nowrap;
+  font-family:var(--font); letter-spacing:.04em;
+  display:inline-flex; align-items:center; gap:6px;
+  transition:transform .12s, box-shadow .12s;
+}
+.btn-enviar:hover { transform:translateY(-1px); box-shadow:0 10px 24px rgba(184,157,82,.4); }
+.btn-enviar:disabled { opacity:.6; cursor:default; transform:none; }
+
+/* ── ACTIVATION BOX ──────────────────────────────────── */
+#activationBox {
+  display:none; margin-top:24px;
+  background:rgba(255,255,255,.06); border-radius:14px;
+  padding:24px 22px 20px; border:1px solid rgba(184,157,82,.25);
+}
+.activation-eyebrow { font-size:.62rem; color:var(--gold); font-weight:700; letter-spacing:.18em; text-transform:uppercase; margin-bottom:10px; }
+#codigoExc {
+  font-size:2rem; font-weight:800; color:var(--white);
+  letter-spacing:.28em; font-family:monospace;
+  margin:8px 0;
+}
+.codigo-copy-row { display:flex; align-items:center; justify-content:center; gap:10px; margin:6px 0 16px; }
+.btn-copy {
+  padding:5px 14px; border-radius:999px; border:1px solid rgba(184,157,82,.4);
+  background:rgba(184,157,82,.1); color:var(--gold-l);
+  font-size:.72rem; font-weight:700; cursor:pointer;
+  font-family:var(--font); letter-spacing:.06em;
+  transition:background .15s;
+}
+.btn-copy:hover { background:rgba(184,157,82,.2); }
+#emailAviso { font-size:.8rem; color:rgba(255,255,255,.65); line-height:1.6; margin-bottom:18px; }
+.btn-clinica {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  width:100%; padding:15px 24px; border-radius:999px;
+  background:linear-gradient(135deg,var(--gold-s),var(--gold),var(--gold-d));
+  color:var(--navy); font-size:.94rem; font-weight:800;
+  text-decoration:none; letter-spacing:.04em;
+  box-shadow:0 10px 28px rgba(184,157,82,.4);
+  font-family:var(--font); transition:transform .15s;
+}
+.btn-clinica:hover { transform:translateY(-2px); color:var(--navy); }
+
+/* ── CTA FINAL ───────────────────────────────────────── */
+#ctaFinalWrapper { display:none; max-width:800px; margin:16px auto 0; padding:0 24px; }
+.cta-final-card {
+  background:var(--navy); border-radius:14px; padding:20px 24px;
+  display:grid; grid-template-columns:minmax(0,2.2fr) minmax(0,1.4fr);
+  gap:16px; align-items:center;
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
+  border:1px solid rgba(184,157,82,.2);
+}
+@media(max-width:680px){ .cta-final-card{ grid-template-columns:1fr; text-align:center; } }
+.cta-final-title { font-size:.96rem; font-weight:800; margin-bottom:5px; }
+.cta-final-text  { font-size:.8rem; color:rgba(255,255,255,.65); margin-bottom:3px; }
+.cta-final-note  { font-size:.72rem; color:rgba(255,255,255,.4); }
+.cta-final-actions { text-align:right; }
+@media(max-width:680px){ .cta-final-actions{ text-align:center; } }
+.btn-whatsapp {
+  text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+  padding:10px 20px; border-radius:999px;
+  border:1px solid #25D366; color:var(--navy); background:#e7f9f0;
+  font-weight:700; font-size:.84rem; font-family:var(--font);
+}
+.cta-final-sub { margin-top:6px; font-size:.72rem; color:rgba(255,255,255,.45); text-align:right; }
+@media(max-width:680px){ .cta-final-sub{ text-align:center; } }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.site-footer {
+  margin-top: 72px;
+  background:var(--navy); border-top:1px solid rgba(184,157,82,.15);
+  padding:28px 26px; text-align:center;
+}
+.footer-divider { display:block; width:48px; height:1px; background:rgba(184,157,82,.45); margin:0 auto 16px; }
+.footer-links { display:flex; flex-wrap:wrap; gap:18px; justify-content:center; margin-bottom:10px; }
+.footer-links a { color:rgba(255,255,255,.38); font-size:.7rem; letter-spacing:.04em; transition:color .15s; }
+.footer-links a:hover { color:var(--gold); }
+.footer-copy { font-size:.66rem; color:rgba(255,255,255,.24); letter-spacing:.05em; }
+
+/* ── LEGAL MODAL ─────────────────────────────────────── */
+#legalModal { display:none; position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.75); align-items:center; justify-content:center; padding:20px; }
+#legalModal.open { display:flex; }
+.legal-box { background:#fff; border-radius:16px; max-width:580px; width:100%; max-height:82vh; overflow-y:auto; padding:28px 24px; box-shadow:0 30px 60px rgba(0,0,0,.5); }
+.legal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.legal-title { font-size:1.05rem; font-weight:800; color:var(--navy); }
+.legal-close { width:30px;height:30px;border-radius:50%;border:1px solid #e0e0e0;background:#f5f5f5;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:#666;flex-shrink:0; }
+.legal-tabs { display:flex; gap:7px; margin-bottom:18px; flex-wrap:wrap; }
+.legal-tab { padding:5px 13px; border-radius:999px; font-size:.74rem; font-weight:700; border:1px solid #d0d4e0; background:#f8f9fb; color:#666; cursor:pointer; transition:all .15s; font-family:var(--font); }
+.legal-tab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+.legal-tab-content { display:none; font-size:.8rem; color:#555; line-height:1.8; }
+.legal-tab-content.active { display:block; }
+.legal-tab-content h4 { font-size:.86rem; color:var(--navy); margin:16px 0 6px; font-weight:800; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:480px){
+  /* Navbar */
+  .navbar { padding: 0 16px; height: 60px; }
+  .nav-logo svg { height: 36px; }
+  .nav-badge { font-size: .6rem; padding: 4px 10px; }
+
+  /* Hero */
+  .hero { padding: 48px 18px 56px; }
+  .hero h1 { font-size: 1.7rem; }
+  .hero-sub { font-size: .85rem; margin-bottom: 30px; }
+  .hero-scroll { font-size: .94rem; }
+  .hero-scroll-arrow { width: 60px; height: 60px; font-size: 1.5rem; }
+  .trust-strip { gap: 12px; padding: 14px 16px; }
+  .trust-item { font-size: .68rem; }
+
+  /* Pasos */
+  .como-funciona { padding: 52px 0; }
+  .step { padding: 28px 22px; }
+
+  /* Especialidades */
+  .especialidades-section { padding: 52px 0; }
+  .esp-grid { grid-template-columns: repeat(2,1fr); gap: 6px; }
+  .esp-card { padding: 16px 12px; }
+  .esp-name { font-size: .7rem; }
+  .esp-lema { font-size: .67rem; }
+
+  /* Form */
+  .form-section { padding: 52px 0 0; }
+  .card-form { padding: 20px 14px 16px; border-radius: 12px; }
+  .empresa-box label { font-size: .78rem; }
+  .inp { font-size: .85rem; padding: 10px 12px; }
+  .form-area { padding: 12px 14px 10px; }
+  .form-area-title { margin: -12px -14px 14px; padding: 9px 14px; font-size: .68rem; }
+  .q-text { font-size: .84rem; }
+  .radio-opt { font-size: .72rem; padding: 10px 11px; }
+  .btn-primary { font-size: .88rem; padding: 14px 18px; }
+
+  /* Nivel 2 */
+  #nivel2Section { padding: 0 14px; }
+  .nivel2-header h3 { font-size: 1.15rem; }
+  .nivel2-sintoma-item { padding: 10px 12px; }
+  .nivel2-sintoma-texto { font-size: .8rem; }
+  .nivel2-counter { top: 60px; } /* navbar mobile = 60px */
+
+  /* Informe */
+  #informeSection { padding: 0 14px; }
+  .informe-header { padding: 14px 16px; flex-direction: column; align-items: flex-start; }
+  .informe-exp-right { text-align: left; }
+  .informe-exp-meta { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .informe-exp-sep { display: none; }
+  .informe-global { padding: 18px 16px 16px; }
+  .informe-esp-block { margin: 0 10px 12px; }
+  .informe-esp-body { padding: 12px 14px 14px; }
+  .informe-saludables { margin: 0 10px 18px; padding: 12px 14px; }
+  .activacion-box { padding: 22px 16px; margin: 0 14px; }
+
+  /* CTA final */
+  .cta-final { padding: 48px 0 60px; }
+  .cta-final-card { padding: 24px 18px; }
+
+  /* Footer */
+  .site-footer { padding: 22px 16px; }
+  .footer-links { gap: 12px; }
+  .footer-links a { font-size: .65rem; }
+}
+
+@media(min-width:481px) and (max-width:768px){
+  .hero { padding: 60px 24px 64px; }
+  .esp-grid { grid-template-columns: repeat(2,1fr); }
+  .informe-esp-block { margin: 0 14px 12px; }
+  #nivel2Section { padding: 0 18px; }
+  #informeSection { padding: 0 18px; }
+  .fact-opts { grid-template-columns: 1fr 1fr; }
+}
+
+@media(min-width:769px) and (max-width:1024px){
+  /* Tablet landscape — esp-grid 5 cols es demasiado estrecho */
+  .esp-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .esp-card { padding: 18px 14px; }
+
+  /* Reducir padding lateral en secciones */
+  .section-inner { padding: 0 32px; }
+  .hero { padding: 64px 32px 68px; }
+
+  /* Nivel 2 y secciones dinámicas */
+  #nivel2Section { padding: 0 20px; }
+  #informeSection { padding: 0 20px; }
+  #ctaEmailWrapper { padding: 0 20px; }
+  #ctaFinalWrapper { padding: 0 20px; }
+
+  /* Informe */
+  .informe-esp-block { margin: 0 16px 14px; }
+  .informe-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn-pdf { width: 100%; justify-content: center; }
+
+  /* Radio options en 2 cols en tablet */
+  .radio-group { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── PRINT ───────────────────────────────────────────── */
+@media print {
+  .navbar,.hero,.como-funciona,.especialidades-section,.form-section,
+  #nivel2Section,#ctaEmailWrapper,#ctaFinalWrapper,.site-footer,
+  #diagnosticOverlay,#legalModal,.informe-firma,
+  .informe-actions { display:none !important; }
+  body { background:#fff !important; color:#000 !important; }
+  #informeSection { display:block !important; max-width:100% !important; margin:0 !important; padding:0 !important; }
+  .informe-body { border:none !important; box-shadow:none !important; }
+  .informe-esp-block { page-break-inside:avoid; }
+}
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar-masesora">
-    <div class="navbar-brand-block">
-      <div class="navbar-logo-box">M</div>
-      <div>
-        <div class="navbar-text-main">MASESORA</div>
-        <div class="navbar-text-sub">MAS@FRAME® · ESCÁNER CLÍNICO EMPRESARIAL</div>
+
+<a href="#formSection" class="skip-nav">Saltar al diagnóstico</a>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="nav-logo">
+    <!-- MASESORA logo inline — no file dependency -->
+    <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" aria-label="MASESORA" role="img">
+      <defs>
+        <style>
+          .ml-b{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:.09em}
+          .ml-m{font-family:'Montserrat',sans-serif;font-weight:500;letter-spacing:.36em}
+        </style>
+      </defs>
+      <text x="0" y="44" class="ml-b" font-size="38" fill="#FFFFFF">MASESORA</text>
+      <line x1="0" y1="52" x2="310" y2="52" stroke="#B89D52" stroke-width="0.6" opacity="0.5"/>
+      <text x="0" y="68" class="ml-m" font-size="9" fill="#B89D52">DINAMISMO EMPRESARIAL</text>
+    </svg>
+  </div>
+  <div class="nav-badge">La Clínica de Empresas</div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <img src="masframe-logo-light.svg" alt="MAS@FRAME® · Sistema Clínico de Intervención Empresarial" class="hero-masframe-logo" width="480" height="107">
+  <h1>Es un sistema que analiza la salud de tu negocio y te dice exactamente,<br><span class="gold">qué hacer para mejorarlo.</span></h1>
+  <p class="hero-sub">Lo qué le pasa a tu negocio y cómo intervenirlo con precisión. <br> Dedíca 5 minutos a nuestro herramienta, un Escáner de Salud Empresarial para que veas lo que somos capaces de diagnosticar en tu NEGOCIO.<br>Te mostraremos el protocolo de intervención exacto que necesitas gracias a nuestra experiencia en consultoría empresarial.</p>
+  
+  <div class="trust-strip">
+    <span class="trust-item"><span class="trust-icon">🆓</span> Gratuito</span>
+    <span class="trust-item"><span class="trust-icon">📋</span> Informe personalizado</span>
+    <span class="trust-item"><span class="trust-icon">✓</span> Sin compromiso</span>
+  </div>
+
+  <br>
+
+  <div class="hero-scroll" onclick="document.getElementById('formSection').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer;" role="button" aria-label="Ir al diagnóstico">
+    <span>Empieza el escáner</span>
+    <div class="hero-scroll-arrow">↓</div>
+  </div>
+
+</section>
+
+
+<div class="hero-divider"></div>
+
+<!-- ── CÓMO FUNCIONA ── -->
+<section class="como-funciona reveal">
+  <div class="section-inner">
+    <div class="como-header">
+      <div class="section-eyebrow">El proceso</div>
+      <h2 class="section-title">Diagnóstico gratuito</h2>
+      <p class="section-sub">COMPUEBA LA SALUD DE TU NEGOCIO.<br> El resultado en pantalla en menos de 5 minutos.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">EVALUACIÓN</div>
+        <div class="step-title">Escáner de Salud Empresarial</div>
+        <div class="step-body"> 15 preguntas uso excluso para tu diagnóstico con las que tratamos 5 áreas de tu empresa:<br>RENTABILIDAD<br>PROCESOS<br>TIEMPOS<br>PERSONAS<br>COMUNICACIÓN<br></div>
+        <span class="step-tag">5 minutos</span>
+      </div>
+      <div class="step">
+        <div class="step-num">INFORME</div>
+        <div class="step-title">Expediente Clínico</div>
+        <div class="step-body">1. Visualizas en pantalla las ESPECIALIDADES la Clinica de Empresas que requieren intervención.<br>2. Descargas los SÍNTOMAS detectados en tu negocio.<br>3.Recibes el MAS-CODE.<br><br>Realiza el Escáner GRATUITO. </div>
+        <span class="step-tag">Informe INMEDIATO</span>
+      </div>
+      <div class="step">
+        <div class="step-num">ACCESO</div>
+        <div class="step-title">La Clínica de Empresas</div>
+        <div class="step-body"> Con tu MAS-CODE tienes acceso a la Clínica de Empresas donde te explicamos el protocolo de intervención C0–C6 exacto para cada síntoma afectado. <br>Podrás registrar  y registra tu Expediente Clínico y mejorar la Salud de tu empresa </div>
+        <span class="step-tag">Empieza ya</span>
       </div>
     </div>
-    <div class="navbar-pill">
-      <span>⚕</span> Diagnóstico accionable en 5 minutos
+  </div>
+</section>
+
+<!-- ── 10 ESPECIALIDADES ── -->
+<section class="especialidades-section reveal">
+  <div class="section-inner">
+    <div class="esp-header">
+      <div class="section-eyebrow" style="color:var(--navy);">QUÉ ANALIZA EL ESCÁNER</div>
+      <h2 class="section-title" style="color:var(--navy);">10 especialidades clínicas.<br>30 síntomas</h2>
+      <p class="section-sub" style="margin:10px auto 0;max-width:520px;color:rgba(15,26,53,1);">Hemos desarrollado una metodología clínica empresarial. Un protocolo para cada síntoma. A tu propio ritmo de intervención. El escáner detecta cuáles necesitan atención ahora mismo.</p>
     </div>
-  </nav>
-
-  <!-- HERO INTRO -->
-  <section class="hero-intro">
-    <div class="hero-intro-inner">
-      <div>
-        <div class="hero-intro-badge">
-          <span>✦</span> Escáner Clínico MAS@FRAME®
-        </div>
-        <h1 class="hero-intro-title">
-          Radiografía clínica de tu empresa en <span class="hero-intro-highlight">tiempo real</span>.
-        </h1>
-        <p class="hero-intro-subtitle">
-          Evalúa la salud de tu negocio en Rentabilidad, Procesos, Tiempos, Personas y Comunicación, y obtén un informe clínico con las áreas críticas, riesgos y palancas de mejora.
-        </p>
-        <div class="hero-intro-meta">
-          <div class="hero-pill-meta">Pensado para empresas en fase de crecimiento o tensión de caja</div>
-          <div class="hero-pill-meta">Basado en proyectos reales de consultoría operativa</div>
-        </div>
+    <div class="esp-grid">
+      <div class="esp-card reveal reveal-d1">
+        <div class="esp-name">UCI<br>Financiera</div>
+        <div class="esp-lema">Controlar el flujo de caja es la clave, y aquí vamos a detener esta hemorragia financiera.</div>
       </div>
-
-      <div class="hero-intro-right">
-        <div class="hero-intro-right-title">Qué obtendrás</div>
-        <div class="hero-intro-right-main">
-          Un mapa clínico de tu empresa con un lenguaje claro y accionable, que podrás usar en tu siguiente reunión estratégica o con tu equipo directivo.
-        </div>
-        <div class="hero-intro-right-metric">
-          <span>Tiempo estimado de completado</span>
-          <span>≈ 5 minutos</span>
-        </div>
-        <div class="hero-intro-right-metric">
-          <span>Áreas analizadas</span>
-          <span>5 áreas · 10 especialidades</span>
-        </div>
-        <div class="hero-intro-money-note">
-          El informe completo, junto con tu código de acceso MAS@FRAME®, se enviará a tu email al finalizar el diagnóstico.
-        </div>
+      <div class="esp-card reveal reveal-d1">
+        <div class="esp-name">Neurología<br>Estratégica</div>
+        <div class="esp-lema">Sin rumbo, el esfuerzo se dispersa y la empresa pierde precisión.</div>
+      </div>
+      <div class="esp-card reveal reveal-d2">
+        <div class="esp-name">Unidad de<br> Procesos</div>
+        <div class="esp-lema">Sin un proceso definido, la operación se vuelve lenta y la pérdida se vuelve invisible.</div>
+      </div>
+      <div class="esp-card reveal reveal-d2">
+        <div class="esp-name">Gestión<br>Clínica</div>
+        <div class="esp-lema">Reaccionar no es liderar; avanzar con claridad y dirección, sí.</div>
+      </div>
+      <div class="esp-card reveal reveal-d3">
+        <div class="esp-name">Excelencia<br>Operativa</div>
+        <div class="esp-lema">El crecimiento no ocurre por suerte, ocurre cuando tu empresa funciona con precisión.</div>
+      </div>
+      <div class="esp-card reveal reveal-d3">
+        <div class="esp-name">Rescate de<br>Personas</div>
+        <div class="esp-lema">El talento permanece en negocios de éxito.</div>
+      </div>
+      <div class="esp-card reveal reveal-d4">
+        <div class="esp-name">Psiquiatría<br>Organizacional</div>
+        <div class="esp-lema">Crear valores y cultura, y cuidar el entorno y la motivación.</div>
+      </div>
+      <div class="esp-card reveal reveal-d4">
+        <div class="esp-name">Terapia de<br>Experiencia</div>
+        <div class="esp-lema">Clientes que vuelven, te recomiendan.</div>
+      </div>
+      <div class="esp-card reveal reveal-d5">
+        <div class="esp-name">Cirugía de<br>Marca</div>
+        <div class="esp-lema">La diferenciación es el éxito de tu negocio. Si no, te compran por precio.</div>
+      </div>
+      <div class="esp-card reveal reveal-d5">
+        <div class="esp-name">Cardiología<br>Comercial</div>
+        <div class="esp-lema">¿Boca a boca? ¿web? ¿google?, ¿Cómo vende tu negocio? </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- MAIN CONTENT -->
-  <main class="page-main">
-    <!-- FORM -->
-    <div class="card-form">
-      <div class="card-form-header">
-        <div>
-          <div class="card-form-title"> Completa tu cuadro clínico</div>
-          <div class="card-form-step">Datos básicos y 5 bloques clave de preguntas.</div>
-        </div>
-      </div>
+<!-- ── FORMULARIO FASE 1 ── -->
+<section class="form-section reveal" id="formSection">
+  <div class="section-inner">
+    <div class="form-header">
+      <div class="section-eyebrow">Cuadro Clínico· Fase 1</div>
+      <h2 class="section-title">ESCANER DE SALUD EMPRESARIAL</h2>
+      <p class="section-sub">LA PERCEPCIÓN DE TU NEGOCIO tiene un valor incalculable.<br>Responde con honestidad porque no hay respuestas buenas ni malas.<br>Tus datos son confidenciales y solo se usan para generar tu informe.</p>
+    </div>
 
-      <p class="form-note-small">
-        Las respuestas son <strong>confidenciales</strong> y orientadas a generar tu informe sobre tu percepción en la empresa.
-      </p>
+    <div class="card-form" id="cardForm">
 
-      <div class="empresa-box mb-2">
+      <div class="empresa-box">
         <label for="nombreEmpresa">Nombre de la empresa *</label>
-        <input type="text" id="nombreEmpresa" class="form-control" placeholder="Ej: Innovación SL" required>
-
-        <label for="facturacion" class="mt-2">Facturación mensual aproximada (€) *</label>
-        <input type="number" id="facturacion" class="form-control" placeholder="Ej: 15000" min="0" required>
+        <input type="text" id="nombreEmpresa" class="inp" placeholder="Ej: Innovación SL" required>
+        <div id="errNombre" role="alert" style="display:none;margin-top:6px;font-size:.78rem;color:#d90033;font-weight:600;">⚠ Introduce el nombre de la empresa para continuar.</div>
       </div>
 
-      <form id="assessmentForm" class="mt-2">
-        <!-- RENTABILIDAD -->
-        <div class="section" data-area="Rentabilidad">
-          <div class="section-header">
-            <h4>RENTABILIDAD · Finanzas y Estrategia</h4>
-            <span class="section-tag">Pulsa para revisar</span>
-          </div>
-          <div class="section-body">
-            <label>¿Sientes que tu empresa realmente tiene el control y claridad sobre dónde está tu dinero y cómo hacerlo crecer sosteniblemente?</label>
-            <select name="rentabilidad1" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">No tengo control</option>
-              <option value="2">Me cuesta entenderlo</option>
-              <option value="3">Parcialmente</option>
-              <option value="4">Totalmente claro</option>
-            </select>
+      <form id="assessmentForm">
 
-            <label>¿Con qué frecuencia revisas tus resultados financieros para tomar decisiones que eviten pérdidas y aprovechen oportunidades?</label>
-            <select name="rentabilidad2" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">Nunca</option>
-              <option value="2">Rara vez</option>
-              <option value="3">Mensualmente</option>
-              <option value="4">Semanalmente</option>
-            </select>
-
-            <label>¿Tu negocio tiene una estrategia clara y compartida que guía cada movimiento para asegurar rentabilidad futura?</label>
-            <select name="rentabilidad3" class="form-select" required>
-              <option value="">Seleccione</option>
-              <option value="1">No existe estrategia</option>
-              <option value="2">Poco definida</option>
-              <option value="3">Algo definida</option>
-              <option value="4">Sí, claramente definida</option>
-            </select>
+        <div class="form-area">
+          <div class="form-area-title">RENTABILIDAD <span class="form-area-sub">· Finanzas y Estrategia</span></div>
+          <p class="q-text">¿Tu empresa tiene control y claridad sobre dónde está tu dinero y cómo hacerlo crecer de forma sostenible?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="rentabilidad1" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>No tengo control</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad1" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Me cuesta entenderlo</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad1" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Parcialmente</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad1" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Totalmente claro</button>
           </div>
+          <input type="hidden" name="rentabilidad1" id="hid_rentabilidad1">
+
+          <p class="q-text">¿Con qué frecuencia revisas tus resultados financieros para tomar decisiones que eviten pérdidas?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="rentabilidad2" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Nunca</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad2" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Rara vez</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad2" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Mensualmente</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad2" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Semanalmente</button>
+          </div>
+          <input type="hidden" name="rentabilidad2" id="hid_rentabilidad2">
+
+          <p class="q-text">¿Tu negocio tiene una estrategia clara y compartida que guía cada movimiento para asegurar rentabilidad futura?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="rentabilidad3" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>No existe estrategia</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad3" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Poco definida</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad3" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Algo definida</button>
+            <button type="button" class="radio-opt" data-name="rentabilidad3" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Claramente definida</button>
+          </div>
+          <input type="hidden" name="rentabilidad3" id="hid_rentabilidad3">
         </div>
 
-        <!-- PROCESOS -->
-        <div class="section" data-area="Procesos">
-          <div class="section-header">
-            <h4>PROCESOS · Gestión, Crisis y Mejora</h4>
-            <span class="section-tag">Pulsa para revisar</span>
+        <div class="form-area">
+          <div class="form-area-title">PROCESOS <span class="form-area-sub">· Gestión, Crisis y Mejora</span></div>
+          <p class="q-text">¿Los procesos críticos están documentados, actualizados y preparados para enfrentar imprevistos o crisis?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="procesos1" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Nunca</button>
+            <button type="button" class="radio-opt" data-name="procesos1" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Rara vez</button>
+            <button type="button" class="radio-opt" data-name="procesos1" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Algunas veces</button>
+            <button type="button" class="radio-opt" data-name="procesos1" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Siempre</button>
           </div>
-          <div class="section-body">
-            <label>¿Los procesos críticos de tu negocio están documentados, actualizados y preparados para enfrentar imprevistos o crisis?</label>
-            <select name="procesos1" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">Nunca</option>
-              <option value="2">Rara vez</option>
-              <option value="3">Algunas veces</option>
-              <option value="4">Siempre</option>
-            </select>
+          <input type="hidden" name="procesos1" id="hid_procesos1">
 
-            <label>¿Qué tan efectivo es tu sistema para detectar, corregir errores y mejorar procesos que liberan tiempo y recursos?</label>
-            <select name="procesos2" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">No existe sistema</option>
-              <option value="2">Poco efectivo</option>
-              <option value="3">Moderadamente</option>
-              <option value="4">Muy efectivo</option>
-            </select>
-
-            <label>¿Sientes que los procesos actuales te permiten reaccionar rápido y minimizar daños cuando enfrentan problemas serios?</label>
-            <select name="procesos3" class="form-select" required>
-              <option value="">Seleccione</option>
-              <option value="1">Nunca</option>
-              <option value="2">Rara vez</option>
-              <option value="3">Algunas veces</option>
-              <option value="4">Sí, siempre</option>
-            </select>
+          <p class="q-text">¿Qué tan efectivo es tu sistema para detectar, corregir errores y mejorar procesos?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="procesos2" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>No existe sistema</button>
+            <button type="button" class="radio-opt" data-name="procesos2" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Poco efectivo</button>
+            <button type="button" class="radio-opt" data-name="procesos2" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Moderadamente</button>
+            <button type="button" class="radio-opt" data-name="procesos2" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Muy efectivo</button>
           </div>
+          <input type="hidden" name="procesos2" id="hid_procesos2">
+
+          <p class="q-text">¿Tus procesos actuales permiten reaccionar rápido y minimizar daños ante problemas serios?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="procesos3" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Nunca</button>
+            <button type="button" class="radio-opt" data-name="procesos3" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Rara vez</button>
+            <button type="button" class="radio-opt" data-name="procesos3" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Algunas veces</button>
+            <button type="button" class="radio-opt" data-name="procesos3" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Sí, siempre</button>
+          </div>
+          <input type="hidden" name="procesos3" id="hid_procesos3">
         </div>
 
-        <!-- TIEMPOS -->
-        <div class="section" data-area="Tiempos">
-          <div class="section-header">
-            <h4>TIEMPOS · Productividad y Control</h4>
-            <span class="section-tag">Pulsa para revisar</span>
+        <div class="form-area">
+          <div class="form-area-title">TIEMPOS <span class="form-area-sub">· Productividad y Control</span></div>
+          <p class="q-text">¿Tu equipo utiliza el tiempo de manera eficiente y productiva, evitando el estrés y la sobrecarga?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="tiempo1" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Muy ineficiente</button>
+            <button type="button" class="radio-opt" data-name="tiempo1" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Poco eficiente</button>
+            <button type="button" class="radio-opt" data-name="tiempo1" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Regular</button>
+            <button type="button" class="radio-opt" data-name="tiempo1" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Totalmente eficiente</button>
           </div>
-          <div class="section-body">
-            <label>¿Crees que tu equipo utiliza el tiempo de manera eficiente y productiva, evitando el estrés y sobrecarga?</label>
-            <select name="tiempo1" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">Muy ineficiente</option>
-              <option value="2">Poco eficiente</option>
-              <option value="3">Regular</option>
-              <option value="4">Totalmente eficiente</option>
-            </select>
+          <input type="hidden" name="tiempo1" id="hid_tiempo1">
 
-            <label>¿Están claramente identificados los factores o actividades que consumen tiempo innecesario en tu empresa?</label>
-            <select name="tiempo2" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">No se identifican</option>
-              <option value="2">Se identifican pero no se solucionan</option>
-              <option value="3">Se identifican parcialmente</option>
-              <option value="4">Sí, y se están solucionando</option>
-            </select>
-
-            <label>¿Utilizas herramientas o metodologías para asegurar que las tareas y proyectos se completen a tiempo?</label>
-            <select name="tiempo3" class="form-select" required>
-              <option value="">Seleccione</option>
-              <option value="1">Nunca</option>
-              <option value="2">Rara vez</option>
-              <option value="3">Algunas veces</option>
-              <option value="4">Sí, frecuentemente</option>
-            </select>
+          <p class="q-text">¿Están claramente identificados los factores que consumen tiempo innecesario en tu empresa?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="tiempo2" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>No se identifican</button>
+            <button type="button" class="radio-opt" data-name="tiempo2" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Se identifican, no se solucionan</button>
+            <button type="button" class="radio-opt" data-name="tiempo2" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Se identifican parcialmente</button>
+            <button type="button" class="radio-opt" data-name="tiempo2" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Sí, y se solucionan</button>
           </div>
+          <input type="hidden" name="tiempo2" id="hid_tiempo2">
+
+          <p class="q-text">¿Utilizas herramientas o metodologías para asegurar que las tareas y proyectos se completen a tiempo?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="tiempo3" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Nunca</button>
+            <button type="button" class="radio-opt" data-name="tiempo3" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Rara vez</button>
+            <button type="button" class="radio-opt" data-name="tiempo3" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Algunas veces</button>
+            <button type="button" class="radio-opt" data-name="tiempo3" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Sí, frecuentemente</button>
+          </div>
+          <input type="hidden" name="tiempo3" id="hid_tiempo3">
         </div>
 
-        <!-- PERSONAS -->
-        <div class="section" data-area="Personas">
-          <div class="section-header">
-            <h4>PERSONAS · Equipo y Cultura</h4>
-            <span class="section-tag">Pulsa para revisar</span>
+        <div class="form-area">
+          <div class="form-area-title">PERSONAS <span class="form-area-sub">· Equipo y Cultura</span></div>
+          <p class="q-text">¿Tu equipo está motivado, comprometido y entiende claramente su rol en el crecimiento del negocio?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="personas1" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Desmotivado</button>
+            <button type="button" class="radio-opt" data-name="personas1" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Poco motivado</button>
+            <button type="button" class="radio-opt" data-name="personas1" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Medianamente</button>
+            <button type="button" class="radio-opt" data-name="personas1" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Muy motivado</button>
           </div>
-          <div class="section-body">
-            <label>¿Tu equipo está motivado, comprometido y entiende claramente su rol en la recuperación y crecimiento del negocio?</label>
-            <select name="personas1" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">Desmotivado</option>
-              <option value="2">Poco motivado</option>
-              <option value="3">Medianamente</option>
-              <option value="4">Muy motivado</option>
-            </select>
+          <input type="hidden" name="personas1" id="hid_personas1">
 
-            <label>¿Se promueve un ambiente laboral que favorece la colaboración, respeto y crecimiento personal?</label>
-            <select name="personas2" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">Nunca</option>
-              <option value="2">Rara vez</option>
-              <option value="3">A veces</option>
-              <option value="4">Siempre</option>
-            </select>
-
-            <label>¿Sientes que cuentas con el talento necesario y que las capacitaciones apoyan su desempeño efectivo?</label>
-            <select name="personas3" class="form-select" required>
-              <option value="">Seleccione</option>
-              <option value="1">No hay</option>
-              <option value="2">Poco</option>
-              <option value="3">Parcialmente</option>
-              <option value="4">Totalmente</option>
-            </select>
+          <p class="q-text">¿Se promueve un ambiente laboral que favorece la colaboración, el respeto y el crecimiento personal?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="personas2" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Nunca</button>
+            <button type="button" class="radio-opt" data-name="personas2" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Rara vez</button>
+            <button type="button" class="radio-opt" data-name="personas2" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>A veces</button>
+            <button type="button" class="radio-opt" data-name="personas2" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Siempre</button>
           </div>
+          <input type="hidden" name="personas2" id="hid_personas2">
+
+          <p class="q-text">¿Tu equipo cuenta con el talento necesario y recibe formación que apoya su desempeño?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="personas3" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>No hay nada</button>
+            <button type="button" class="radio-opt" data-name="personas3" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Poco</button>
+            <button type="button" class="radio-opt" data-name="personas3" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Parcialmente</button>
+            <button type="button" class="radio-opt" data-name="personas3" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Totalmente</button>
+          </div>
+          <input type="hidden" name="personas3" id="hid_personas3">
         </div>
 
-        <!-- COMUNICACIÓN -->
-        <div class="section" data-area="Comunicación">
-          <div class="section-header">
-            <h4>COMUNICACIÓN · Interna y Comercial</h4>
-            <span class="section-tag">Pulsa para revisar</span>
+        <div class="form-area">
+          <div class="form-area-title">COMUNICACIÓN <span class="form-area-sub">· Interna y Comercial</span></div>
+          <p class="q-text">¿La comunicación interna es transparente, clara y constante, ayudando a que todos remen hacia los mismos objetivos?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="comunicacion1" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Nunca</button>
+            <button type="button" class="radio-opt" data-name="comunicacion1" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Pocas veces</button>
+            <button type="button" class="radio-opt" data-name="comunicacion1" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>A menudo</button>
+            <button type="button" class="radio-opt" data-name="comunicacion1" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Siempre</button>
           </div>
-          <div class="section-body">
-            <label>¿La comunicación interna es transparente, clara y constante, ayudando a que todos remen hacia los mismos objetivos?</label>
-            <select name="comunicacion1" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">Nunca</option>
-              <option value="2">Pocas veces</option>
-              <option value="3">A menudo</option>
-              <option value="4">Siempre</option>
-            </select>
+          <input type="hidden" name="comunicacion1" id="hid_comunicacion1">
 
-            <label>¿Las reuniones y canales de comunicación están diseñados para resolver problemas y avanzar rápidamente?</label>
-            <select name="comunicacion2" class="form-select mb-2" required>
-              <option value="">Seleccione</option>
-              <option value="1">Nada</option>
-              <option value="2">Poco</option>
-              <option value="3">Regular</option>
-              <option value="4">Totalmente</option>
-            </select>
-
-            <label>¿La comunicación con tus clientes refleja confianza y fortalece la relación para aumentar ventas y fidelización?</label>
-            <select name="comunicacion3" class="form-select" required>
-              <option value="">Seleccione</option>
-              <option value="1">Inexistente</option>
-              <option value="2">Débil</option>
-              <option value="3">Sólida</option>
-              <option value="4">Muy sólida</option>
-            </select>
+          <p class="q-text">¿Las reuniones y canales de comunicación están diseñados para resolver problemas y avanzar rápidamente?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="comunicacion2" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Nada</button>
+            <button type="button" class="radio-opt" data-name="comunicacion2" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Poco</button>
+            <button type="button" class="radio-opt" data-name="comunicacion2" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Regular</button>
+            <button type="button" class="radio-opt" data-name="comunicacion2" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Totalmente</button>
           </div>
+          <input type="hidden" name="comunicacion2" id="hid_comunicacion2">
+
+          <p class="q-text">¿La comunicación con tus clientes refleja confianza y fortalece la relación para aumentar ventas?</p>
+          <div class="radio-group">
+            <button type="button" class="radio-opt" data-name="comunicacion3" data-value="1" onclick="selectOpt(this)"><span class="opt-letter">A</span>Inexistente</button>
+            <button type="button" class="radio-opt" data-name="comunicacion3" data-value="2" onclick="selectOpt(this)"><span class="opt-letter">B</span>Débil</button>
+            <button type="button" class="radio-opt" data-name="comunicacion3" data-value="3" onclick="selectOpt(this)"><span class="opt-letter">C</span>Sólida</button>
+            <button type="button" class="radio-opt" data-name="comunicacion3" data-value="4" onclick="selectOpt(this)"><span class="opt-letter">D</span>Muy sólida</button>
+          </div>
+          <input type="hidden" name="comunicacion3" id="hid_comunicacion3">
         </div>
+
       </form>
 
-      <!-- PROGRESS BAR -->
-      <div class="form-progress-bar">
-        <div class="form-progress-bar-inner" id="progressBar"></div>
-      </div>
-      <div class="form-progress-label">
-        <span id="progressLabel">0/5 áreas completadas</span>
-        <span>Completa para ver tu diagnóstico</span>
-      </div>
+      <div id="errPreguntas" role="alert" style="display:none;margin-bottom:12px;padding:11px 16px;border-radius:9px;background:#fff0f3;border:1px solid rgba(217,0,51,.22);font-size:.8rem;color:#d90033;font-weight:600;">⚠ Responde todas las preguntas antes de continuar.</div>
+      <button type="button" id="btnDiagnostico" class="btn-primary" onclick="continuarDiagnostico()">
+        <span></span> Ya casi lo tenemos...
+      </button>
 
-      <!-- CTA -->
-      <button type="button" id="btnDiagnostico" class="btn-primary-main mt-1" onclick="generarDiagnostico()">
-        <span class="btn-icon">📊</span> Ver mi diagnóstico ahora
+    </div><!-- /card-form -->
+  </div>
+</section>
+
+<!-- ── FACT SCREEN ── -->
+<div id="factScreen">
+  <div class="fact-card">
+    <div class="fact-empresa-name" id="factEmpresaNombre">—</div>
+    <div class="fact-title">Un último dato para calibrar tu protocolo</div>
+    <div class="fact-sub">El volumen de actividad determina qué nivel de intervención corresponde a tu empresa. No hay respuesta buena ni mala.</div>
+    <div class="fact-opts">
+      <button type="button" class="fact-opt" data-value="2500"   onclick="selectFact(this)">Menos de 5.000 €/mes</button>
+      <button type="button" class="fact-opt" data-value="10000"  onclick="selectFact(this)">Entre 5.000 y 15.000 €/mes</button>
+      <button type="button" class="fact-opt" data-value="30000"  onclick="selectFact(this)">Entre 15.000 y 50.000 €/mes</button>
+      <button type="button" class="fact-opt" data-value="75000"  onclick="selectFact(this)">Más de 50.000 €/mes</button>
+    </div>
+    <p class="fact-note">Dato confidencial. Solo se utiliza para determinar el protocolo adecuado.</p>
+    <button type="button" id="btnFactConfirmar" class="btn-primary" onclick="confirmarFacturacion()" disabled style="opacity:.5;cursor:default;">
+      <span></span> Último paso
+    </button>
+    <button type="button" onclick="volverAlFormulario()" style="margin-top:12px;background:none;border:none;font-size:.74rem;color:rgba(15,26,53,.4);cursor:pointer;font-family:var(--font);display:block;width:100%;text-align:center;">← Volver y corregir respuestas</button>
+  </div>
+</div>
+
+<!-- ── NIVEL 2 ── -->
+<div id="nivel2Section">
+  <div class="nivel2-counter" id="nivel2Counter">
+    <span class="nivel2-counter-label">Síntomas identificados</span>
+    <span class="nivel2-counter-val"><span id="nivel2CountNum">0</span> seleccionados</span>
+  </div>
+  <div class="nivel2-header">
+    <div class="section-eyebrow" style="display:block;text-align:center;">Cuadro Clínico · Fase 2</div>
+    <h3 id="nivel2Titulo">Identifica los síntomas que reconoces en cada especialidad.</h3>
+    <p id="nivel2Subtitulo">Uno, varios o ninguno. Tú decides.</p>
+  </div>
+  <div id="nivel2Bloques"></div>
+  <div class="nivel2-footer">
+    <button class="btn-nivel2" onclick="confirmarNivel2()">Emitir Informe Clínico</button>
+    <div class="nivel2-aviso-cero" id="nivel2AvisoCero">⚠ Selecciona al menos un síntoma para que el informe refleje tu cuadro clínico real.</div>
+    <button type="button" onclick="volverAFacturacion()" style="margin-top:12px;background:none;border:none;font-size:.74rem;color:rgba(255,255,255,.35);cursor:pointer;font-family:var(--font);display:block;width:100%;text-align:center;">← Volver</button>
+  </div>
+</div>
+
+<!-- ── INFORME CLÍNICO ── -->
+<div id="informeSection">
+  <div class="informe-header">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="masframe-logo-icon.svg" class="informe-wave-logo" alt="MAS@FRAME" aria-hidden="true">
+      <div>
+        <div class="informe-empresa-label">MAS@FRAME® · Sistema Clínico de Intervención Empresarial</div>
+        <div class="informe-empresa-name" id="informeEmpresaNombre">—</div>
+      </div>
+    </div>
+    <div class="informe-exp-right">
+      <div class="informe-exp-meta">
+        <span class="informe-exp-num" id="informeExpNum">Expediente · Pendiente de registro</span>
+        <span class="informe-exp-sep" aria-hidden="true">·</span>
+        <span class="informe-exp-fecha" id="informeExpFecha">—</span>
+      </div>
+    </div>
+  </div>
+  <div class="informe-body">
+    <div class="informe-global">
+      <div class="informe-global-label">Diagnóstico global</div>
+      <div id="informeEstadoBadge" class="informe-estado-badge">—</div>
+      <div class="informe-hallazgo-global" id="informeHallazgoGlobal">—</div>
+    </div>
+    <div class="informe-divider"></div>
+    <div class="informe-esp-sec-header">
+      <div class="informe-esp-sec-title">Hallazgos clínicos por especialidad</div>
+      <div class="informe-esp-sec-sub" id="informeEspSubtitle">Especialidades con intervención recomendada</div>
+    </div>
+    <div id="informeEspecialidades"></div>
+    <div class="informe-saludables" id="informeSaludables" style="display:none;">
+      <div class="informe-saludables-title">✓ Áreas en buen estado clínico</div>
+      <div class="informe-saludables-list" id="informeSaludablesList"></div>
+    </div>
+    <div class="informe-actions">
+      <button class="btn-pdf" id="btnPdf" onclick="window.print()" style="display:none;">
+        <span>📄</span> Descargar PDF clínico
       </button>
     </div>
+    <div class="informe-firma">
+      <div class="informe-firma-text">Informe generado por </div>
+      <div class="informe-firma-seal">MASESORA · La Clínica de Empresas</div>
+    </div>
+    <button type="button" onclick="location.reload()" style="margin-top:16px;background:none;border:none;font-size:.74rem;color:rgba(15,26,53,.35);cursor:pointer;font-family:var(--font);display:block;width:100%;text-align:center;">↺ Empezar de nuevo</button>
+  </div>
+</div>
 
-    <!-- RESULTADOS -->
-    <section id="resultSection">
-      <!-- HERO DIAGNÓSTICO -->
-      <div id="heroDiagnostico">
-        <div class="hero-diag-inner">
-          <div>
-            <div class="hero-diag-badge">
-              <span>⚕</span> Resultado clínico MAS@FRAME®
-            </div>
-            <h2 id="heroDashboardTitle"></h2>
-            <p id="heroSubtitle"></p>
-            <div class="hero-diag-tags" id="heroTags"></div>
-          </div>
-          <div class="hero-diag-score" id="heroScoreBox">
-            <div class="hero-diag-score-label">Estado global</div>
-            <div class="hero-diag-score-main" id="heroScoreLabel">–</div>
-            <div class="hero-diag-score-sub" id="heroScoreSub"></div>
-          </div>
+<!-- ── EMAIL GATE ── -->
+<div id="ctaEmailWrapper">
+  <div class="cta-email-card">
+    <div class="cta-email-inner">
+      <div class="cta-email-eyebrow" id="ctaExpedienteLabel">Tu diagnóstico requiere tratamiento</div>
+      <h3>Registra tu Expediente en La Clínica de Empresas</h3>
+      <p>Recibe tu informe clínico completo y tu código de acceso a La Clínica de Empresas.<br>Introduce tu email y empieza el tratamiento hoy.</p>
+      <div class="cta-legal-check">
+        <input type="checkbox" id="legalCheck">
+        <label for="legalCheck">He leído y acepto la <a href="#" onclick="abrirLegal('privacidad');return false;">Política de Privacidad</a> y el <a href="#" onclick="abrirLegal('aviso');return false;">Aviso Legal</a> de MASESORA. Entiendo que mis datos se usarán para enviarme el informe clínico y comunicaciones relacionadas con el tratamiento empresarial.</label>
+      </div>
+      <div id="errLegal" role="alert" style="display:none;margin-bottom:10px;padding:9px 14px;border-radius:8px;background:rgba(217,0,51,.12);border:1px solid rgba(217,0,51,.3);font-size:.78rem;color:#ff8fa3;font-weight:600;">⚠ Acepta la Política de Privacidad y el Aviso Legal para continuar.</div>
+      <div id="errEmail" role="alert" style="display:none;margin-bottom:10px;padding:9px 14px;border-radius:8px;background:rgba(217,0,51,.12);border:1px solid rgba(217,0,51,.3);font-size:.78rem;color:#ff8fa3;font-weight:600;">⚠ Introduce un email válido para recibir tu informe.</div>
+      <div class="cta-email-form">
+        <input type="email" id="emailCliente" class="cta-email-input" placeholder="tu@empresa.com">
+        <button onclick="enviarDiagnostico()" id="btnEnviar" class="btn-enviar">Enviar mi informe <span>→</span></button>
+      </div>
+      <div id="activationBox">
+        <div class="activation-eyebrow">Tu Código de Acceso · La Clínica de Empresas MAS@FRAME®</div>
+        <div id="codigoExc"></div>
+        <div class="codigo-copy-row">
+          <button class="btn-copy" onclick="copiarCodigo()">Copiar código</button>
         </div>
+        <div id="emailAviso"></div>
+        <a id="btnClinica" href="https://masfront.onrender.com/login" class="btn-clinica" target="_blank" rel="noopener">
+          Acceder a La Clínica de Empresas
+        </a>
       </div>
+    </div>
+  </div>
+</div>
 
-      <!-- ALERTA CRITICIDAD -->
-      <div id="alertaCriticidad"></div>
+<!-- ── CTA FINAL ── -->
+<div id="ctaFinalWrapper">
+  <div class="cta-final-card">
+    <div>
+      <div class="cta-final-title">¿Prefieres revisarlo juntos antes de empezar?</div>
+      <div class="cta-final-text">Revisamos tu cuadro clínico por WhatsApp y te orientamos sobre qué síntomas priorizar.</div>
+      <div class="cta-final-note">Sin compromiso · Respuesta en menos de 24h.</div>
+    </div>
+    <div class="cta-final-actions">
+      <a href="https://wa.me/34609987436" target="_blank" rel="noopener" class="btn-whatsapp">
+        <span>💬</span> Hablar por WhatsApp
+      </a>
+      <div class="cta-final-sub"></div>
+    </div>
+  </div>
+</div>
 
-      <!-- RESUMEN VISUAL -->
-      <div class="resumen-wrapper">
-        <div id="resumenCards"></div>
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <span class="footer-divider"></span>
+  <div class="footer-links">
+    <a href="#" onclick="abrirLegal('privacidad');return false;">Política de Privacidad</a>
+    <a href="#" onclick="abrirLegal('aviso');return false;">Aviso Legal</a>
+    <a href="#" onclick="abrirLegal('cookies');return false;">Política de Cookies</a>
+    <a href="#" onclick="abrirLegal('rgpd');return false;">RGPD</a>
+    <a href="https://www.masesora.com" target="_blank" rel="noopener">masesora.com</a>
+  </div>
+  <div class="footer-copy">© 2026 MASESORA® · MAS@FRAME® · La Clínica de Empresas · Todos los derechos reservados.</div>
+</footer>
+
+<!-- ── DIAGNOSTIC OVERLAY ── -->
+<div id="diagnosticOverlay" aria-hidden="true" role="status" aria-live="polite">
+  <canvas id="overlayCanvas" height="72" aria-hidden="true"></canvas>
+  <div class="overlay-text-1">Analizando cuadro clínico<span id="overlayDots">...</span></div>
+  <div class="overlay-text-2">Procesando la Salud de tu negocio</div>
+  <div class="overlay-dots" style="margin-top:18px;"><span></span><span></span><span></span></div>
+</div>
+
+<!-- ── LEGAL MODAL ── -->
+<div id="legalModal" aria-hidden="true">
+  <div class="legal-box" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
+    <div class="legal-header">
+      <div class="legal-title" id="legalModalTitle">Política de Privacidad</div>
+      <button class="legal-close" onclick="cerrarLegal()" aria-label="Cerrar modal">✕</button>
+    </div>
+    <div class="legal-tabs">
+      <button class="legal-tab active" onclick="cambiarTabLegal('privacidad',this)">Privacidad</button>
+      <button class="legal-tab" onclick="cambiarTabLegal('aviso',this)">Aviso Legal</button>
+      <button class="legal-tab" onclick="cambiarTabLegal('cookies',this)">Cookies</button>
+      <button class="legal-tab" onclick="cambiarTabLegal('rgpd',this)">RGPD</button>
+    </div>
+    <div>
+      <div id="legal-privacidad" class="legal-tab-content active">
+        <h4>Política de Privacidad — MASESORA</h4>
+        <p><strong>Responsable:</strong> MASESORA (La Clínica de Empresas)</p>
+        <p><strong>Finalidad:</strong> Los datos personales recogidos se utilizan exclusivamente para: (a) emitir y enviar el Informe Clínico Empresarial solicitado, (b) gestionar el expediente clínico MAS@FRAME® y (c) comunicaciones directamente relacionadas con el tratamiento empresarial.</p>
+        <p><strong>Legitimación:</strong> Consentimiento del interesado y ejecución de una relación precontractual.</p>
+        <p><strong>Destinatarios:</strong> Los datos no se ceden a terceros salvo obligación legal. Los sistemas de envío pueden implicar transferencia a proveedores de servicios (Resend, Inc.) con garantías adecuadas.</p>
+        <p><strong>Conservación:</strong> Los datos se conservan durante el tiempo necesario para la prestación del servicio y los plazos legales aplicables.</p>
+        <p><strong>Derechos:</strong> Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a direccionmasesora@gmail.com.</p>
       </div>
-
-      <!-- ESPECIALIDADES -->
-      <div class="especialidades-wrapper">
-        <div class="especialidades-header">
-          <span>Diagnóstico por especialidad clínica</span>
-          <p>Análisis clínico de las 10 especialidades clave de tu empresa.</p>
-        </div>
-        <div id="especialidadesDetalle"></div>
+      <div id="legal-aviso" class="legal-tab-content">
+        <h4>Aviso Legal — MASESORA</h4>
+        <p><strong>Titular:</strong> MASESORA · La Clínica de Empresas</p>
+        <p>El presente Aviso Legal regula el acceso, navegación y uso del Escáner de Salud Empresarial MAS@FRAME®. El uso de este servicio implica la aceptación plena de las condiciones aquí establecidas.</p>
+        <p><strong>Propiedad intelectual:</strong> El nombre MAS@FRAME®, La Clínica de Empresas, el protocolo C0–C6 y todos los contenidos del sistema son propiedad exclusiva de MASESORA y están protegidos por la legislación de propiedad intelectual e industrial.</p>
+        <p><strong>Limitación de responsabilidad:</strong> Los resultados del Escáner son orientativos y no constituyen asesoramiento profesional vinculante.</p>
       </div>
-
-      <!-- BARRAS ÁREAS -->
-      <div class="barras-wrapper">
-        <div class="barras-card">
-          <div class="barras-header">
-            <h3>Mapa de salud por áreas</h3>
-            <p>Porcentaje de salud clínica en cada una de las 5 áreas estratégicas.</p>
-          </div>
-          <div class="barras-canvas-wrap">
-            <canvas id="barrasChart"></canvas>
-          </div>
-        </div>
+      <div id="legal-cookies" class="legal-tab-content">
+        <h4>Política de Cookies — MASESORA</h4>
+        <p>El Escáner de Salud Empresarial MAS@FRAME® no utiliza cookies propias de seguimiento ni publicidad.</p>
+        <p><strong>Cookies técnicas:</strong> Se pueden utilizar cookies de sesión estrictamente necesarias para el correcto funcionamiento del formulario.</p>
+        <p><strong>Terceros:</strong> Se utiliza Google Fonts, que puede establecer cookies de rendimiento según su propia política.</p>
       </div>
-
-      <!-- CTA EMAIL / INFORME COMPLETO -->
-      <div class="cta-email-wrapper">
-        <div class="cta-email-card">
-          <div class="cta-email-inner">
-            <h3> Recibe tu Informe Clínico Masesora</h3>
-            <p>
-              Te enviaremos tu informe clínico completo MAS@FRAME®, con el detalle de todas las especialidades, riesgos detectados y palancas recomendadas, junto con tu código exclusivo de acceso.
-            </p>
-            <div class="cta-email-form">
-              <input type="email" id="emailCliente" class="cta-email-input" placeholder="tu@empresa.com">
-              <button onclick="enviarDiagnostico()" id="btnEnviar" class="cta-email-button">
-                <span>Enviar mi informe</span> <span>→</span>
-              </button>
-            </div>
-            <div id="activationBox" style="display:none;">
-              <div style="font-size:0.82rem;color:var(--color-gold);font-weight:700;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:4px;">Tu código de acceso MAS@FRAME®</div>
-              <div id="codigoExc"></div>
-              <div id="emailAviso"></div>
-            </div>
-          </div>
-        </div>
+      <div id="legal-rgpd" class="legal-tab-content">
+        <h4>Información RGPD</h4>
+        <p>En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD):</p>
+        <p><strong>Base jurídica:</strong> Consentimiento explícito del usuario y ejecución de una relación precontractual.</p>
+        <p><strong>Datos recogidos:</strong> Email, nombre de la empresa, facturación estimada y respuestas al cuestionario clínico.</p>
+        <p><strong>No se recogen:</strong> Datos especialmente protegidos, datos de menores ni información financiera sensible.</p>
+        <p><strong>Derecho a reclamación:</strong> Puedes presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
       </div>
+    </div>
+  </div>
+</div>
 
-      <!-- CTA FINAL CLÍNICO + WHATSAPP -->
-      <div class="cta-final-wrapper">
-        <div class="cta-final-card">
-          <div>
-            <div class="cta-final-title">Próximo paso: revisamos tu diagnóstico contigo</div>
-            <div class="cta-final-text">
-              Si lo deseas, podemos revisar este cuadro clínico juntos, contrastar el informe con tu realidad diaria y diseñar los primeros pasos del protocolo de intervención.
-            </div>
-            <div class="cta-final-note">
-              Esta sesión no tiene coste ni compromiso y se centra en priorizar decisiones que realmente muevan la aguja en tu empresa.
-            </div>
-          </div>
-          <div class="cta-final-actions">
-            <a href="https://wa.me/34609987436" target="_blank" rel="noopener" class="cta-final-whatsapp">
-              <span class="icon">💬</span> Quiero hablar por WhatsApp
-            </a>
-            <div class="cta-final-sub">
-              En la sesión usaremos tu diagnóstico MAS@FRAME® como base de trabajo.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<script>
+'use strict';
 
-  <script>
-    // Mapeo de especialidades (10 totales, 2 por área)
-    const especialidadesMap = {
-      'Rentabilidad': [
-        { nombre: 'UCI FINANCIERA', descripcion: 'Gestión de crisis financiera' },
-        { nombre: 'NEUROLOGÍA ESTRATÉGICA', descripcion: 'Planificación y visión' }
-      ],
-      'Procesos': [
-        { nombre: 'UNIDAD DE PROCESOS', descripcion: 'Optimización operativa' },
-        { nombre: 'GESTIÓN CLÍNICA', descripcion: 'Sistemas y control' }
-      ],
-      'Tiempos': [
-        { nombre: 'EXCELENCIA OPERATIVA', descripcion: 'Máximo rendimiento' },
-        { nombre: 'RESCATE DE PERSONAS', descripcion: 'Retención de talento' }
-      ],
-      'Personas': [
-        { nombre: 'PSIQUIATRÍA ORGANIZACIONAL', descripcion: 'Cultura y motivación' },
-        { nombre: 'TERAPIA DE EXPERIENCIA', descripcion: 'Experiencia del cliente' }
-      ],
-      'Comunicación': [
-        { nombre: 'CIRUGÍA DE MARCA', descripcion: 'Identidad y posicionamiento' },
-        { nombre: 'CARDIOLOGÍA COMERCIAL', descripcion: 'Ventas y clientes' }
-      ]
-    };
+/* ══ DISPLAY NAMES ══════════════════════════════════════ */
+const DISPLAY_NAMES = {
+  'UCI FINANCIERA':             'UCI Financiera',
+  'NEUROLOGIA ESTRATEGICA':     'Neurología Estratégica',
+  'UNIDAD DE PROCESOS':         'Unidad de Procesos',
+  'GESTION CLINICA':            'Gestión Clínica',
+  'EXCELENCIA OPERATIVA':       'Excelencia Operativa',
+  'RESCATE DE PERSONAS':        'Rescate de Personas',
+  'PSIQUIATRIA ORGANIZACIONAL': 'Psiquiatría Organizacional',
+  'TERAPIA DE EXPERIENCIA':     'Terapia de Experiencia',
+  'CIRUGIA DE MARCA':           'Cirugía de Marca',
+  'CARDIOLOGIA COMERCIAL':      'Cardiología Comercial'
+};
 
-    function normalizar(score){ return Math.round(score*100/12); }
+/* ══ ÁREA → ESPECIALIDADES ══════════════════════════════ */
+const especialidadesMap = {
+  'Rentabilidad':  [
+    {nombre:'UCI FINANCIERA',          descripcion:'Liquidez, rentabilidad y cobros'},
+    {nombre:'NEUROLOGIA ESTRATEGICA',  descripcion:'Visión, dirección y decisiones'}
+  ],
+  'Procesos': [
+    {nombre:'UNIDAD DE PROCESOS',      descripcion:'Operativa, flujos y calidad'},
+    {nombre:'GESTION CLINICA',         descripcion:'Control, cumplimiento y estructura'}
+  ],
+  'Tiempos': [
+    {nombre:'EXCELENCIA OPERATIVA',    descripcion:'Integración, liderazgo y cadencia'},
+    {nombre:'RESCATE DE PERSONAS',     descripcion:'Talento, productividad y conflicto'}
+  ],
+  'Personas': [
+    {nombre:'PSIQUIATRIA ORGANIZACIONAL', descripcion:'Clima, perfiles y motivación'},
+    {nombre:'TERAPIA DE EXPERIENCIA',     descripcion:'Cliente, valor percibido y fidelización'}
+  ],
+  'Comunicación': [
+    {nombre:'CIRUGIA DE MARCA',        descripcion:'Identidad, propuesta y mensaje'},
+    {nombre:'CARDIOLOGIA COMERCIAL',   descripcion:'Demanda, pipeline y ventas'}
+  ]
+};
 
-    function getNivel(score) {
-      if (score <= 70) return { nivel: 'CRÍTICO', emoji: '🔴', clase: 'critico', color: '#d90033' };
-      if (score <= 85) return { nivel: 'RECOMENDADO', emoji: '🟠', clase: 'recomendado', color: '#fa8128' };
-      if (score <= 95) return { nivel: 'OPTIMIZADOR', emoji: '🟢', clase: 'optimizador', color: '#21ae52' };
-      return { nivel: 'ÉLITE', emoji: '💎', clase: 'elite', color: '#1e4fad' };
-    }
+/* ══ CATÁLOGO DINÁMICO — /specialties/all ════════════════ */
+// Estos mapas se construyen en runtime desde el backend.
+// Cualquier cambio en symptoms.json se refleja automáticamente.
+const EXCLUDE_IDS = new Set(['CARDIO-S3','CARDIO-S4']);
+const API_BASE    = 'https://masframe-zz8d.onrender.com';
 
-    function calcularPresupuesto(facturacion, especialidadesNecesarias) {
-      const umbral = 15000;
-      let precioPIE_base, precioPRE_base;
+let SINTOMAS_NIVEL2    = {};
+let IMPACT_TREATMENT   = {};
 
-      if (facturacion >= umbral) {
-        precioPIE_base = 999;
-        precioPRE_base = 4500;
-      } else {
-        precioPIE_base = 399;
-        precioPRE_base = 1499;
-      }
-
-      const criticas = especialidadesNecesarias.filter(e => e.nivel.nivel === 'CRÍTICO');
-      const recomendadas = especialidadesNecesarias.filter(e => e.nivel.nivel === 'RECOMENDADO');
-
-      let totalPIE = 0;
-      let totalPRE = 0;
-
-      let desglose = {
-        criticas: criticas.map(e => ({
-          ...e,
-          precioPIE: precioPIE_base,
-          precioPRE: precioPRE_base,
-          descuento: false
-        })),
-        recomendadas: recomendadas.map(e => ({
-          ...e,
-          precioPIE: Math.round(precioPIE_base * 0.5 * 100) / 100,
-          precioPRE: Math.round(precioPRE_base * 0.5 * 100) / 100,
-          descuento: true
-        }))
-      };
-
-      desglose.criticas.forEach(e => {
-        totalPIE += e.precioPIE;
-        totalPRE += e.precioPRE;
-      });
-
-      desglose.recomendadas.forEach(e => {
-        totalPIE += e.precioPIE;
-        totalPRE += e.precioPRE;
-      });
-
-      return {
-        desglose,
-        totalPIE: Math.round(totalPIE * 100) / 100,
-        totalPRE: Math.round(totalPRE * 100) / 100,
-        especialidadesCriticas: criticas.length,
-        especialidadesRecomendadas: recomendadas.length,
-        totalEspecialidades: criticas.length + recomendadas.length
-      };
-    }
-
-    let barrasChart;
-    let diagnosticoActual = null;
-
-    // Motor de textos de insight
-    const insightTextos = {
-      global: {
-        'RIESGO CRÍTICO': {
-          resumen: 'Tu empresa presenta un cuadro clínico delicado, con múltiples focos en estado crítico.',
-          riesgo: 'Mantener esta situación 6–12 meses puede comprometer seriamente la liquidez, el margen y la viabilidad.',
-          palanca: 'Requiere un plan de rescate estructurado y focalizado en las áreas UCI en las próximas semanas.'
-        },
-        'ATENCIÓN URGENTE': {
-          resumen: 'Hay señales claras de alerta que no deberían posponerse.',
-          riesgo: 'Sin intervención, las áreas críticas pueden derivar en crisis operativa y financiera.',
-          palanca: 'Es momento de priorizar y abordar los focos críticos con un protocolo guiado.'
-        },
-        'INTERVENCIÓN RECOMENDADA': {
-          resumen: 'Tu empresa tiene una base aceptable, pero hay áreas que ya muestran fatiga.',
-          riesgo: 'La inacción puede llevar a pérdida de oportunidades y erosión de margen.',
-          palanca: 'Una intervención quirúrgica ahora puede evitar escenarios de urgencia futura.'
-        },
-        'SALUD ACEPTABLE': {
-          resumen: 'Tu cuadro clínico actual es estable.',
-          riesgo: 'El riesgo no está en el corto plazo, sino en estancarse y no capturar el potencial.',
-          palanca: 'Trabajar en optimización y crecimiento controlado permitirá consolidar la ventaja competitiva.'
-        }
-      }
-    };
-
-    function generarInsights(areas, areaScores, todasEspecialidades, estadoGlobal) {
-      const paresAreas = areas.map((a, i) => ({ area: a, score: areaScores[i] || 0 }));
-      paresAreas.sort((a,b) => a.score - b.score);
-      const weakest = paresAreas.slice(0, 2);
-
-      const sortedEsp = [...todasEspecialidades].sort((a,b) => a.score - b.score);
-      const weakestEsp = sortedEsp.slice(0, 2);
-
-      const base = insightTextos.global[estadoGlobal] || insightTextos.global['INTERVENCIÓN RECOMENDADA'];
-
-      const hallazgos = [
-        base.resumen,
-        `Las áreas con menor salud son: ${weakest.map(w => w.area + ' (' + w.score + '%)').join(' y ')}.`,
-        `Las especialidades más sensibles ahora mismo son: ${weakestEsp.map(e => e.nombre + ' (' + e.score + '%)').join(' y ')}.`
-      ];
-
-      const riesgos = [
-        base.riesgo,
-        'Las áreas críticas tienden a amplificar errores en decisiones, carga de trabajo y tensión en caja si no se actúa.',
-        'En contextos de incertidumbre, estas debilidades suelen acelerar problemas de rotación, servicio y margen.'
-      ];
-
-      const palancas = [
-        base.palanca,
-        'Prioriza una intervención focalizada en las áreas con menor score antes de ampliar el foco a optimización general.',
-        'Alinea a tu equipo en torno a 3 objetivos clínicos concretos para los próximos 90 días.'
-      ];
-
-      return { hallazgos, riesgos, palancas };
-    }
-
-    function actualizarProgreso() {
-      const form = document.getElementById("assessmentForm");
-      const areas = ["Rentabilidad", "Procesos", "Tiempos", "Personas", "Comunicación"];
-      let completas = 0;
-
-      areas.forEach(area => {
-        let prefix = area.toLowerCase();
-        if (area === "Tiempos") prefix = "tiempo";
-        if (area === "Comunicación") prefix = "comunicacion";
-
-        let filled = true;
-        for (let i=1; i<=3; i++) {
-          let fieldName = prefix + i;
-          if (!form[fieldName] || !form[fieldName].value) {
-            filled = false;
-            break;
-          }
-        }
-        if (filled) completas++;
-      });
-
-      const progressPercent = (completas / areas.length) * 100;
-      document.getElementById("progressBar").style.width = progressPercent + "%";
-      document.getElementById("progressLabel").textContent = completas + "/" + areas.length + " áreas completadas";
-    }
-
-    document.querySelectorAll('.section-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const tag = header.querySelector('.section-tag');
-        if (tag) {
-          tag.textContent = tag.textContent.includes('Pulsa') ? 'Revisado' : 'Pulsa para revisar';
-        }
-      });
+async function cargarCatalogo(){
+  try{
+    const res  = await fetch(`${API_BASE}/specialties/all`);
+    if(!res.ok) throw new Error('api');
+    const symptoms = await res.json();
+    symptoms.forEach(s=>{
+      if(EXCLUDE_IDS.has(s.symptom_id)) return;
+      const sp = s.specialty_id;
+      if(!SINTOMAS_NIVEL2[sp]) SINTOMAS_NIVEL2[sp]=[];
+      SINTOMAS_NIVEL2[sp].push({id:s.symptom_id, nombre:s.symptom_name, texto:s.logica});
+      if(s.impact_treatment) IMPACT_TREATMENT[s.symptom_id]=s.impact_treatment;
     });
-
-    document.getElementById('assessmentForm').addEventListener('change', actualizarProgreso);
-
-    function generarDiagnostico(){
-      const form = document.getElementById("assessmentForm");
-      const nombre = document.getElementById("nombreEmpresa").value.trim();
-      const facturacion = parseFloat(document.getElementById("facturacion").value) || 0;
-      const btn = document.getElementById("btnDiagnostico");
-
-      if(!nombre){
-        alert("Por favor, introduce el nombre de la empresa.");
-        return;
-      }
-
-      if(facturacion <= 0){
-        alert("Por favor, introduce la facturación mensual aproximada.");
-        return;
-      }
-
-      if(!form.checkValidity()){
-        alert("Por favor, completa todas las preguntas del cuestionario.");
-        return;
-      }
-
-      btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span> Calculando diagnóstico…';
-
-      const areas = ["Rentabilidad", "Procesos", "Tiempos", "Personas", "Comunicación"];
-      let areaScores = [];
-      let todasEspecialidades = [];
-
-      for(let area of areas){
-        let total = 0;
-        let prefix = area.toLowerCase();
-        if(area === "Tiempos") prefix = "tiempo";
-        if(area === "Comunicación") prefix = "comunicacion";
-
-        for(let i=1; i<=3; i++){
-          let fieldName = prefix + i;
-          let val = parseInt(form[fieldName]?.value || "1");
-          total += val;
-        }
-
-        let areaScore = normalizar(total);
-        areaScores.push(areaScore);
-
-        const especialidadesArea = especialidadesMap[area];
-        especialidadesArea.forEach(esp => {
-          todasEspecialidades.push({
-            nombre: esp.nombre,
-            descripcion: esp.descripcion,
-            area: area,
-            score: areaScore,
-            nivel: getNivel(areaScore)
-          });
-        });
-      }
-
-      const presupuesto = calcularPresupuesto(facturacion, todasEspecialidades);
-
-      const criticas_n    = todasEspecialidades.filter(e => e.nivel.nivel === 'CRÍTICO').length;
-      const prioritarias_n = todasEspecialidades.filter(e => e.nivel.nivel === 'RECOMENDADO').length;
-      const saludables_n  = todasEspecialidades.filter(e => e.nivel.nivel === 'OPTIMIZADOR' || e.nivel.nivel === 'ÉLITE').length;
-
-      const estadoGlobal = criticas_n >= 5 ? 'RIESGO CRÍTICO' :
-                           criticas_n >= 3 ? 'ATENCIÓN URGENTE' :
-                           criticas_n >= 1 ? 'INTERVENCIÓN RECOMENDADA' : 'SALUD ACEPTABLE';
-
-      const subtitleMap = {
-        'RIESGO CRÍTICO':            'Tu empresa presenta múltiples áreas en estado crítico. La intervención inmediata es necesaria para estabilizar el cuadro clínico.',
-        'ATENCIÓN URGENTE':          'Tu empresa muestra señales de alerta significativas. Un plan de intervención estructurado es fundamental en este momento.',
-        'INTERVENCIÓN RECOMENDADA':  'Tu empresa tiene áreas que requieren atención. Actuar ahora evitará que el cuadro evolucione a crítico.',
-        'SALUD ACEPTABLE':           'Tu empresa muestra un cuadro clínico estable. Hay oportunidades de optimización que marcarán la diferencia.'
-      };
-
-      const insights = generarInsights(areas, areaScores, todasEspecialidades, estadoGlobal);
-
-      diagnosticoActual = {
-        nombre: nombre,
-        facturacion: facturacion,
-        areas: areas,
-        areaScores: areaScores,
-        especialidades: todasEspecialidades,
-        presupuesto: presupuesto,
-        estadoGlobal: estadoGlobal,
-        insights: insights,
-        timestamp: new Date().toISOString()
-      };
-
-      document.getElementById("resultSection").style.display = "block";
-
-      // Hero
-      document.getElementById("heroDashboardTitle").innerHTML =
-        nombre + ' · <span>' + estadoGlobal + '</span>';
-      document.getElementById("heroSubtitle").textContent = subtitleMap[estadoGlobal];
-
-      const heroTags = document.getElementById("heroTags");
-      heroTags.innerHTML = `
-        <div class="hero-diag-tag">Áreas críticas: ${criticas_n}</div>
-        <div class="hero-diag-tag">Áreas prioritarias: ${prioritarias_n}</div>
-        <div class="hero-diag-tag">Áreas saludables: ${saludables_n}</div>
-      `;
-
-      document.getElementById("heroScoreLabel").textContent = estadoGlobal;
-      document.getElementById("heroScoreSub").textContent = insights.hallazgos[0];
-
-      // Alerta criticidad
-      const alertaEl = document.getElementById("alertaCriticidad");
-      if (criticas_n >= 3) {
-        const alertColor = criticas_n >= 5 ? '#d90033' : '#fa8128';
-        const alertBg    = criticas_n >= 5 ? '#fff0f3' : '#fff8f0';
-        alertaEl.style.display = 'block';
-        alertaEl.innerHTML = `
-          <div style="background:${alertBg};border:2px solid ${alertColor};border-radius:14px;padding:18px 22px;display:flex;align-items:flex-start;gap:16px;box-shadow:0 10px 30px rgba(0,0,0,0.08);">
-            <div style="font-size:2.1rem;flex-shrink:0;">${criticas_n >= 5 ? '🚨' : '⚠️'}</div>
-            <div>
-              <div style="font-weight:800;font-size:0.98rem;color:${alertColor};margin-bottom:4px;">
-                ${criticas_n >= 5 ? 'Estado clínico crítico: intervención urgente' : 'Alerta clínica: ' + criticas_n + ' áreas en estado crítico'}
-              </div>
-              <div style="color:#555;font-size:0.84rem;line-height:1.7;">
-                ${criticas_n >= 5
-                  ? 'Tu empresa presenta un cuadro clínico de alto riesgo. Cada semana sin intervención tiene un coste real y creciente.'
-                  : 'Las áreas críticas requieren un plan de acción estructurado. Nuestro equipo clínico puede ayudarte a estabilizarlas.'}
-              </div>
-            </div>
-          </div>`;
-      } else {
-        alertaEl.style.display = 'none';
-        alertaEl.innerHTML = '';
-      }
-
-      // Resumen cards
-      document.getElementById("resumenCards").innerHTML = [
-        { n: criticas_n,    label: 'Críticas',    color: '#d90033', bg: '#fff0f3', icon: '🔴' },
-        { n: prioritarias_n, label: 'Prioritarias', color: '#fa8128', bg: '#fff8f0', icon: '🟠' },
-        { n: saludables_n,  label: 'Saludables',  color: '#21ae52', bg: '#f0faf4', icon: '🟢' },
-        { n: todasEspecialidades.length, label: 'Especialidades analizadas', color: '#0F1A35', bg: '#f0f4ff', icon: '⚕' },
-      ].map(c => `
-        <div style="background:${c.bg};border-radius:14px;padding:16px 14px;text-align:center;border:1px solid ${c.color}22;">
-          <div style="font-size:1.4rem;margin-bottom:4px;">${c.icon}</div>
-          <div style="font-size:1.7rem;font-weight:800;color:${c.color};font-family:'Playfair Display',serif;">${c.n}</div>
-          <div style="font-size:0.78rem;font-weight:700;color:#777;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">${c.label}</div>
-        </div>`).join('');
-
-      // Especialidades
-      const mensajesPorEspecialidad = {
-        'UCI FINANCIERA':             { critico: 'La liquidez de tu empresa está comprometida. Sin intervención, el riesgo de colapso financiero es real y creciente.', recomendado: 'Tus finanzas muestran señales de alerta. Optimizar el flujo de caja ahora evitará problemas mayores.', ok: 'Tu gestión financiera es sólida. Hay margen de optimización para aumentar la rentabilidad.' },
-        'NEUROLOGÍA ESTRATÉGICA':     { critico: 'Tu empresa opera sin una dirección estratégica clara. Esto te expone a decisiones reactivas y pérdida de oportunidades.', recomendado: 'La planificación estratégica necesita estructura. Una hoja de ruta clara multiplicará tus resultados.', ok: 'Tienes visión estratégica. Refinar tu plan puede llevarte al siguiente nivel.' },
-        'UNIDAD DE PROCESOS':         { critico: 'Los procesos internos son un freno para tu empresa. La ineficiencia operativa tiene un coste diario medible.', recomendado: 'Tus procesos tienen áreas de mejora significativas. Optimizarlos libera capacidad y reduce costes.', ok: 'Tus procesos an bien. Pequeños ajustes pueden generar grandes ganancias de eficiencia.' },
-        'GESTIÓN CLÍNICA':            { critico: 'No tienes control real de los indicadores de tu negocio. Lo que no se mide, no se puede mejorar ni corregir.', recomendado: 'El sistema de control y seguimiento necesita refuerzo. Medir mejor es decidir mejor.', ok: 'Tienes buena capacidad de seguimiento. Ampliar tus métricas te dará más palancas de mejora.' },
-        'EXCELENCIA OPERATIVA':       { critico: 'El rendimiento operativo está muy por debajo de su potencial. Esto impacta directamente en costes y capacidad de entrega.', recomendado: 'Hay margen importante para mejorar el rendimiento operativo. La excelencia es un hábito que se construye.', ok: 'Tu operativa es eficiente. Incorporar mejoras continuas mantendrá esta ventaja.' },
-        'RESCATE DE PERSONAS':        { critico: 'La situación del equipo humano es crítica. La rotación, desmotivación o falta de talento están afectando a los resultados.', recomendado: 'Tu equipo necesita atención. Invertir en personas es la palanca de mayor retorno a largo plazo.', ok: 'Tu equipo es un activo. Fortalecer la cultura y el desarrollo los convertirá en ventaja competitiva.' },
-        'PSIQUIATRÍA ORGANIZACIONAL': { critico: 'La cultura actual está generando fricción y resistencia. Esto mina el rendimiento y la adopción de cambios.', recomendado: 'La cultura necesita cuidados específicos. Trabajarla mejorará el clima y el compromiso.', ok: 'Tu cultura tiene una buena base. Consolidarla asegurará la evolución saludable del negocio.' },
-        'TERAPIA DE EXPERIENCIA':     { critico: 'La experiencia de cliente es un punto de dolor que está afectando ventas y reputación.', recomendado: 'Tus clientes están recibiendo una experiencia irregular. Unificarla elevará recomendación y recurrencia.', ok: 'Tu experiencia de cliente es positiva. Convertirla en diferencial consolidará tu marca.' },
-        'CIRUGÍA DE MARCA':           { critico: 'Tu marca está desdibujada en el mercado. Eso dificulta atraer al cliente correcto y justificar tu valor.', recomendado: 'Tu posicionamiento necesita claridad. Un trabajo de marca reforzará todo tu sistema comercial.', ok: 'Tu marca tiene buena base. Afinar el mensaje puede abrir nuevas oportunidades.' },
-        'CARDIOLOGÍA COMERCIAL':      { critico: 'El sistema comercial está en fase crítica. Faltan ritmo, previsión y constancia en ventas.', recomendado: 'Tu área comercial late, pero de forma irregular. Dotarla de método estabilizará el crecimiento.', ok: 'Tu sistema comercial funciona. Afinar el pulso permitirá escalar con menos sobresaltos.' }
-      };
-
-      const contEsp = document.getElementById("especialidadesDetalle");
-      contEsp.innerHTML = todasEspecialidades.map(esp => {
-        const msgMap = mensajesPorEspecialidad[esp.nombre] || { critico: '', recomendado: '', ok: '' };
-        let mensaje;
-        if (esp.nivel.nivel === 'CRÍTICO') mensaje = msgMap.critico;
-        else if (esp.nivel.nivel === 'RECOMENDADO') mensaje = msgMap.recomendado;
-        else mensaje = msgMap.ok;
-
-        return `
-          <div class="especialidad-card ${esp.nivel.clase}">
-            <div class="especialidad-header">
-              <div class="especialidad-nombre">${esp.nombre}</div>
-              <div class="especialidad-tag-area">${esp.area}</div>
-            </div>
-            <div class="especialidad-nivel-line">
-              <span>${esp.nivel.emoji}</span>
-              <span>Nivel: ${esp.nivel.nivel}</span>
-            </div>
-            <div class="especialidad-score-line">
-              <span>Score clínico:</span>
-              <span class="especialidad-score-value" style="color:${esp.nivel.color};">${esp.score}%</span>
-            </div>
-            <div class="especialidad-descripcion">${esp.descripcion}</div>
-            <div class="especialidad-mensaje">${mensaje}</div>
-          </div>
-        `;
-      }).join('');
-
-      // Barras áreas
-      if(barrasChart) barrasChart.destroy();
-      const ctxBarras = document.getElementById('barrasChart').getContext('2d');
-      barrasChart = new Chart(ctxBarras, {
-        type: 'bar',
-        data: {
-          labels: areas,
-          datasets: [{
-            label: 'Salud (%)',
-            data: areaScores,
-            backgroundColor: ['#d9003344','#fa812844','#21ae5244','#1e4fad44','#B89D5244'],
-            borderColor: ['#d90033','#fa8128','#21ae52','#1e4fad','#B89D52'],
-            borderWidth: 1.5,
-            borderRadius: 8,
-          }]
-        },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              min: 0,
-              max: 100,
-              ticks: {
-                callback: (value) => value + '%',
-                font: { size: 10 }
-              },
-              grid: { color: 'rgba(0,0,0,0.06)' }
-            },
-            y: {
-              ticks: { font: { size: 11, weight: '600' } },
-              grid: { display: false }
-            }
-          },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              backgroundColor: 'rgba(25,36,68,0.95)',
-              callbacks: {
-                label: function(context) {
-                  return context.label + ': ' + context.parsed.x + '%';
-                }
-              }
-            }
-          }
-        }
-      });
-
-      // Scroll suave
-      document.getElementById("resultSection").scrollIntoView({ behavior: 'smooth' });
-
-      btn.disabled = false;
-      btn.innerHTML = '<span class="btn-icon">📊</span> Ver mi diagnóstico ahora';
-    }
-
-    window.generarDiagnostico = generarDiagnostico;
-
-    function enviarDiagnostico(){
-  const email = document.getElementById("emailCliente").value.trim();
-  const btnEnviar = document.getElementById("btnEnviar");
-
-  if(!/\S+@\S+\.\S+/.test(email)){
-    alert("Por favor, introduce un email válido.");
-    return;
+  }catch(e){
+    console.warn('[ESE] Catálogo no disponible — fetch fallido', e);
   }
+}
+cargarCatalogo();
 
-  if(!diagnosticoActual){
-    alert("Por favor, genera primero tu diagnóstico.");
-    return;
-  }
+let sintomasSeleccionados = [];
+let diagnosticoActual     = null;
+let expedienteNumero      = null;
 
-  btnEnviar.disabled = true;
-  btnEnviar.innerHTML = '<span class="spinner"></span> Enviando...';
+/* ══ OVERLAY EKG ════════════════════════════════════════ */
+class OverlayEKG {
+  constructor(id){ this.canvas=document.getElementById(id); this.ctx=this.canvas.getContext('2d'); this.x=0; this.raf=null; this.canvas.width=560; this.canvas.height=72; this.start(); }
+  generateY(x){ const mid=36,cycle=120,pos=x%cycle; if(pos<8)return mid; if(pos<16)return mid-26; if(pos<20)return mid+10; if(pos<26)return mid; return mid+Math.sin(pos/cycle*Math.PI*2)*3; }
+  draw(){ const W=560,H=72,ctx=this.ctx; ctx.clearRect(0,0,W,H); this.x+=2; if(this.x>W+200)this.x=0; ctx.beginPath(); ctx.strokeStyle='#B89D52'; ctx.lineWidth=2; ctx.shadowColor='#B89D52'; ctx.shadowBlur=10; for(let px=0;px<Math.min(this.x,W);px+=2){ const py=this.generateY(px+(this.x-Math.min(this.x,W))); px===0?ctx.moveTo(px,py):ctx.lineTo(px,py); } ctx.stroke(); ctx.shadowBlur=0; }
+  start(){ const loop=()=>{this.draw();this.raf=requestAnimationFrame(loop);}; this.raf=requestAnimationFrame(loop); }
+  stop(){ cancelAnimationFrame(this.raf); }
+}
+let overlayEkg=null;
+window.addEventListener('load',()=>{ overlayEkg=new OverlayEKG('overlayCanvas'); });
 
-  const BACKEND_URL = "https://masframe-zz8d.onrender.com/ese/submit";
-
-  // Construir payload con la estructura del backend
-  const payload = {
-    email:        email,
-    empresa:      diagnosticoActual.nombre,
-    facturacion:  diagnosticoActual.facturacion || 0,
-
-    scores_areas: {
-      rentabilidad: diagnosticoActual.areaScores[0] || 0,
-      procesos:     diagnosticoActual.areaScores[1] || 0,
-      tiempos:      diagnosticoActual.areaScores[2] || 0,
-      personas:     diagnosticoActual.areaScores[3] || 0,
-      comunicacion: diagnosticoActual.areaScores[4] || 0,
-    },
-
-    score_global:  diagnosticoActual.areaScores.reduce((a,b)=>a+b,0) / diagnosticoActual.areaScores.length,
-    estado_global: diagnosticoActual.estadoGlobal,
-
-    especialidades: diagnosticoActual.especialidades.map(e => ({
-      nombre:      e.nombre,
-      descripcion: e.descripcion || "",
-      score:       e.score || 0,
-      nivel:       e.nivel?.nivel || e.nivel || "OK",
-    })),
-
-    insights: {
-      hallazgos: diagnosticoActual.insights?.hallazgos || [],
-      riesgos:   diagnosticoActual.insights?.riesgos   || [],
-      palancas:  diagnosticoActual.insights?.palancas  || [],
-    },
-
-    timestamp: diagnosticoActual.timestamp || new Date().toISOString(),
-  };
-
-  fetch(BACKEND_URL, {
-    method:  "POST",
-    headers: { "Content-Type": "application/json" },
-    body:    JSON.stringify(payload),
-  })
-  .then(r => r.json())
-  .then(result => {
-    if(result.status === "ok"){
-      const codigo = result.codigo;
-      document.getElementById("activationBox").style.display = "block";
-      document.getElementById("codigoExc").innerText = codigo;
-      document.getElementById("emailAviso").innerHTML =
-        `✅ ¡Enviado! Recibirás tu informe clínico en: <strong>${email}</strong><br>
-         Tu código de acceso: <strong>${codigo}</strong>`;
-      btnEnviar.innerHTML = "✓ Enviado correctamente";
-      btnEnviar.style.background = "#21ae52";
-    } else {
-      throw new Error(result.detail || "Error desconocido");
-    }
-  })
-  .catch(err => {
-    console.error("Error ESE submit:", err);
-    // Fallback — mostrar código generado localmente
-    const codigoLocal = "MAS-" + Math.random().toString(36).substr(2,8).toUpperCase();
-    document.getElementById("activationBox").style.display = "block";
-    document.getElementById("codigoExc").innerText = codigoLocal;
-    document.getElementById("emailAviso").innerHTML =
-      `⚠️ Error al conectar. Tu código provisional: <strong>${codigoLocal}</strong><br>
-       Escríbenos a <a href="mailto:info@masesora.com">info@masesora.com</a> y te ayudamos.`;
-    btnEnviar.innerHTML = "Reintentar";
-    btnEnviar.disabled = false;
-  });
+/* ══ SCORE ══════════════════════════════════════════════ */
+function normalizar(score){ return Math.round(score*100/12); }
+function getNivel(score){
+  if(score<=70) return{nivel:'CRÍTICO',    emoji:'🔴',clase:'critico',    color:'#d90033'};
+  if(score<=85) return{nivel:'RECOMENDADO',emoji:'🟠',clase:'recomendado',color:'#fa8128'};
+  if(score<=95) return{nivel:'OPTIMIZADOR',emoji:'🟢',clase:'optimizador',color:'#21ae52'};
+  return              {nivel:'ÉLITE',      emoji:'💎',clase:'elite',       color:'#1e4fad'};
 }
 
-    window.enviarDiagnostico = enviarDiagnostico;
-  </script>
+/* ══ SCROLL REVEAL ══════════════════════════════════════ */
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+/* ══ ARIA INIT — radio opts ═════════════════════════════ */
+document.querySelectorAll('.radio-opt').forEach(btn=>{
+  btn.setAttribute('aria-pressed','false');
+});
+
+/* ══ RADIO OPTS ═════════════════════════════════════════ */
+function selectOpt(btn){
+  const name=btn.dataset.name;
+  document.querySelectorAll(`.radio-opt[data-name="${name}"]`).forEach(b=>{
+    b.classList.remove('selected');
+    b.setAttribute('aria-pressed','false');
+  });
+  btn.classList.add('selected');
+  btn.setAttribute('aria-pressed','true');
+  const hid=document.getElementById('hid_'+name);
+  if(hid) hid.value=btn.dataset.value;
+  // Limpiar resaltado de pendiente al contestar
+  const group=btn.closest('.radio-group');
+  if(group&&group.classList.contains('pendiente')){
+    group.classList.remove('pendiente');
+    const qText=group.previousElementSibling;
+    if(qText&&qText.classList.contains('q-text')){
+      qText.classList.remove('pendiente');
+      qText.querySelectorAll('.q-pendiente-badge').forEach(b=>b.remove());
+    }
+  }
+}
+
+/* ══ FACT SCREEN ════════════════════════════════════════ */
+let _pendingEsp=[];
+let _factValue=0;
+
+function selectFact(btn){
+  document.querySelectorAll('.fact-opt').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  _factValue=parseFloat(btn.dataset.value);
+  const cfm=document.getElementById('btnFactConfirmar');
+  cfm.disabled=false; cfm.style.opacity='1'; cfm.style.cursor='pointer';
+}
+
+function confirmarFacturacion(){
+  if(!_factValue){ return; }
+  diagnosticoActual.facturacion=_factValue;
+  document.getElementById('factScreen').style.display='none';
+  renderNivel2(_pendingEsp);
+}
+
+function volverAlFormulario(){
+  document.getElementById('factScreen').style.display='none';
+  const cardForm=document.getElementById('cardForm');
+  cardForm.style.display='block';
+  // Resetear estado del botón
+  const btn=document.getElementById('btnDiagnostico');
+  btn.disabled=false;
+  btn.innerHTML='<span>⚕</span> Continuar al diagnóstico detallado';
+  // Resetear facturación
+  _factValue=0;
+  document.querySelectorAll('.fact-opt').forEach(b=>b.classList.remove('selected'));
+  const cfm=document.getElementById('btnFactConfirmar');
+  cfm.disabled=true; cfm.style.opacity='.5'; cfm.style.cursor='default';
+  cardForm.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ══ NIVEL 1 FLOW ═══════════════════════════════════════ */
+function continuarDiagnostico(){
+  const form   = document.getElementById('assessmentForm');
+  const nombre = document.getElementById('nombreEmpresa').value.trim();
+  const btn    = document.getElementById('btnDiagnostico');
+  const errNombre   = document.getElementById('errNombre');
+  const errPreguntas= document.getElementById('errPreguntas');
+  errNombre.style.display='none';
+  errPreguntas.style.display='none';
+  if(!nombre){
+    errNombre.style.display='block';
+    document.getElementById('nombreEmpresa').focus();
+    errNombre.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  const allFields=['rentabilidad1','rentabilidad2','rentabilidad3','procesos1','procesos2','procesos3','tiempo1','tiempo2','tiempo3','personas1','personas2','personas3','comunicacion1','comunicacion2','comunicacion3'];
+  // Limpiar resaltados anteriores
+  document.querySelectorAll('.radio-group.pendiente').forEach(el=>el.classList.remove('pendiente'));
+  document.querySelectorAll('.q-text.pendiente').forEach(el=>{
+    el.classList.remove('pendiente');
+    el.querySelectorAll('.q-pendiente-badge').forEach(b=>b.remove());
+  });
+  const sinContestar = allFields.filter(n=>!form[n]?.value);
+  if(sinContestar.length>0){
+    sinContestar.forEach(name=>{
+      const group=document.querySelector(`.radio-group[data-group="${name}"]`)||
+                  document.querySelector(`.radio-opt[data-name="${name}"]`)?.closest('.radio-group');
+      if(group){
+        group.classList.add('pendiente');
+        const qText=group.previousElementSibling;
+        if(qText&&qText.classList.contains('q-text')){
+          qText.classList.add('pendiente');
+          const badge=document.createElement('span');
+          badge.className='q-pendiente-badge';
+          badge.textContent='Pendiente';
+          qText.appendChild(badge);
+        }
+      }
+    });
+    errPreguntas.style.display='block';
+    // Scroll a la primera pregunta sin contestar
+    const primeraPendiente=document.querySelector('.radio-group.pendiente');
+    if(primeraPendiente) primeraPendiente.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span> Calculando…';
+  const areas=['Rentabilidad','Procesos','Tiempos','Personas','Comunicación'];
+  let areaScores=[],todasEspecialidades=[];
+  for(const area of areas){
+    let total=0, p=area.toLowerCase();
+    if(area==='Tiempos')      p='tiempo';
+    if(area==='Comunicación') p='comunicacion';
+    for(let i=1;i<=3;i++) total+=parseInt(form[p+i]?.value||'1');
+    const areaScore=normalizar(total);
+    areaScores.push(areaScore);
+    especialidadesMap[area].forEach(esp=>{
+      todasEspecialidades.push({nombre:esp.nombre,descripcion:esp.descripcion,area,score:areaScore,nivel:getNivel(areaScore)});
+    });
+  }
+  const criticas_n=todasEspecialidades.filter(e=>e.nivel.nivel==='CRÍTICO').length;
+  const estadoGlobal=criticas_n>=5?'RIESGO CRÍTICO':criticas_n>=3?'ATENCIÓN URGENTE':criticas_n>=1?'INTERVENCIÓN RECOMENDADA':'SALUD ACEPTABLE';
+  _pendingEsp=todasEspecialidades;
+  diagnosticoActual={nombre,facturacion:0,areas,areaScores,especialidades:todasEspecialidades,estadoGlobal,timestamp:new Date().toISOString()};
+  expedienteNumero='MAS-'+String(Math.floor(10000+Math.random()*89999));
+  setTimeout(()=>{
+    document.getElementById('cardForm').style.display='none';
+    document.getElementById('factEmpresaNombre').textContent=nombre.toUpperCase();
+    document.getElementById('factScreen').style.display='block';
+    document.getElementById('factScreen').scrollIntoView({behavior:'smooth',block:'start'});
+    btn.disabled=false;
+    btn.innerHTML='<span>⚕</span> Continuar al diagnóstico detallado';
+  },350);
+}
+
+/* ══ NIVEL 2 ════════════════════════════════════════════ */
+function actualizarContador(){
+  const n=document.querySelectorAll('.nivel2-sintoma-item.selected').length;
+  document.getElementById('nivel2CountNum').textContent=n;
+  const counter=document.getElementById('nivel2Counter');
+  counter.classList.toggle('activo', n>0);
+}
+
+function renderNivel2(todasEspecialidades){
+  const relevantes=todasEspecialidades.filter(e=>e.nivel.nivel==='CRÍTICO'||e.nivel.nivel==='RECOMENDADO');
+  if(relevantes.length===0){ emitirInformeOverlay(); return; }
+
+  // Puente emocional dinámico
+  const nCrit=relevantes.filter(e=>e.nivel.nivel==='CRÍTICO').length;
+  const nRec =relevantes.filter(e=>e.nivel.nivel==='RECOMENDADO').length;
+  if(nCrit>0){
+    document.getElementById('nivel2Titulo').textContent=
+      `Tu empresa presenta ${nCrit} área${nCrit>1?'s':''} en estado crítico`;
+    document.getElementById('nivel2Subtitulo').textContent=
+      `Confirma los síntomas que reconoces en cada especialidad. El protocolo de intervención se diseña sobre estos hallazgos — cuanto más preciso, más eficaz.`;
+  } else {
+    document.getElementById('nivel2Titulo').textContent=
+      `${nRec} especialidad${nRec>1?'es':''} require${nRec>1?'n':''} atención clínica`;
+    document.getElementById('nivel2Subtitulo').textContent=
+      `Selecciona los síntomas que reconoces para que el informe refleje con exactitud el cuadro clínico de tu empresa.`;
+  }
+
+  const cont=document.getElementById('nivel2Bloques');
+  cont.innerHTML='';
+
+  // Renderizar grupos: CRÍTICO primero, luego RECOMENDADO
+  const grupos=[
+    {nivel:'CRÍTICO',    clase:'critico',     etiqueta:'Intervención urgente'},
+    {nivel:'RECOMENDADO',clase:'recomendado', etiqueta:'Intervención recomendada'}
+  ];
+  grupos.forEach(g=>{
+    const esps=relevantes.filter(e=>e.nivel.nivel===g.nivel);
+    if(esps.length===0) return;
+    // Separador de grupo
+    const sep=document.createElement('div');
+    sep.className=`nivel2-grupo-label ${g.clase}`;
+    sep.innerHTML=`${g.clase==='critico'?'🔴':'🟠'} ${g.etiqueta}<span class="nivel2-grupo-sep ${g.clase}"></span>`;
+    cont.appendChild(sep);
+    // Bloques de especialidad
+    esps.forEach(esp=>{
+      const sintomas=SINTOMAS_NIVEL2[esp.nombre]||[];
+      const dn=DISPLAY_NAMES[esp.nombre]||esp.nombre;
+      const bloque=document.createElement('div');
+      bloque.className='nivel2-bloque';
+      bloque.innerHTML=`
+        <div class="nivel2-bloque-header ${esp.nivel.clase}">
+          <span class="nivel2-bloque-nombre">${dn}</span>
+          <span class="nivel2-bloque-badge ${esp.nivel.clase}">${esp.nivel.nivel}</span>
+        </div>
+        <div class="nivel2-sintomas">
+          ${sintomas.map(s=>`
+            <div class="nivel2-sintoma-item" id="item-${s.id}"
+              role="checkbox" aria-checked="false" tabindex="0"
+              onclick="toggleSintoma('${s.id}')"
+              onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleSintoma('${s.id}')}"
+              aria-label="${s.nombre}: ${s.texto}">
+              <span class="nivel2-check" aria-hidden="true"></span>
+              <span class="nivel2-sintoma-texto">
+                ${s.texto}
+                <span class="nivel2-sintoma-nombre">
+                  <span class="nivel2-sintoma-id-tag">${s.id}</span>${s.nombre}
+                </span>
+              </span>
+            </div>`).join('')}
+        </div>`;
+      cont.appendChild(bloque);
+    });
+  });
+
+  const n2=document.getElementById('nivel2Section');
+  n2.style.display='block';
+  setTimeout(()=>n2.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+function toggleSintoma(id){
+  const item=document.getElementById('item-'+id);
+  const checked=item.classList.toggle('selected');
+  item.setAttribute('aria-checked', checked ? 'true' : 'false');
+  actualizarContador();
+}
+
+function volverAFacturacion(){
+  document.getElementById('nivel2Section').style.display='none';
+  document.getElementById('factScreen').style.display='block';
+  document.getElementById('factScreen').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function confirmarNivel2(){
+  sintomasSeleccionados=[];
+  document.querySelectorAll('.nivel2-sintoma-item.selected').forEach(item=>{
+    sintomasSeleccionados.push(item.id.replace('item-',''));
+  });
+  // Si no hay ninguno seleccionado, mostrar aviso y no avanzar
+  if(sintomasSeleccionados.length===0){
+    const aviso=document.getElementById('nivel2AvisoCero');
+    aviso.style.display='block';
+    aviso.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  document.getElementById('nivel2AvisoCero').style.display='none';
+  document.getElementById('nivel2Section').style.display='none';
+  emitirInformeOverlay();
+}
+
+/* ══ OVERLAY ════════════════════════════════════════════ */
+function emitirInformeOverlay(){
+  const overlay=document.getElementById('diagnosticOverlay');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden','false');
+  const texts=['Analizando cuadro clínico','Cruzando hallazgos clínicos','Emitiendo diagnóstico'];
+  const subs=['Procesando hallazgos clínicos','Identificando patrones de riesgo','Generando informe MAS@FRAME®'];
+  const textEl=document.querySelector('.overlay-text-1');
+  const subEl=document.querySelector('.overlay-text-2');
+  let count=0;
+  const interval=setInterval(()=>{ count++; if(count<texts.length){ textEl.innerHTML=texts[count]+'<span id="overlayDots">...</span>'; subEl.textContent=subs[count]; } },1000);
+  setTimeout(()=>{ clearInterval(interval); overlay.classList.remove('active'); generarInformeClinico(); },3000);
+}
+
+/* ══ INFORME ════════════════════════════════════════════ */
+function generarInformeClinico(){
+  if(!diagnosticoActual) return;
+  const d=diagnosticoActual;
+  document.getElementById('informeEmpresaNombre').textContent=d.nombre;
+  document.getElementById('informeExpNum').textContent='Expediente · Pendiente de registro';
+  document.getElementById('ctaExpedienteLabel').textContent='Tu diagnóstico MAS@FRAME® está listo';
+  const fecha=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('informeExpFecha').textContent='Emitido el '+fecha;
+
+  const estadoBadgeMap={
+    'RIESGO CRÍTICO':           {clase:'critico',    icon:'🚨',texto:'RIESGO CRÍTICO'},
+    'ATENCIÓN URGENTE':         {clase:'urgente',    icon:'⚠️',texto:'ATENCIÓN URGENTE'},
+    'INTERVENCIÓN RECOMENDADA': {clase:'recomendado',icon:'⚕', texto:'INTERVENCIÓN RECOMENDADA'},
+    'SALUD ACEPTABLE':          {clase:'aceptable',  icon:'✓', texto:'SALUD ACEPTABLE'}
+  };
+  const eInfo=estadoBadgeMap[d.estadoGlobal]||estadoBadgeMap['SALUD ACEPTABLE'];
+  const badgeEl=document.getElementById('informeEstadoBadge');
+  badgeEl.className='informe-estado-badge '+eInfo.clase;
+  badgeEl.innerHTML=`<span>${eInfo.icon}</span> ${eInfo.texto}`;
+
+  const hallazgoTextos={
+    'RIESGO CRÍTICO':           'Tu empresa presenta múltiples áreas en estado crítico. La intervención inmediata es necesaria para estabilizar el cuadro clínico antes de que las tensiones actuales comprometan la viabilidad operativa.',
+    'ATENCIÓN URGENTE':         'Tu empresa muestra señales de alerta significativas en varias especialidades. Un plan de intervención estructurado es fundamental para evitar que el cuadro evolucione a fase crítica.',
+    'INTERVENCIÓN RECOMENDADA': 'Tu empresa tiene áreas que requieren atención clínica. Actuar ahora con el protocolo adecuado evitará que las tensiones actuales deriven en un escenario de urgencia.',
+    'SALUD ACEPTABLE':          'Tu empresa muestra un cuadro clínico estable. Hay oportunidades de optimización que, trabajadas de forma sistemática, pueden marcar la diferencia en el próximo ciclo de crecimiento.'
+  };
+  document.getElementById('informeHallazgoGlobal').textContent=hallazgoTextos[d.estadoGlobal]||'';
+
+  const criticas=d.especialidades.filter(e=>e.nivel.nivel==='CRÍTICO');
+  const recomendadas=d.especialidades.filter(e=>e.nivel.nivel==='RECOMENDADO');
+  const saludables=d.especialidades.filter(e=>e.nivel.nivel!=='CRÍTICO'&&e.nivel.nivel!=='RECOMENDADO');
+  const intervenir=[...criticas,...recomendadas];
+  const subCount=intervenir.length;
+  document.getElementById('informeEspSubtitle').textContent=
+    subCount>0 ? `${subCount} especialidad${subCount!==1?'es':''} requiere${subCount!==1?'n':''} intervención clínica` : 'Todas las especialidades en buen estado';
+
+  const espCont=document.getElementById('informeEspecialidades');
+  espCont.innerHTML='';
+  intervenir.forEach(esp=>{
+    const esCritico=esp.nivel.nivel==='CRÍTICO';
+    const sintomasEsp=(SINTOMAS_NIVEL2[esp.nombre]||[]).filter(s=>sintomasSeleccionados.includes(s.id));
+    const dn=DISPLAY_NAMES[esp.nombre]||esp.nombre;
+    const bloque=document.createElement('div');
+    bloque.className='informe-esp-block';
+    bloque.innerHTML=`
+      <div class="informe-esp-header ${esp.nivel.clase}">
+        <span class="informe-esp-emoji">${esp.nivel.emoji}</span>
+        <span class="informe-esp-nombre">${dn}</span>
+        <span class="informe-esp-score ${esp.nivel.clase}">${esp.nivel.nivel} · ${esp.score}%</span>
+      </div>
+      <div class="informe-esp-body">
+        ${sintomasEsp.length>0 ? `
+          <div class="informe-hallazgos-label">Síntomas clínicos confirmados</div>
+          ${sintomasEsp.map(s=>`
+            <div class="informe-hallazgo-item">
+              <span class="informe-sintoma-badge">${s.id} · ${s.nombre}</span>
+              ${s.texto}
+              ${IMPACT_TREATMENT[s.id] ? `<span class="informe-impact-treatment">→ ${IMPACT_TREATMENT[s.id]}</span>` : ''}
+            </div>`).join('')}
+        ` : `<div class="informe-no-sintomas">Esta especialidad será evaluada en detalle por nuestro equipo clínico con un diagnóstico más exhaustivo.</div>`}
+      </div>`;
+    espCont.appendChild(bloque);
+  });
+
+  if(saludables.length>0){
+    document.getElementById('informeSaludables').style.display='block';
+    document.getElementById('informeSaludablesList').innerHTML=
+      saludables.map(e=>`<span class="informe-saludable-pill">${DISPLAY_NAMES[e.nombre]||e.nombre}</span>`).join('');
+  }
+  const informeEl=document.getElementById('informeSection');
+  informeEl.style.display='block';
+  setTimeout(()=>informeEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
+  setTimeout(()=>mostrarEmailGate(),800);
+}
+
+/* ══ EMAIL GATE ═════════════════════════════════════════ */
+function mostrarEmailGate(){
+  document.getElementById('ctaEmailWrapper').style.display='block';
+  document.getElementById('ctaFinalWrapper').style.display='block';
+  setTimeout(()=>document.getElementById('ctaEmailWrapper').scrollIntoView({behavior:'smooth',block:'start'}),150);
+}
+
+async function enviarDiagnostico(){
+  const emailEl=document.getElementById('emailCliente');
+  const legalEl=document.getElementById('legalCheck');
+  const btnEl  =document.getElementById('btnEnviar');
+  const email  =emailEl.value.trim();
+  const errEmail=document.getElementById('errEmail');
+  const errLegal=document.getElementById('errLegal');
+  errEmail.style.display='none';
+  errLegal.style.display='none';
+  if(!email||!email.includes('@')){
+    emailEl.style.borderColor='#f44336';
+    errEmail.style.display='block';
+    setTimeout(()=>{ emailEl.style.borderColor=''; },2200);
+    errEmail.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  if(!legalEl.checked){
+    errLegal.style.display='block';
+    errLegal.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  btnEl.disabled=true;
+  btnEl.innerHTML='<span class="spinner"></span> Registrando expediente…';
+  const d=diagnosticoActual||{};
+  const payload={
+    nombre_empresa:  d.nombre||'',
+    email,
+    facturacion:     d.facturacion||0,
+    estado_global:   d.estadoGlobal||'',
+    area_scores:     d.areaScores||[],
+    especialidades:  (d.especialidades||[]).map(e=>({nombre:e.nombre,score:e.score,nivel:e.nivel.nivel})),
+    sintomas_detectados: sintomasSeleccionados,
+    expediente:      expedienteNumero,
+    timestamp:       d.timestamp||new Date().toISOString()
+  };
+  try{
+    const res=await fetch('https://masframe-zz8d.onrender.com/ese/diagnostico',{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error('server');
+    const data=await res.json();
+    mostrarActivacion(data.codigo||expedienteNumero, email);
+    btnEl.innerHTML='✓ Expediente registrado';
+  }catch(err){
+    mostrarActivacion(expedienteNumero, email);
+    btnEl.innerHTML='✓ Expediente generado';
+    btnEl.disabled=false;
+  }
+}
+
+function mostrarActivacion(codigo, email){
+  document.getElementById('activationBox').style.display='block';
+  document.getElementById('codigoExc').textContent=codigo;
+  document.getElementById('emailAviso').innerHTML=
+    `Tu expediente clínico ha sido registrado. <strong style="color:var(--gold-l);">Revisa tu email</strong> — La Clínica de Empresas te está esperando.<br><span style="font-size:.72rem;opacity:.6;">Código: ${codigo} · Accede con él en masfront.onrender.com</span>`;
+  const expEl=document.getElementById('informeExpNum');
+  if(expEl) expEl.textContent='Expediente Nº '+codigo;
+  document.getElementById('btnPdf').style.display='inline-flex';
+}
+
+function copiarCodigo(){
+  const codigo=document.getElementById('codigoExc').textContent;
+  navigator.clipboard.writeText(codigo).then(()=>{
+    const btn=document.querySelector('.btn-copy');
+    btn.textContent='✓ Copiado';
+    setTimeout(()=>btn.textContent='Copiar código',2000);
+  }).catch(()=>{});
+}
+
+/* ══ LEGAL ══════════════════════════════════════════════ */
+const LEGAL_TITLES={privacidad:'Política de Privacidad',aviso:'Aviso Legal',cookies:'Política de Cookies',rgpd:'Información RGPD'};
+let _legalOpener=null;
+function abrirLegal(tab){
+  const modal=document.getElementById('legalModal');
+  _legalOpener=document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  cambiarTabLegal(tab);
+  // Foco al primer elemento focusable del modal
+  setTimeout(()=>{
+    const first=modal.querySelector('button,a,[tabindex="0"]');
+    if(first) first.focus();
+  },50);
+}
+function cerrarLegal(){
+  const modal=document.getElementById('legalModal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  if(_legalOpener) _legalOpener.focus();
+}
+function cambiarTabLegal(tab,btn){
+  document.querySelectorAll('.legal-tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.legal-tab').forEach(el=>el.classList.remove('active'));
+  const content=document.getElementById('legal-'+tab); if(content) content.classList.add('active');
+  if(btn){ btn.classList.add('active'); }
+  else{ const order=['privacidad','aviso','cookies','rgpd']; const allTabs=document.querySelectorAll('.legal-tab'); const t=allTabs[order.indexOf(tab)]; if(t) t.classList.add('active'); }
+  const titleEl=document.getElementById('legalModalTitle'); if(titleEl) titleEl.textContent=LEGAL_TITLES[tab]||'';
+}
+document.getElementById('legalModal').addEventListener('click',function(e){ if(e.target===this) cerrarLegal(); });
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ cerrarLegal(); return; }
+  // Trap focus dentro del modal cuando está abierto
+  const modal=document.getElementById('legalModal');
+  if(!modal.classList.contains('open')) return;
+  if(e.key!=='Tab') return;
+  const focusables=modal.querySelectorAll('button,a,[tabindex="0"],input,select,textarea');
+  const first=focusables[0];
+  const last=focusables[focusables.length-1];
+  if(e.shiftKey){
+    if(document.activeElement===first){ e.preventDefault(); last.focus(); }
+  } else {
+    if(document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+});
+</script>
 </body>
 </html>

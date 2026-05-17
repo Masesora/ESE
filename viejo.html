@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAS@FRAME® · Escáner de Salud Empresarial — La Clínica de Empresas</title>
+  <meta name="description" content="Diagnostica la salud de tu empresa en 5 minutos. 10 especialidades clínicas, informe detallado y protocolo de intervención C0–C6 gratuito. MAS@FRAME® · MASESORA®.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MAS@FRAME® · Escáner de Salud Empresarial">
+  <meta property="og:description" content="Evaluamos 10 especialidades clínicas de tu negocio y emitimos un Informe de Salud Empresarial con los síntomas detectados y el protocolo C0–C6.">
+  <meta property="og:url" content="https://ese-cc2u.onrender.com">
+  <meta name="theme-color" content="#0F1A35">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --navy:    #0F1A35;
+      --navy2:   #1a2d5a;
+      --gold:    #B89D52;
+      --gold-l:  #D4B96A;
+      --gold-s:  #E8C96A;
+      --gold-d:  #9A7E3A;
+      --white:   #FFFFFF;
+      --danger:  #d90033;
+      --warn:    #fa8128;
+      --ok:      #21ae52;
+      --card-r:  14px;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      background-color: var(--navy);
+      background-image:
+        linear-gradient(rgba(184,157,82,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,157,82,.07) 1px, transparent 1px);
+      background-size: 44px 44px;
+      font-family: 'Montserrat', system-ui, sans-serif;
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── ANIMACIONES (iguales que landing) ── */
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes waveDraw { 0%{stroke-dashoffset:400;opacity:.3} 40%{opacity:1} 100%{stroke-dashoffset:0;opacity:.85} }
+    @keyframes waveDrawEco { 0%{stroke-dashoffset:380;opacity:0} 30%{opacity:.18} 100%{stroke-dashoffset:0;opacity:.18} }
+    @keyframes pulseOrigin  { 0%,100%{r:5;opacity:.8} 50%{r:7;opacity:1} }
+    @keyframes pulseImpulse { 0%,100%{r:4;opacity:.65} 50%{r:6;opacity:.9} }
+    @keyframes riseImpulse  { 0%{stroke-dashoffset:80;opacity:0} 60%{opacity:0} 100%{stroke-dashoffset:0;opacity:.75} }
+    @keyframes floatWave    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    @keyframes spin         { to{transform:rotate(360deg)} }
+    @keyframes dotPulse     { 0%,80%,100%{opacity:.3} 40%{opacity:1} }
+
+    /* ── NAVBAR ── */
+    .navbar-mas {
+      background: #FFFFFF;
+      border-bottom: 2px solid rgba(184,157,82,.45);
+      padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 900;
+      box-shadow: 0 2px 16px rgba(0,0,0,.12);
+    }
+    .nav-brand { display: flex; align-items: center; }
+    .nav-logo-img { height: 52px; width: auto; display: block; }
+    .nav-pill  {
+      padding: 6px 16px; border-radius: 999px;
+      border: 1.5px solid rgba(184,157,82,.6);
+      color: var(--navy); font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: rgba(184,157,82,.12);
+      white-space: nowrap;
+    }
+
+    /* ── EKG BAR ── */
+    #ekgBar {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(0,230,118,.25);
+      position: sticky; top: 74px; z-index: 800;
+      transition: border-color .6s ease;
+    }
+    #ekgCanvas { display: block; width: 100%; height: 56px; }
+    .ekg-label-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 3px 18px 6px; background: rgba(0,0,0,.2);
+    }
+    .ekg-label-left  { font-size: .68rem; color: rgba(255,255,255,.45); letter-spacing: .12em; text-transform: uppercase; }
+    #ekgScoreLabel   { font-size: .78rem; font-weight: 700; letter-spacing: .06em; transition: color .5s; }
+    #ekgStatusText   { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: color .5s; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #192a4f 50%, var(--navy2) 100%);
+      padding: 52px 20px 40px;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid rgba(184,157,82,.2);
+    }
+    .hero::before, .hero::after {
+      content:''; position: absolute; border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(184,157,82,.4), transparent 60%);
+      opacity: .1;
+    }
+    .hero::before { width:440px; height:440px; top:-220px; right:-120px; }
+    .hero::after  { width:380px; height:380px; bottom:-200px; left:-100px; }
+    .hero-inner {
+      position: relative; max-width: 1040px; margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0,2.1fr) minmax(0,1.5fr);
+      gap: 32px; align-items: center;
+    }
+    @media(max-width:860px){ .hero-inner{ grid-template-columns:1fr; text-align:center; } }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px; border-radius: 999px;
+      background: rgba(184,157,82,.1); border: 1px solid rgba(184,157,82,.4);
+      color: var(--gold); font-size: .7rem; letter-spacing: .14em;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: clamp(1.9rem,3vw,2.6rem);
+      font-weight: 800; letter-spacing: .02em;
+      color: var(--white); margin: 0 0 14px; line-height: 1.18;
+    }
+    .hero-title-gold { color: var(--gold); }
+    .hero-sub { color: rgba(255,255,255,.72); font-size: .92rem; line-height: 1.8; max-width: 500px; }
+    @media(max-width:860px){ .hero-sub{ margin:0 auto; } }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    @media(max-width:860px){ .hero-pills{ justify-content:center; } }
+    .hero-pill {
+      padding: 4px 12px; border-radius: 999px;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.7); font-size: .75rem; font-weight: 500;
+    }
+
+    /* botón principal hero (idéntico landing gold-button primary) */
+    .btn-gold {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: linear-gradient(135deg, var(--gold-s) 0%, var(--gold) 60%, var(--gold-d) 100%);
+      padding: 14px 26px; border-radius: 999px;
+      color: var(--navy); font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: .95rem; letter-spacing: .05em;
+      text-transform: uppercase; text-decoration: none;
+      box-shadow: 0 8px 24px -10px rgba(184,157,82,.55);
+      transition: transform .18s, box-shadow .18s, filter .18s;
+      border: none; cursor: pointer;
+    }
+    .btn-gold:hover  { transform: translateY(-2px); box-shadow: 0 14px 32px -10px rgba(184,157,82,.7); filter: brightness(1.05); color: var(--navy); }
+    .btn-gold:active { transform: translateY(0); filter: brightness(.95); }
+    .btn-gold:disabled { opacity: .6; cursor: default; transform: none; box-shadow: none; }
+
+    /* botón ghost (idéntico landing) */
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 11px 22px; border-radius: 999px;
+      background: transparent; border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.85); font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: .84rem; letter-spacing: .04em;
+      text-decoration: none; cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── HERO CARD DERECHA ── */
+    .hero-card {
+      background: rgba(15,26,53,.7); border-radius: 16px;
+      border: 1px solid rgba(184,157,82,.35); padding: 22px;
+      box-shadow: 0 20px 44px rgba(0,0,0,.4); backdrop-filter: blur(8px);
+    }
+    .hero-card-label { font-size: .68rem; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .2em; font-weight: 600; margin-bottom: 10px; }
+    .hero-card-text  { color: rgba(255,255,255,.85); font-size: .9rem; line-height: 1.7; margin-bottom: 16px; }
+    .hero-card-row   { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .hero-card-row span:first-child { font-size: .8rem; color: rgba(255,255,255,.6); }
+    .hero-card-row span:last-child  { font-weight: 700; color: var(--gold); font-size: .88rem; }
+    .hero-card-note { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(184,157,82,.2); font-size: .74rem; color: rgba(255,255,255,.5); line-height: 1.6; }
+
+    /* ── MAIN ── */
+    .page-main { max-width: 1040px; margin: 0 auto 60px; padding: 32px 18px 40px; }
+
+    /* ── CARD FORM (blanca sobre navy = look premium) ── */
+    .card-form {
+      background: var(--white); border-radius: var(--card-r);
+      border: 1px solid rgba(184,157,82,.3);
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      padding: 24px 26px 22px; max-width: 880px; margin: 0 auto;
+    }
+    .card-form-title { font-size: 1rem; font-weight: 800; color: var(--navy); letter-spacing: .04em; }
+    .card-form-step  { font-size: .76rem; color: #888; margin-top: 2px; }
+    .form-note-small { font-size: .78rem; color: #777; margin-bottom: 10px; }
+
+    /* labels / inputs Bootstrap overrides */
+    .empresa-box label { font-weight: 700; font-size: .84rem; margin-bottom: 4px; color: var(--navy); }
+    .empresa-box .form-control {
+      border-radius: 8px; border: 1.5px solid #dde1ee;
+      padding: 10px 13px; font-size: .9rem; color: var(--navy);
+    }
+    .empresa-box .form-control:focus {
+      border-color: var(--navy2); box-shadow: 0 0 0 3px rgba(26,45,90,.12); outline: none;
+    }
+
+    /* SECTIONS (acordeón form) */
+    .section {
+      border-radius: 10px; background: #f6f7fb;
+      padding: 14px 16px 12px; margin-bottom: 10px;
+      border: 1.5px solid #e4e6f0;
+      transition: border-color .2s;
+    }
+    .section:focus-within { border-color: rgba(184,157,82,.6); }
+    .section-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; cursor: pointer; user-select: none; }
+    .section-header h4 { margin: 0; font-size: .88rem; font-weight: 800; color: var(--navy); letter-spacing: .04em; }
+    .section-header::after { content: '▾'; font-size: 1.1rem; color: rgba(184,157,82,.65); flex-shrink: 0; transition: transform .25s ease; }
+    .section.collapsed .section-header::after { transform: rotate(-90deg); }
+    .section.collapsed .section-header { margin-bottom: 0; }
+    .section.collapsed .section-body { display: none; }
+    .section label { font-weight: 600; font-size: .8rem; margin-bottom: 4px; color: #333; display: block; }
+    .section .form-select {
+      font-size: .82rem; border-radius: 8px;
+      border: 1.5px solid #dde1ee; color: var(--navy);
+    }
+    .section .form-select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,157,82,.15); }
+
+    /* PROGRESS */
+    .form-progress-bar { height: 5px; background: #e8eaf0; border-radius: 999px; overflow: hidden; margin: 14px 0 10px; }
+    .form-progress-bar-inner {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--gold-s), var(--gold));
+      transition: width .25s ease;
+    }
+    .form-progress-label { font-size: .74rem; color: #888; display: flex; justify-content: space-between; margin-bottom: 14px; }
+
+    /* btn diagnóstico (gold sobre blanco) */
+    .btn-primary-main {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-s) 0%, var(--gold) 60%, var(--gold-d) 100%);
+      border: none; border-radius: 999px;
+      padding: 14px 22px; font-size: .95rem; font-weight: 800;
+      color: var(--navy); font-family: 'Montserrat', sans-serif;
+      letter-spacing: .05em; text-transform: uppercase;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 10px 28px rgba(184,157,82,.45);
+      transition: transform .15s, box-shadow .15s; cursor: pointer;
+    }
+    .btn-primary-main:hover  { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(184,157,82,.6); }
+    .btn-primary-main:active { transform: translateY(0); }
+    .btn-primary-main:disabled { opacity: .65; cursor: default; transform: none; box-shadow: none; }
+
+    .spinner { display:inline-block; width:16px; height:16px; border-radius:50%; border:2px solid rgba(15,26,53,.3); border-top-color:var(--navy); animation:spin .9s linear infinite; }
+
+    /* ── NIVEL 2 ── */
+    #nivel2Section { margin: 40px auto 0; max-width: 880px; display: none; }
+    .nivel2-header { text-align: center; margin-bottom: 28px; padding: 0 8px; }
+    .nivel2-eyebrow { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .nivel2-header h3 { font-size: 1.4rem; font-weight: 800; color: var(--white); margin: 0 0 8px; letter-spacing: .02em; }
+    .nivel2-header p  { font-size: .88rem; color: rgba(255,255,255,.6); margin: 0; line-height: 1.6; }
+
+    .nivel2-bloque { margin-bottom: 14px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); }
+    .nivel2-bloque-header { padding: 12px 18px; display: flex; align-items: center; gap: 10px; }
+    .nivel2-bloque-header.critico    { background: rgba(217,0,51,.15);   border-bottom: 1px solid rgba(217,0,51,.2); }
+    .nivel2-bloque-header.recomendado{ background: rgba(250,129,40,.12); border-bottom: 1px solid rgba(250,129,40,.2); }
+    .nivel2-bloque-nombre { font-size: .78rem; font-weight: 800; color: var(--white); text-transform: uppercase; letter-spacing: .06em; flex: 1; }
+    .nivel2-bloque-badge  { font-size: .64rem; font-weight: 700; padding: 2px 10px; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
+    .nivel2-bloque-badge.critico     { background: rgba(217,0,51,.2);    color: #ff6b81; }
+    .nivel2-bloque-badge.recomendado { background: rgba(250,129,40,.15); color: #ffb347; }
+
+    .nivel2-sintomas { padding: 10px 12px; display: flex; flex-direction: column; gap: 7px; background: rgba(255,255,255,.03); }
+    .nivel2-sintoma-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 11px 14px; border-radius: 9px;
+      border: 1.5px solid rgba(255,255,255,.1);
+      cursor: pointer; transition: all .18s;
+      background: rgba(255,255,255,.04);
+    }
+    .nivel2-sintoma-item:hover   { border-color: rgba(184,157,82,.5); background: rgba(184,157,82,.06); }
+    .nivel2-sintoma-item.selected{ border-color: var(--gold); background: rgba(184,157,82,.1); }
+    .nivel2-sintoma-item input[type="checkbox"] { width:17px; height:17px; flex-shrink:0; margin-top:3px; accent-color: var(--gold); cursor:pointer; }
+    .nivel2-sintoma-texto  { font-size: .86rem; color: rgba(255,255,255,.82); line-height: 1.55; }
+    .nivel2-sintoma-id     { display:block; font-size:.68rem; font-weight:800; color:var(--gold); letter-spacing:.08em; text-transform:uppercase; margin-bottom:3px; }
+
+    .nivel2-footer { text-align: center; margin-top: 28px; }
+    #btnNivel2 {
+      background: linear-gradient(135deg, var(--gold-s), var(--gold), var(--gold-d));
+      color: var(--navy); border: none; border-radius: 999px;
+      padding: 15px 44px; font-size: .95rem; font-weight: 800;
+      font-family: 'Montserrat', sans-serif; letter-spacing: .05em; text-transform: uppercase;
+      cursor: pointer; transition: all .2s;
+      box-shadow: 0 8px 24px rgba(184,157,82,.45);
+    }
+    #btnNivel2:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(184,157,82,.6); }
+    .nivel2-skip { display:block; margin-top:12px; font-size:.78rem; color:rgba(255,255,255,.4); cursor:pointer; text-decoration:underline; }
+    .nivel2-skip:hover { color:rgba(255,255,255,.7); }
+
+    /* ── DIAGNOSTIC OVERLAY ── */
+    #diagnosticOverlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--navy);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .5s;
+    }
+    #diagnosticOverlay.active { opacity:1; pointer-events:all; }
+    #overlayCanvas { width:100%; max-width:600px; height:80px; }
+    .overlay-text-1 { font-size: clamp(1.3rem,3vw,1.8rem); font-weight:800; color:var(--white); margin:24px 0 8px; text-align:center; letter-spacing:.02em; }
+    .overlay-text-2 { font-size:.78rem; color:var(--gold); letter-spacing:.22em; text-transform:uppercase; font-weight:600; text-align:center; }
+    .overlay-dots span { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--gold); margin:0 4px; opacity:.3; animation:dotPulse 1.4s ease-in-out infinite; }
+    .overlay-dots span:nth-child(2){ animation-delay:.3s; }
+    .overlay-dots span:nth-child(3){ animation-delay:.6s; }
+    .overlay-badge {
+      margin-top:22px; padding:6px 18px; border-radius:999px;
+      border:1px solid rgba(184,157,82,.4); color:rgba(255,255,255,.55);
+      font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+    }
+
+    /* ── INFORME CLÍNICO ── */
+    #informeSection { display:none; max-width:880px; margin:36px auto 0; }
+
+    .informe-exp-bar {
+      background: var(--navy); border-radius: 14px 14px 0 0;
+      padding: 16px 22px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      border: 1px solid rgba(184,157,82,.35); border-bottom: none;
+    }
+    .informe-exp-left  { display:flex; align-items:center; gap:14px; }
+    .informe-exp-wave  { width:36px; height:36px; flex-shrink:0; animation:floatWave 4s ease-in-out infinite; }
+    .informe-exp-wave-g{ transform-origin:80px 80px; }
+    .informe-exp-system{ color:rgba(255,255,255,.5); font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; }
+    .informe-exp-name  { color:var(--white); font-weight:800; font-size:.92rem; letter-spacing:.04em; }
+    .informe-exp-right { text-align:right; }
+    .informe-exp-num   { font-size:.7rem; color:var(--gold); letter-spacing:.1em; text-transform:uppercase; font-weight:700; }
+    .informe-exp-fecha { font-size:.74rem; color:rgba(255,255,255,.5); margin-top:2px; }
+
+    .informe-body {
+      background: var(--white);
+      border: 1px solid rgba(184,157,82,.3); border-top: none;
+      border-radius: 0 0 14px 14px;
+      box-shadow: 0 22px 50px rgba(0,0,0,.35);
+    }
+    .informe-estado-global { padding:24px 26px 20px; border-bottom:1px solid #f0ece4; }
+    .informe-estado-label  { font-size:.66rem; color:#999; letter-spacing:.18em; text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+    .informe-estado-badge  { display:inline-flex; align-items:center; gap:10px; padding:8px 18px; border-radius:999px; font-weight:800; font-size:.92rem; }
+    .informe-estado-badge.critico    { background:#fff0f3; color:#d90033; border:1.5px solid rgba(217,0,51,.25); }
+    .informe-estado-badge.urgente    { background:#fff4ec; color:#c96000; border:1.5px solid rgba(250,129,40,.3); }
+    .informe-estado-badge.recomendado{ background:#fffaec; color:#9c7200; border:1.5px solid rgba(184,157,82,.35); }
+    .informe-estado-badge.aceptable  { background:#f0faf4; color:#21ae52; border:1.5px solid rgba(33,174,82,.25); }
+    .informe-hallazgo-text { margin-top:12px; font-size:.88rem; color:#444; line-height:1.75; }
+
+    .informe-gold-divider { height:2px; background:linear-gradient(90deg,var(--gold),transparent); margin:0 26px; opacity:.35; }
+
+    .informe-esp-header-sec  { padding:18px 26px 10px; }
+    .informe-esp-section-title{ font-size:1.05rem; font-weight:800; color:var(--navy); margin:0 0 3px; letter-spacing:.02em; }
+    .informe-esp-section-sub  { font-size:.8rem; color:#888; }
+
+    .informe-esp-block  { margin:0 22px 16px; border:1px solid #e8e4dc; border-radius:11px; overflow:hidden; }
+    .informe-esp-header { padding:12px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #f0ece4; }
+    .informe-esp-header.critico    { background:#fff8fa; }
+    .informe-esp-header.recomendado{ background:#fffcf8; }
+    .informe-esp-emoji  { font-size:1.1rem; flex-shrink:0; }
+    .informe-esp-nombre { font-weight:800; font-size:.9rem; color:var(--navy); flex:1; letter-spacing:.04em; }
+    .informe-esp-score  { font-size:.76rem; font-weight:700; padding:3px 10px; border-radius:999px; }
+    .informe-esp-score.critico    { background:rgba(217,0,51,.1);   color:#d90033; }
+    .informe-esp-score.recomendado{ background:rgba(250,129,40,.1); color:#fa8128; }
+    .informe-esp-body   { padding:14px 18px 16px; }
+
+    .informe-hallazgos-label{ font-size:.66rem; font-weight:700; color:#999; letter-spacing:.18em; text-transform:uppercase; margin-bottom:8px; }
+    .informe-hallazgo-item {
+      display:flex; flex-direction:column; align-items:flex-start; gap:4px;
+      padding:9px 12px; border-radius:8px; background:#fafafa;
+      border-left:3px solid var(--gold); margin-bottom:6px;
+      font-size:.84rem; color:#333; line-height:1.5;
+    }
+    .informe-sintoma-badge {
+      display:inline-flex; align-items:center; font-size:.66rem; font-weight:800;
+      color:var(--navy); letter-spacing:.08em; text-transform:uppercase;
+      background:rgba(15,26,53,.07); padding:2px 8px; border-radius:4px;
+    }
+    .informe-no-sintomas { font-size:.82rem; color:#aaa; margin-bottom:8px; }
+
+    .informe-protocolo-preview {
+      margin-top:12px; padding:12px 14px; border-radius:9px;
+      background:linear-gradient(135deg,rgba(15,26,53,.03),rgba(15,26,53,.06));
+      border:1px solid rgba(15,26,53,.08);
+    }
+    .informe-protocolo-label { font-size:.66rem; font-weight:700; color:var(--navy2); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+    .informe-protocolo-capas-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
+    .proto-capas-label { font-size:.66rem; color:#888; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+    .proto-capas-pills { display:flex; align-items:center; gap:4px; }
+    .proto-capa-pill   { padding:4px 10px; border-radius:6px; font-size:.7rem; font-weight:800; background:var(--navy); color:#fff; letter-spacing:.04em; }
+    .proto-arrow       { color:var(--gold); font-weight:700; font-size:.84rem; }
+    .proto-step        { padding:4px 9px; border-radius:5px; font-size:.68rem; font-weight:700; background:rgba(15,26,53,.06); color:var(--navy); border:1px solid rgba(15,26,53,.1); }
+    .proto-step.active      { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .proto-step.active-gold { background:var(--gold); color:var(--navy); border-color:var(--gold); }
+    .informe-protocolo-note { font-size:.74rem; color:#666; margin-top:8px; line-height:1.5; }
+    .informe-protocolo-link { display:inline-flex; align-items:center; gap:5px; margin-top:6px; font-size:.76rem; font-weight:700; color:var(--navy2); text-decoration:none; border-bottom:1px solid rgba(15,26,53,.2); }
+    .informe-protocolo-link:hover{ color:var(--gold); border-bottom-color:var(--gold); }
+
+    .informe-saludables { margin:0 22px 22px; padding:14px 18px; border-radius:11px; background:#f4faf6; border:1px solid rgba(33,174,82,.2); }
+    .informe-saludables-title{ font-size:.84rem; font-weight:700; color:#21ae52; margin-bottom:8px; }
+    .informe-saludables-list { display:flex; flex-wrap:wrap; gap:7px; }
+    .informe-saludable-pill  { padding:4px 12px; border-radius:999px; background:rgba(33,174,82,.1); font-size:.76rem; color:#21ae52; font-weight:600; border:1px solid rgba(33,174,82,.2); }
+
+    .informe-actions-bar {
+      padding:16px 22px; border-top:1px solid #f0ece4;
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    }
+    .btn-pdf {
+      display:inline-flex; align-items:center; gap:8px; padding:10px 20px;
+      border-radius:999px; border:2px solid var(--navy); background:#fff;
+      color:var(--navy); font-weight:700; font-size:.84rem; cursor:pointer;
+      transition:all .15s; text-decoration:none; font-family:'Montserrat',sans-serif;
+    }
+    .btn-pdf:hover { background:var(--navy); color:#fff; }
+    .btn-registrar {
+      display:inline-flex; align-items:center; gap:8px; padding:12px 26px;
+      border-radius:999px; border:none;
+      background:linear-gradient(135deg,var(--gold-s),var(--gold),var(--gold-d));
+      color:var(--navy); font-weight:800; font-size:.92rem; cursor:pointer;
+      font-family:'Montserrat',sans-serif; letter-spacing:.04em;
+      box-shadow:0 8px 22px rgba(184,157,82,.4); transition:transform .12s, box-shadow .12s;
+    }
+    .btn-registrar:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(184,157,82,.55); }
+
+    .informe-firma {
+      padding:12px 22px; border-top:1px solid #f5f0e8;
+      display:flex; align-items:center; justify-content:space-between;
+      background:#fafaf8; border-radius:0 0 14px 14px;
+    }
+    .informe-firma-text { font-size:.7rem; color:#aaa; font-style:italic; }
+    .informe-firma-seal { font-size:.68rem; color:var(--gold); font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+
+    /* ── CTA EMAIL ── */
+    #ctaEmailWrapper { display:none; max-width:880px; margin:28px auto 0; }
+    .cta-email-card {
+      background: linear-gradient(135deg,var(--navy),var(--navy2));
+      border-radius:18px; padding:36px 26px 28px;
+      position:relative; overflow:hidden;
+      box-shadow:0 20px 44px rgba(0,0,0,.45);
+      border:1px solid rgba(184,157,82,.3);
+    }
+    .cta-email-card::before,.cta-email-card::after{ content:''; position:absolute; border-radius:50%; background:rgba(184,157,82,.1); }
+    .cta-email-card::before{ width:180px;height:180px;top:-60px;right:-50px; }
+    .cta-email-card::after { width:140px;height:140px;bottom:-50px;left:-40px; }
+    .cta-email-inner { position:relative; text-align:center; max-width:600px; margin:0 auto; }
+    .cta-email-inner h3 { font-size:1.4rem; font-weight:800; color:var(--white); margin:0 0 6px; letter-spacing:.02em; }
+    .cta-email-expediente { font-size:.68rem; color:var(--gold); letter-spacing:.18em; text-transform:uppercase; font-weight:700; margin-bottom:12px; }
+    .cta-email-inner p { color:rgba(255,255,255,.72); font-size:.86rem; line-height:1.75; margin:0 0 18px; }
+    .cta-email-legal-check { display:flex; align-items:flex-start; gap:10px; text-align:left; margin-bottom:16px; font-size:.76rem; color:rgba(255,255,255,.68); line-height:1.55; }
+    .cta-email-legal-check input { margin-top:2px; flex-shrink:0; accent-color:var(--gold); cursor:pointer; }
+    .cta-email-legal-check a { color:var(--gold); text-decoration:underline; }
+    .cta-email-form { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:8px; }
+    .cta-email-input {
+      flex:1; min-width:220px; padding:12px 18px; border-radius:999px;
+      border:2px solid rgba(184,157,82,.45); background:rgba(255,255,255,.07);
+      color:var(--white); font-size:.9rem; outline:none; font-family:'Montserrat',sans-serif;
+    }
+    .cta-email-input::placeholder{ color:rgba(255,255,255,.45); }
+    .cta-email-input:focus{ border-color:var(--gold); background:rgba(255,255,255,.1); }
+    .cta-email-button {
+      border-radius:999px; border:none; padding:12px 24px; font-size:.9rem;
+      background:linear-gradient(135deg,var(--gold-s),var(--gold),var(--gold-d));
+      color:var(--navy); font-weight:800; cursor:pointer; white-space:nowrap;
+      font-family:'Montserrat',sans-serif; letter-spacing:.04em;
+      display:inline-flex; align-items:center; gap:6px;
+      transition:transform .12s, box-shadow .12s;
+    }
+    .cta-email-button:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(184,157,82,.45); }
+    .cta-email-button:disabled{ opacity:.65; cursor:default; transform:none; }
+    #activationBox {
+      margin-top:18px; background:rgba(255,255,255,.06);
+      border-radius:12px; padding:18px 20px 14px;
+      border:1px solid rgba(184,157,82,.25);
+    }
+    #codigoExc { font-size:1.7rem; font-weight:800; color:var(--white); letter-spacing:.24em; font-family:monospace; margin:6px 0; }
+    #emailAviso { font-size:.8rem; color:rgba(255,255,255,.72); margin-top:4px; }
+    .btn-scanner-cta {
+      display:none; align-items:center; justify-content:center; gap:10px;
+      width:100%; margin-top:18px; padding:15px 24px; border-radius:999px;
+      background:linear-gradient(135deg,var(--gold-s),var(--gold),var(--gold-d));
+      color:var(--navy); font-size:.97rem; font-weight:800; text-decoration:none;
+      letter-spacing:.04em; box-shadow:0 10px 28px rgba(184,157,82,.45);
+      font-family:'Montserrat',sans-serif; transition:transform .15s;
+    }
+    .btn-scanner-cta:hover{ transform:translateY(-2px); color:var(--navy); }
+
+    /* ── CTA FINAL ── */
+    #ctaFinalWrapper { display:none; max-width:880px; margin:20px auto 28px; }
+    .cta-final-card {
+      background:var(--navy); border-radius:16px; padding:20px 24px;
+      color:var(--white); display:grid; grid-template-columns:minmax(0,2.2fr) minmax(0,1.4fr);
+      gap:16px; align-items:center;
+      box-shadow:0 18px 40px rgba(0,0,0,.4);
+      border:1px solid rgba(184,157,82,.25);
+    }
+    @media(max-width:760px){ .cta-final-card{ grid-template-columns:1fr; text-align:center; } }
+    .cta-final-title { font-size:.98rem; font-weight:800; margin-bottom:6px; letter-spacing:.02em; }
+    .cta-final-text  { font-size:.82rem; color:rgba(255,255,255,.75); margin-bottom:4px; }
+    .cta-final-note  { font-size:.74rem; color:rgba(255,255,255,.5); }
+    .cta-final-actions { text-align:right; }
+    @media(max-width:760px){ .cta-final-actions{ text-align:center; } }
+    .cta-final-whatsapp {
+      text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+      padding:10px 20px; border-radius:999px;
+      border:1px solid #25D366; color:var(--navy); background:#e7f9f0;
+      font-weight:700; font-size:.86rem; font-family:'Montserrat',sans-serif;
+    }
+    .cta-final-sub { margin-top:6px; font-size:.74rem; color:rgba(255,255,255,.55); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background:var(--navy); border-top:1px solid rgba(184,157,82,.2);
+      padding:24px 26px; text-align:center;
+    }
+    .brand-divider { display:block; width:60px; height:1px; background:rgba(184,157,82,.5); margin:0 auto 14px; }
+    .site-footer-links { display:flex; flex-wrap:wrap; gap:18px; justify-content:center; margin-bottom:10px; }
+    .site-footer-links a { color:rgba(255,255,255,.45); font-size:.72rem; text-decoration:none; letter-spacing:.04em; transition:color .15s; }
+    .site-footer-links a:hover { color:var(--gold); }
+    .site-footer-copy  { font-size:.68rem; color:rgba(255,255,255,.28); letter-spacing:.06em; }
+
+    /* ── LEGAL MODAL ── */
+    #legalModal{ display:none; position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.75); align-items:center; justify-content:center; padding:20px; }
+    #legalModal.open{ display:flex; }
+    .legal-modal-box{ background:#fff; border-radius:16px; max-width:600px; width:100%; max-height:80vh; overflow-y:auto; padding:28px 26px; box-shadow:0 30px 60px rgba(0,0,0,.5); }
+    .legal-modal-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+    .legal-modal-title{ font-size:1.1rem; font-weight:800; color:var(--navy); letter-spacing:.02em; }
+    .legal-modal-close{ width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#f5f5f5;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:#666;flex-shrink:0; }
+    .legal-modal-body{ font-size:.82rem; color:#555; line-height:1.8; }
+    .legal-modal-body h4{ font-size:.88rem; color:var(--navy); margin:16px 0 6px; font-weight:800; }
+    .legal-modal-tabs{ display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap; }
+    .legal-tab{ padding:5px 14px; border-radius:999px; font-size:.76rem; font-weight:700; border:1px solid #d0d4e0; background:#f8f9fb; color:#666; cursor:pointer; transition:all .15s; }
+    .legal-tab.active{ background:var(--navy); color:#fff; border-color:var(--navy); }
+    .legal-tab-content{ display:none; }
+    .legal-tab-content.active{ display:block; }
+
+    /* ── POPUP ENTRADA ── */
+    @keyframes popIn { from{opacity:0;transform:translateY(18px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+    @keyframes badgePulse { 0%,100%{box-shadow:0 0 0 0 rgba(184,157,82,.4)} 60%{box-shadow:0 0 0 8px rgba(184,157,82,0)} }
+
+    #entradaPopup {
+      position:fixed; inset:0; z-index:10000;
+      background:rgba(8,13,28,.85);
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
+      opacity:0; pointer-events:none;
+      transition:opacity .4s ease;
+      backdrop-filter:blur(6px);
+    }
+    #entradaPopup.active { opacity:1; pointer-events:all; }
+
+    .ep-card {
+      background:var(--navy);
+      border:1px solid rgba(184,157,82,.45);
+      border-radius:22px;
+      padding:34px 30px 26px;
+      max-width:468px; width:100%;
+      position:relative;
+      box-shadow:0 40px 90px rgba(0,0,0,.75), 0 0 0 1px rgba(184,157,82,.12);
+      animation:popIn .5s cubic-bezier(.22,.68,0,1.2) forwards;
+    }
+
+    .ep-close {
+      position:absolute; top:14px; right:16px;
+      width:30px; height:30px; border-radius:50%;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.45); font-size:.85rem;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:all .2s; line-height:1;
+    }
+    .ep-close:hover { border-color:rgba(255,255,255,.35); color:var(--white); background:rgba(255,255,255,.1); }
+
+    .ep-wave-wrap { display:flex; justify-content:center; margin-bottom:18px; }
+    .ep-wave      { width:56px; height:56px; animation:floatWave 4s ease-in-out infinite; }
+    .ep-wave-g    { transform-origin:80px 80px; }
+
+    .ep-badge {
+      display:inline-flex; align-items:center; gap:7px;
+      padding:5px 15px; border-radius:999px;
+      background:rgba(184,157,82,.1); border:1px solid rgba(184,157,82,.45);
+      color:var(--gold); font-size:.66rem; font-weight:700;
+      letter-spacing:.2em; text-transform:uppercase;
+      margin-bottom:16px;
+      animation:badgePulse 2.4s ease-in-out infinite;
+    }
+    .ep-badge-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+
+    .ep-title {
+      font-size:clamp(1.25rem,4vw,1.6rem);
+      font-weight:800; color:var(--white);
+      line-height:1.22; margin:0 0 13px;
+      letter-spacing:.01em;
+    }
+    .ep-title-gold { color:var(--gold); }
+
+    .ep-body {
+      font-size:.86rem; color:rgba(255,255,255,.65);
+      line-height:1.78; margin:0 0 18px;
+    }
+
+    .ep-points { display:flex; flex-direction:column; gap:9px; margin-bottom:22px; }
+    .ep-point  {
+      display:flex; align-items:flex-start; gap:11px;
+      font-size:.83rem; color:rgba(255,255,255,.78); line-height:1.5;
+    }
+    .ep-point-icon { color:var(--gold); flex-shrink:0; margin-top:1px; font-size:.88rem; }
+
+    .ep-sep { height:1px; background:rgba(184,157,82,.2); margin:0 0 20px; }
+
+    .ep-consultant { display:flex; align-items:center; gap:15px; margin-bottom:22px; }
+    .ep-avatar {
+      width:52px; height:52px; border-radius:50%; flex-shrink:0;
+      background:linear-gradient(135deg,var(--gold-s) 0%,var(--gold) 60%,var(--gold-d) 100%);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.25rem; font-weight:800; color:var(--navy);
+      box-shadow:0 0 0 3px rgba(184,157,82,.3), 0 4px 14px rgba(184,157,82,.25);
+    }
+    .ep-consultant-name { font-weight:800; color:var(--white); font-size:.92rem; line-height:1.2; }
+    .ep-consultant-role { font-size:.7rem; color:var(--gold); letter-spacing:.07em; margin-top:3px; }
+    .ep-consultant-note { font-size:.74rem; color:rgba(255,255,255,.48); margin-top:4px; font-style:italic; }
+
+    .ep-btn-wa {
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      width:100%; padding:16px 22px; border-radius:999px;
+      background:linear-gradient(135deg,var(--gold-s) 0%,var(--gold) 60%,var(--gold-d) 100%);
+      color:var(--navy); font-family:'Montserrat',sans-serif;
+      font-weight:800; font-size:.96rem; letter-spacing:.05em;
+      text-decoration:none; text-transform:uppercase;
+      box-shadow:0 10px 30px rgba(184,157,82,.5);
+      transition:transform .18s, box-shadow .18s;
+      margin-bottom:13px;
+    }
+    .ep-btn-wa:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(184,157,82,.65); color:var(--navy); }
+    .ep-btn-wa:active { transform:translateY(0); }
+
+    .ep-skip {
+      display:block; width:100%; text-align:center;
+      background:none; border:none; cursor:pointer;
+      font-size:.76rem; color:rgba(255,255,255,.35);
+      font-family:'Montserrat',sans-serif; letter-spacing:.04em;
+      transition:color .2s; padding:3px 0;
+    }
+    .ep-skip:hover { color:rgba(255,255,255,.62); }
+
+    /* ── PRINT ── */
+    @media print {
+      .navbar-mas,.hero,#ekgBar,#nivel2Section,#ctaEmailWrapper,#ctaFinalWrapper,.site-footer,#diagnosticOverlay,#legalModal,.btn-registrar,.informe-firma,.card-form{ display:none !important; }
+      body{ background:#fff !important; color:#000 !important; }
+      .page-main{ padding:0 !important; margin:0 !important; }
+      #informeSection{ display:block !important; max-width:100% !important; margin:0 !important; }
+      .informe-body{ border:none !important; box-shadow:none !important; }
+      .informe-exp-bar{ background:#0F1A35 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; border-radius:0 !important; }
+      .informe-esp-block{ page-break-inside:avoid; }
+      .btn-pdf{ display:none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar-mas">
+  <div class="nav-brand">
+    <img src="masframe-logo-light.svg" class="nav-logo-img" alt="MAS@FRAME® · La Clínica de Empresas">
+  </div>
+  <div class="nav-pill">⚕ Escáner Clínico</div>
+</nav>
+
+<!-- ── EKG BAR ── -->
+<div id="ekgBar">
+  <canvas id="ekgCanvas" height="56"></canvas>
+  <div class="ekg-label-row">
+    <span class="ekg-label-left">MAS@FRAME® · Monitor de Salud Empresarial</span>
+    <span id="ekgScoreLabel" style="color:#00e676;">⬤ SISTEMA LISTO</span>
+    <span id="ekgStatusText" style="color:rgba(255,255,255,0.4);">Esperando diagnóstico</span>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span>✦</span> Escáner Clínico MAS@FRAME® · v3</div>
+      <h1 class="hero-title">La salud de tu empresa,<br><span class="hero-title-gold">diagnosticada en tiempo real.</span></h1>
+      <p class="hero-sub">Evaluamos 10 especialidades clínicas de tu negocio y emitimos un Informe de Salud Empresarial con los síntomas detectados, el protocolo de intervención C0–C6 y el plan de tratamiento recomendado.</p>
+      <div class="hero-pills">
+        <span class="hero-pill">5 minutos · 15 preguntas</span>
+        <span class="hero-pill">Informe clínico gratuito</span>
+        <span class="hero-pill">Protocolo C0–C6 incluido</span>
+      </div>
+      <button class="btn-gold" style="margin-top:24px;" onclick="document.getElementById('formSection').scrollIntoView({behavior:'smooth'});setTimeout(function(){var el=document.getElementById('nombreEmpresa');if(el){el.focus();el.scrollIntoView({behavior:'smooth',block:'center'});}},400);">
+        <span>⚕</span> Iniciar consulta
+      </button>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Qué obtendrás</div>
+      <div class="hero-card-text">Un Expediente Clínico Empresarial con los síntomas detectados en tu negocio, expresados con tus propias palabras, y el protocolo de intervención recomendado.</div>
+      <div class="hero-card-row"><span>Especialidades evaluadas</span><span>10 especialidades</span></div>
+      <div class="hero-card-row"><span>Niveles de diagnóstico</span><span>Nivel 1 + Nivel 2</span></div>
+      <div class="hero-card-row"><span>Protocolo de intervención</span><span>C0 → C6 · 7 capas</span></div>
+      <div class="hero-card-note">El protocolo MAS@FRAME® C0–C6 es el sistema clínico de intervención empresarial de MASESORA. No es un informe más. Es el primer paso de tu tratamiento.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MAIN ── -->
+<main class="page-main">
+  <div id="formSection">
+
+    <!-- NIVEL 1 -->
+    <div class="card-form" id="cardForm">
+      <div style="margin-bottom:12px;">
+        <div class="card-form-title">Fase 1 — Cuadro clínico inicial</div>
+        <div class="card-form-step">Datos de la empresa · 5 áreas · 15 preguntas</div>
+      </div>
+      <p class="form-note-small">Las respuestas son <strong>confidenciales</strong> y se usan exclusivamente para generar tu informe clínico.</p>
+      <div class="empresa-box mb-3">
+        <label for="nombreEmpresa">Nombre de la empresa *</label>
+        <input type="text" id="nombreEmpresa" class="form-control" placeholder="Ej: Innovación SL" required>
+        <label for="facturacion" class="mt-2">Facturación mensual aproximada (€) *</label>
+        <input type="number" id="facturacion" class="form-control" placeholder="Ej: 15000" min="0" required>
+      </div>
+      <form id="assessmentForm">
+        <div class="section" data-area="Rentabilidad">
+          <div class="section-header"><h4>RENTABILIDAD · Finanzas y Estrategia</h4></div>
+          <div class="section-body">
+            <label>¿Tu empresa tiene el control y claridad sobre dónde está tu dinero y cómo hacerlo crecer sosteniblemente?</label>
+            <select name="rentabilidad1" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">No tengo control</option><option value="2">Me cuesta entenderlo</option><option value="3">Parcialmente</option><option value="4">Totalmente claro</option>
+            </select>
+            <label>¿Con qué frecuencia revisas tus resultados financieros para tomar decisiones que eviten pérdidas?</label>
+            <select name="rentabilidad2" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">Nunca</option><option value="2">Rara vez</option><option value="3">Mensualmente</option><option value="4">Semanalmente</option>
+            </select>
+            <label>¿Tu negocio tiene una estrategia clara y compartida que guía cada movimiento para asegurar rentabilidad futura?</label>
+            <select name="rentabilidad3" class="form-select" required>
+              <option value="">Seleccione</option><option value="1">No existe estrategia</option><option value="2">Poco definida</option><option value="3">Algo definida</option><option value="4">Sí, claramente definida</option>
+            </select>
+          </div>
+        </div>
+        <div class="section" data-area="Procesos">
+          <div class="section-header"><h4>PROCESOS · Gestión, Crisis y Mejora</h4></div>
+          <div class="section-body">
+            <label>¿Los procesos críticos están documentados, actualizados y preparados para enfrentar imprevistos o crisis?</label>
+            <select name="procesos1" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">Nunca</option><option value="2">Rara vez</option><option value="3">Algunas veces</option><option value="4">Siempre</option>
+            </select>
+            <label>¿Qué tan efectivo es tu sistema para detectar, corregir errores y mejorar procesos?</label>
+            <select name="procesos2" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">No existe sistema</option><option value="2">Poco efectivo</option><option value="3">Moderadamente</option><option value="4">Muy efectivo</option>
+            </select>
+            <label>¿Tus procesos actuales permiten reaccionar rápido y minimizar daños ante problemas serios?</label>
+            <select name="procesos3" class="form-select" required>
+              <option value="">Seleccione</option><option value="1">Nunca</option><option value="2">Rara vez</option><option value="3">Algunas veces</option><option value="4">Sí, siempre</option>
+            </select>
+          </div>
+        </div>
+        <div class="section" data-area="Tiempos">
+          <div class="section-header"><h4>TIEMPOS · Productividad y Control</h4></div>
+          <div class="section-body">
+            <label>¿Tu equipo utiliza el tiempo de manera eficiente y productiva, evitando el estrés y sobrecarga?</label>
+            <select name="tiempo1" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">Muy ineficiente</option><option value="2">Poco eficiente</option><option value="3">Regular</option><option value="4">Totalmente eficiente</option>
+            </select>
+            <label>¿Están claramente identificados los factores que consumen tiempo innecesario en tu empresa?</label>
+            <select name="tiempo2" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">No se identifican</option><option value="2">Se identifican pero no se solucionan</option><option value="3">Se identifican parcialmente</option><option value="4">Sí, y se están solucionando</option>
+            </select>
+            <label>¿Utilizas herramientas o metodologías para asegurar que las tareas y proyectos se completen a tiempo?</label>
+            <select name="tiempo3" class="form-select" required>
+              <option value="">Seleccione</option><option value="1">Nunca</option><option value="2">Rara vez</option><option value="3">Algunas veces</option><option value="4">Sí, frecuentemente</option>
+            </select>
+          </div>
+        </div>
+        <div class="section" data-area="Personas">
+          <div class="section-header"><h4>PERSONAS · Equipo y Cultura</h4></div>
+          <div class="section-body">
+            <label>¿Tu equipo está motivado, comprometido y entiende claramente su rol en el crecimiento del negocio?</label>
+            <select name="personas1" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">Desmotivado</option><option value="2">Poco motivado</option><option value="3">Medianamente</option><option value="4">Muy motivado</option>
+            </select>
+            <label>¿Se promueve un ambiente laboral que favorece la colaboración, el respeto y el crecimiento personal?</label>
+            <select name="personas2" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">Nunca</option><option value="2">Rara vez</option><option value="3">A veces</option><option value="4">Siempre</option>
+            </select>
+            <label>¿Cuentas con el talento necesario y las capacitaciones apoyan su desempeño efectivo?</label>
+            <select name="personas3" class="form-select" required>
+              <option value="">Seleccione</option><option value="1">No hay</option><option value="2">Poco</option><option value="3">Parcialmente</option><option value="4">Totalmente</option>
+            </select>
+          </div>
+        </div>
+        <div class="section" data-area="Comunicación">
+          <div class="section-header"><h4>COMUNICACIÓN · Interna y Comercial</h4></div>
+          <div class="section-body">
+            <label>¿La comunicación interna es transparente, clara y constante, ayudando a que todos remen hacia los mismos objetivos?</label>
+            <select name="comunicacion1" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">Nunca</option><option value="2">Pocas veces</option><option value="3">A menudo</option><option value="4">Siempre</option>
+            </select>
+            <label>¿Las reuniones y canales de comunicación están diseñados para resolver problemas y avanzar rápidamente?</label>
+            <select name="comunicacion2" class="form-select mb-2" required>
+              <option value="">Seleccione</option><option value="1">Nada</option><option value="2">Poco</option><option value="3">Regular</option><option value="4">Totalmente</option>
+            </select>
+            <label>¿La comunicación con tus clientes refleja confianza y fortalece la relación para aumentar ventas?</label>
+            <select name="comunicacion3" class="form-select" required>
+              <option value="">Seleccione</option><option value="1">Inexistente</option><option value="2">Débil</option><option value="3">Sólida</option><option value="4">Muy sólida</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <div class="form-progress-bar"><div class="form-progress-bar-inner" id="progressBar"></div></div>
+      <div class="form-progress-label"><span id="progressLabel">0/5 áreas completadas</span><span>Completa para continuar</span></div>
+      <button type="button" id="btnDiagnostico" class="btn-primary-main" onclick="continuarDiagnostico()">
+        <span>⚕</span> Continuar al diagnóstico detallado
+      </button>
+    </div>
+
+    <!-- NIVEL 2 -->
+    <div id="nivel2Section">
+      <div class="nivel2-header">
+        <span class="nivel2-eyebrow">Diagnóstico de síntomas · Fase 2</span>
+        <h3>Selecciona las frases con las que más te identificas</h3>
+        <p>Solo aparecen las especialidades que requieren atención clínica.<br>Marca todo lo que reconozcas en tu empresa ahora mismo.</p>
+      </div>
+      <div id="nivel2Bloques"></div>
+      <div class="nivel2-footer">
+        <button id="btnNivel2" onclick="confirmarNivel2()">Emitir informe clínico →</button>
+        <span class="nivel2-skip" onclick="confirmarNivel2()">Continuar sin seleccionar síntomas</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INFORME CLÍNICO -->
+  <div id="informeSection">
+    <div class="informe-exp-bar">
+      <div class="informe-exp-left">
+        <!-- mini ola en cabecera del informe -->
+        <svg class="informe-exp-wave" viewBox="0 0 100 100" aria-hidden="true">
+          <g class="informe-exp-wave-g">
+            <path d="M 10,78 C 10,78 13,22 24,22 C 35,22 38,58 50,58 C 62,58 65,22 76,22 C 87,22 89,78 89,78"
+              fill="none" stroke="url(#gold-inf)" stroke-width="7" stroke-linecap="round"
+              stroke-dasharray="400" style="animation:waveDraw 2.6s ease forwards"/>
+            <circle cx="10" cy="78" r="5" fill="url(#gold-inf)" style="animation:pulseOrigin 2.8s ease-in-out infinite"/>
+          </g>
+          <defs>
+            <linearGradient id="gold-inf" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#9A7E3A"/><stop offset="50%" stop-color="#E8C96A"/><stop offset="100%" stop-color="#B89D52"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="informe-exp-system">MAS@FRAME® · Sistema Clínico de Intervención Empresarial</div>
+          <div class="informe-exp-name" id="informeEmpresaNombre">—</div>
+        </div>
+      </div>
+      <div class="informe-exp-right">
+        <div class="informe-exp-num" id="informeExpNum">Expediente Nº —</div>
+        <div class="informe-exp-fecha" id="informeExpFecha">—</div>
+      </div>
+    </div>
+    <div class="informe-body">
+      <div class="informe-estado-global">
+        <div class="informe-estado-label">Diagnóstico global</div>
+        <div id="informeEstadoBadge" class="informe-estado-badge">—</div>
+        <div class="informe-hallazgo-text" id="informeHallazgoGlobal">—</div>
+      </div>
+      <div class="informe-gold-divider"></div>
+      <div class="informe-esp-header-sec">
+        <div class="informe-esp-section-title">Hallazgos clínicos por especialidad</div>
+        <div class="informe-esp-section-sub" id="informeEspSubtitle">Especialidades con intervención recomendada</div>
+      </div>
+      <div id="informeEspecialidades"></div>
+      <div class="informe-saludables" id="informeSaludables" style="display:none;">
+        <div class="informe-saludables-title">✓ Áreas en buen estado clínico</div>
+        <div class="informe-saludables-list" id="informeSaludablesList"></div>
+      </div>
+      <div class="informe-actions-bar">
+        <button class="btn-pdf" id="btnPdf" onclick="window.print()" style="display:none;" title="Descargar PDF del informe clínico"><span>📄</span> Descargar PDF clínico</button>
+        <button class="btn-registrar" onclick="mostrarEmailGate()"><span>⚕</span> Registrar expediente en La Clínica →</button>
+      </div>
+      <div class="informe-firma">
+        <div class="informe-firma-text">Informe generado por el Escáner de Salud Empresarial MAS@FRAME® · Documento confidencial</div>
+        <div class="informe-firma-seal">MAS@FRAME® · La Clínica de Empresas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA EMAIL -->
+  <div id="ctaEmailWrapper">
+    <div class="cta-email-card">
+      <div class="cta-email-inner">
+        <div class="cta-email-expediente" id="ctaExpedienteLabel">Expediente Nº —</div>
+        <h3>Registra tu Expediente en La Clínica</h3>
+        <p>Tu informe clínico completo, tu número de expediente MAS@FRAME® y el protocolo de intervención recomendado se enviarán a tu email. La Clínica de Empresas te está esperando.</p>
+        <div class="cta-email-legal-check">
+          <input type="checkbox" id="legalCheck">
+          <label for="legalCheck">He leído y acepto la <a href="#" onclick="abrirLegal('privacidad');return false;">Política de Privacidad</a> y el <a href="#" onclick="abrirLegal('aviso');return false;">Aviso Legal</a> de MASESORA. Entiendo que mis datos se usarán para enviarme el informe clínico y comunicaciones relacionadas con el tratamiento empresarial.</label>
+        </div>
+        <div class="cta-email-form">
+          <input type="email" id="emailCliente" class="cta-email-input" placeholder="tu@empresa.com">
+          <button onclick="enviarDiagnostico()" id="btnEnviar" class="cta-email-button">Enviar mi informe <span>→</span></button>
+        </div>
+        <div id="activationBox" style="display:none;">
+          <div style="font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;">⚕ Tu Número de Expediente Clínico MAS@FRAME®</div>
+          <div id="codigoExc"></div>
+          <div id="emailAviso"></div>
+          <div style="font-size:.76rem;color:rgba(255,255,255,.6);margin-top:8px;line-height:1.6;">Registrado en el sistema MAS@FRAME® · Este código es tu acceso permanente a La Clínica de Empresas.</div>
+          <a id="btnScanner" href="#" class="btn-scanner-cta" target="_blank" rel="noopener">⚕ Ver mi plan de tratamiento completo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div id="ctaFinalWrapper">
+    <div class="cta-final-card">
+      <div>
+        <div class="cta-final-title">¿Prefieres que lo revisemos juntos?</div>
+        <div class="cta-final-text">Podemos revisar tu cuadro clínico por WhatsApp y orientarte sobre qué síntomas priorizar.</div>
+        <div class="cta-final-note">Sin compromiso · Respuesta en menos de 24h.</div>
+      </div>
+      <div class="cta-final-actions">
+        <a href="https://wa.me/34609987436" target="_blank" rel="noopener" class="cta-final-whatsapp"><span>💬</span> Hablar por WhatsApp</a>
+        <div class="cta-final-sub">Usaremos tu diagnóstico MAS@FRAME® como base.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <span class="brand-divider"></span>
+  <div class="site-footer-copy" style="margin-bottom:8px;letter-spacing:.06em;color:rgba(255,255,255,.55);">MASESORA® · MAS@FRAME® · DINAMISMO EMPRESARIAL</div>
+  <div class="site-footer-links">
+    <a href="#" onclick="abrirLegal('privacidad');return false;">Política de Privacidad</a>
+    <a href="#" onclick="abrirLegal('aviso');return false;">Aviso Legal</a>
+    <a href="#" onclick="abrirLegal('cookies');return false;">Política de Cookies</a>
+    <a href="#" onclick="abrirLegal('rgpd');return false;">RGPD</a>
+    <a href="https://www.masesora.com" target="_blank" rel="noopener">masesora.com</a>
+  </div>
+  <div class="site-footer-copy">© 2026 MASESORA® · MAS@FRAME® · La Clínica de Empresas · Todos los derechos reservados.</div>
+</footer>
+
+<!-- ── POPUP ENTRADA ── -->
+<div id="entradaPopup">
+  <div class="ep-card">
+    <button class="ep-close" onclick="cerrarPopup()" aria-label="Cerrar">✕</button>
+
+    <div class="ep-wave-wrap">
+      <svg class="ep-wave" viewBox="0 0 100 100" aria-hidden="true">
+        <g class="ep-wave-g">
+          <path d="M 10,78 C 10,78 13,22 24,22 C 35,22 38,58 50,58 C 62,58 65,22 76,22 C 87,22 89,78 89,78"
+            fill="none" stroke="url(#gold-ep)" stroke-width="5.5" stroke-linecap="round"
+            stroke-dasharray="400" style="animation:waveDraw 2.6s ease forwards"/>
+          <path d="M 13,82 C 13,82 16,26 26,26 C 36,26 39,62 50,62 C 61,62 64,26 74,26 C 84,26 86,82 86,82"
+            fill="none" stroke="url(#gold-ep)" stroke-width="1.3" stroke-linecap="round" opacity="0.18"
+            stroke-dasharray="380" style="animation:waveDrawEco 3.2s ease forwards"/>
+          <circle cx="10" cy="78" r="5" fill="url(#gold-ep)" style="animation:pulseOrigin 2.8s ease-in-out infinite"/>
+          <circle cx="92" cy="11" r="4" fill="url(#gold-ep)" style="animation:pulseImpulse 2.8s ease-in-out infinite"/>
+          <line x1="89" y1="78" x2="92" y2="14" stroke="url(#gold-ep)" stroke-width="2.5"
+            stroke-linecap="round" stroke-dasharray="80" style="animation:riseImpulse 2.4s ease forwards"/>
+        </g>
+        <defs>
+          <linearGradient id="gold-ep" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%"  stop-color="#9A7E3A"/>
+            <stop offset="50%" stop-color="#E8C96A"/>
+            <stop offset="100%" stop-color="#B89D52"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="ep-badge"><span class="ep-badge-dot"></span> Diagnóstico Clínico · Gratuito</div>
+
+    <h2 class="ep-title">¿Y si lo que frena tu empresa<br><span class="ep-title-gold">tiene nombre clínico?</span></h2>
+
+    <p class="ep-body">La mayoría de empresarios trabajan con síntomas que no saben nombrar. El Escáner MAS@FRAME® los detecta, los clasifica y te dice exactamente qué le duele a tu negocio — en menos de 10 minutos.</p>
+
+    <div class="ep-points">
+      <div class="ep-point"><span class="ep-point-icon">✦</span><span>10 especialidades clínicas evaluadas en tiempo real, con tu propio cuadro de síntomas.</span></div>
+      <div class="ep-point"><span class="ep-point-icon">✦</span><span>Informe Clínico Empresarial + protocolo de intervención C0–C6. Inmediato. Sin esperas.</span></div>
+      <div class="ep-point"><span class="ep-point-icon">✦</span><span>Sin jerga. Sin promesas vacías. Sin compromiso. Solo la verdad clínica de tu empresa.</span></div>
+    </div>
+
+    <div class="ep-sep"></div>
+
+    <div class="ep-consultant">
+      <div class="ep-avatar">MC</div>
+      <div>
+        <div class="ep-consultant-name">Maite Cabezuelos</div>
+        <div class="ep-consultant-role">Fundadora · Dirección Clínica MASESORA®</div>
+        <div class="ep-consultant-note">¿Prefieres revisarlo conmigo antes de empezar? Te escucho.</div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/34609987436" target="_blank" rel="noopener" class="ep-btn-wa">
+      💬 Hablar con Maite · WhatsApp
+    </a>
+    <button class="ep-skip" onclick="cerrarPopup()">Prefiero hacer el escáner solo →</button>
+  </div>
+</div>
+
+<!-- ── DIAGNOSTIC OVERLAY ── -->
+<div id="diagnosticOverlay">
+  <canvas id="overlayCanvas" height="80"></canvas>
+  <div class="overlay-text-1">Analizando cuadro clínico<span id="overlayDots">...</span></div>
+  <div class="overlay-text-2">Procesando hallazgos clínicos</div>
+  <div class="overlay-dots" style="margin-top:18px;"><span></span><span></span><span></span></div>
+  <div class="overlay-badge">MAS@FRAME® · Sistema Clínico de Intervención Empresarial</div>
+</div>
+
+<!-- ── LEGAL MODAL ── -->
+<div id="legalModal">
+  <div class="legal-modal-box">
+    <div class="legal-modal-header">
+      <div class="legal-modal-title" id="legalModalTitle">Política de Privacidad</div>
+      <div class="legal-modal-close" onclick="cerrarLegal()">✕</div>
+    </div>
+    <div class="legal-modal-tabs">
+      <button class="legal-tab active" onclick="cambiarTabLegal('privacidad',this)">Privacidad</button>
+      <button class="legal-tab" onclick="cambiarTabLegal('aviso',this)">Aviso Legal</button>
+      <button class="legal-tab" onclick="cambiarTabLegal('cookies',this)">Cookies</button>
+      <button class="legal-tab" onclick="cambiarTabLegal('rgpd',this)">RGPD</button>
+    </div>
+    <div class="legal-modal-body">
+      <div id="legal-privacidad" class="legal-tab-content active">
+        <h4>Política de Privacidad — MASESORA</h4>
+        <p><strong>Responsable:</strong> MASESORA (La Clínica de Empresas)</p>
+        <p><strong>Finalidad:</strong> Los datos personales recogidos se utilizan exclusivamente para: (a) emitir y enviar el Informe Clínico Empresarial solicitado, (b) gestionar el expediente clínico MAS@FRAME® y (c) comunicaciones directamente relacionadas con el tratamiento empresarial.</p>
+        <p><strong>Legitimación:</strong> Consentimiento del interesado y ejecución de una relación precontractual.</p>
+        <p><strong>Destinatarios:</strong> Los datos no se ceden a terceros salvo obligación legal. Los sistemas de envío pueden implicar transferencia a proveedores de servicios (Resend, Inc.) con garantías adecuadas.</p>
+        <p><strong>Conservación:</strong> Los datos se conservan durante el tiempo necesario para la prestación del servicio y los plazos legales aplicables.</p>
+        <p><strong>Derechos:</strong> Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a direccionmasesora@gmail.com.</p>
+      </div>
+      <div id="legal-aviso" class="legal-tab-content">
+        <h4>Aviso Legal — MASESORA</h4>
+        <p><strong>Titular:</strong> MASESORA · La Clínica de Empresas</p>
+        <p>El presente Aviso Legal regula el acceso, navegación y uso del Escáner de Salud Empresarial MAS@FRAME®. El uso de este servicio implica la aceptación plena de las condiciones aquí establecidas.</p>
+        <p><strong>Propiedad intelectual:</strong> El nombre MAS@FRAME®, La Clínica de Empresas, el protocolo C0–C6 y todos los contenidos del sistema son propiedad exclusiva de MASESORA y están protegidos por la legislación de propiedad intelectual e industrial.</p>
+        <p><strong>Limitación de responsabilidad:</strong> Los resultados del Escáner son orientativos y no constituyen asesoramiento profesional vinculante.</p>
+      </div>
+      <div id="legal-cookies" class="legal-tab-content">
+        <h4>Política de Cookies — MASESORA</h4>
+        <p>El Escáner de Salud Empresarial MAS@FRAME® no utiliza cookies propias de seguimiento ni publicidad.</p>
+        <p><strong>Cookies técnicas:</strong> Se pueden utilizar cookies de sesión estrictamente necesarias para el correcto funcionamiento del formulario.</p>
+        <p><strong>Terceros:</strong> Se utiliza Google Fonts y Bootstrap CDN, que pueden establecer cookies de rendimiento según sus propias políticas.</p>
+      </div>
+      <div id="legal-rgpd" class="legal-tab-content">
+        <h4>Información RGPD</h4>
+        <p>En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD):</p>
+        <p><strong>Base jurídica:</strong> Consentimiento explícito del usuario y ejecución de una relación precontractual.</p>
+        <p><strong>Datos recogidos:</strong> Email, nombre de la empresa, facturación estimada y respuestas al cuestionario clínico.</p>
+        <p><strong>No se recogen:</strong> Datos especialmente protegidos, datos de menores ni información financiera sensible.</p>
+        <p><strong>Derecho a reclamación:</strong> Puedes presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ══ DATA ══════════════════════════════════════════════════════════ */
+const especialidadesMap = {
+  'Rentabilidad': [
+    {nombre:'UCI FINANCIERA',descripcion:'Gestión de crisis financiera'},
+    {nombre:'NEUROLOGÍA ESTRATÉGICA',descripcion:'Planificación y visión'}
+  ],
+  'Procesos': [
+    {nombre:'UNIDAD DE PROCESOS',descripcion:'Optimización operativa'},
+    {nombre:'GESTIÓN CLÍNICA',descripcion:'Sistemas y control'}
+  ],
+  'Tiempos': [
+    {nombre:'EXCELENCIA OPERATIVA',descripcion:'Máximo rendimiento'},
+    {nombre:'RESCATE DE PERSONAS',descripcion:'Retención de talento'}
+  ],
+  'Personas': [
+    {nombre:'PSIQUIATRÍA ORGANIZACIONAL',descripcion:'Cultura y motivación'},
+    {nombre:'TERAPIA DE EXPERIENCIA',descripcion:'Experiencia del cliente'}
+  ],
+  'Comunicación': [
+    {nombre:'CIRUGÍA DE MARCA',descripcion:'Identidad y posicionamiento'},
+    {nombre:'CARDIOLOGÍA COMERCIAL',descripcion:'Ventas y clientes'}
+  ]
+};
+
+const SINTOMAS_NIVEL2 = {
+  'UCI FINANCIERA': [
+    {id:'UCI-S1',nombre:'Hemorragia de caja',texto:'Tengo dinero ya facturado o cobrado que no está disponible en caja: morosos, stock parado o anticipos a proveedores.'},
+    {id:'UCI-S2',nombre:'Cliente trampa de margen',texto:'Tengo clientes o servicios que generan mucho trabajo pero apenas dejan margen real cuando calculo lo que cuestan.'},
+    {id:'UCI-S3',nombre:'Gastos fijos sin auditar',texto:'Pago gastos fijos que no he revisado en el último año y no sé con certeza si todos son necesarios.'}
+  ],
+  'NEUROLOGÍA ESTRATÉGICA': [
+    {id:'NEU-S1',nombre:'Deriva estratégica',texto:'No tengo un plan claro de dónde quiero estar en 12 meses. Tomo decisiones según van llegando.'},
+    {id:'NEU-S2',nombre:'Equipo sin brújula',texto:'Mi equipo no sabe con claridad cuál es la prioridad estratégica de la empresa en este momento.'},
+    {id:'NEU-S3',nombre:'Iniciativas sin terminar',texto:'He lanzado iniciativas que no terminamos o que no llegaron a tener el impacto esperado.'}
+  ],
+  'UNIDAD DE PROCESOS': [
+    {id:'UNP-S1',nombre:'Dependencia persona clave',texto:'Hay tareas críticas del negocio que dependen de una sola persona, y si esa persona falta, nadie sabe cómo hacerlo.'},
+    {id:'UNP-S2',nombre:'Errores en bucle',texto:'Los errores que se repiten en mi empresa casi siempre terminan convirtiéndose en urgencias o en pérdidas de dinero.'},
+    {id:'UNP-S3',nombre:'Procesos sin documentar',texto:'No tenemos documentados los procesos clave. Cada persona lo hace a su manera.'}
+  ],
+  'GESTIÓN CLÍNICA': [
+    {id:'GES-S1',nombre:'Sin cuadro de mando',texto:'No tengo un panel de indicadores clave que me diga, de un vistazo, cómo está yendo la empresa esta semana.'},
+    {id:'GES-S2',nombre:'Reuniones sin acción',texto:'Las reuniones de seguimiento existen, pero no acaban con decisiones claras ni con responsables concretos.'},
+    {id:'GES-S3',nombre:'Coste real desconocido',texto:'No sé con precisión cuánto me cuesta producir o entregar cada servicio o producto.'}
+  ],
+  'EXCELENCIA OPERATIVA': [
+    {id:'EXC-S1',nombre:'Modo apagafuegos',texto:'Mi equipo y yo dedicamos más tiempo a apagar fuegos que a trabajar en lo que realmente mueve el negocio.'},
+    {id:'EXC-S2',nombre:'Plazos incumplidos',texto:'Los plazos internos rara vez se cumplen. Las cosas se acaban tarde, con prisa o a medias.'},
+    {id:'EXC-S3',nombre:'Herramientas sin adopción',texto:'Hay herramientas o sistemas en mi empresa que nadie usa del todo bien, o que generan doble trabajo.'}
+  ],
+  'RESCATE DE PERSONAS': [
+    {id:'RES-S1',nombre:'Fuga de talento crítico',texto:'He perdido o estoy en riesgo de perder a personas clave del equipo en los últimos 12 meses.'},
+    {id:'RES-S2',nombre:'Bajo rendimiento sin acción',texto:'Hay personas en el equipo que no rinden al nivel esperado, pero no hemos tomado ninguna medida concreta al respecto.'},
+    {id:'RES-S3',nombre:'Onboarding inexistente',texto:'Mi equipo no tiene un proceso claro de incorporación o desarrollo. Aprenden solos, sobre la marcha.'}
+  ],
+  'PSIQUIATRÍA ORGANIZACIONAL': [
+    {id:'PSI-S1',nombre:'Tensión enquistada',texto:'Noto que hay tensión o distancia entre áreas del equipo. Las conversaciones difíciles se evitan o se enquistan.'},
+    {id:'PSI-S2',nombre:'Resistencia al cambio',texto:'Cuando anuncio cambios o nuevas decisiones, siento resistencia o falta de compromiso en parte del equipo.'},
+    {id:'PSI-S3',nombre:'Centralización excesiva',texto:'La mayoría de decisiones pasan por mí. Si no estoy, las cosas se ralentizan o se detienen.'}
+  ],
+  'TERAPIA DE EXPERIENCIA': [
+    {id:'TER-S1',nombre:'Quejas sin sistema',texto:'Recibo quejas o señales de insatisfacción de clientes de forma recurrente, pero no tenemos un sistema para gestionarlas.'},
+    {id:'TER-S2',nombre:'Satisfacción no medida',texto:'No medimos de manera sistemática qué tan satisfechos están nuestros clientes con el servicio que reciben.'},
+    {id:'TER-S3',nombre:'Entrada de cliente irregular',texto:'El proceso de onboarding o bienvenida de nuevos clientes no está definido y cada caso es diferente.'}
+  ],
+  'CIRUGÍA DE MARCA': [
+    {id:'CIR-S1',nombre:'Propuesta de valor difusa',texto:'Si alguien me pregunta por qué elegirme a mí y no a un competidor, me cuesta explicarlo de forma clara y convincente.'},
+    {id:'CIR-S2',nombre:'Presencia digital débil',texto:'Mi presencia online (web, redes, LinkedIn) no refleja bien quiénes somos ni atrae al tipo de cliente que queremos.'},
+    {id:'CIR-S3',nombre:'Mensaje no unificado',texto:'No tenemos un mensaje unificado. Cada persona del equipo explica la empresa de una manera diferente.'}
+  ],
+  'CARDIOLOGÍA COMERCIAL': [
+    {id:'CAR-S1',nombre:'Ventas impredecibles',texto:'No tengo una previsión fiable de cuánto voy a facturar el próximo mes. Las ventas son irregulares y difíciles de predecir.'},
+    {id:'CAR-S2',nombre:'Dependencia de un canal',texto:'El 70% o más de mis ingresos dependen de un número muy reducido de clientes o de un único canal.'},
+    {id:'CAR-S3',nombre:'Pipeline sin seguimiento',texto:'No hacemos seguimiento sistemático de presupuestos, propuestas o conversaciones comerciales abiertas.'}
+  ]
+};
+
+const PROTOCOLO_MAP = {
+  'UCI FINANCIERA':             {capas:['C0','C1','C2'],semCritico:'1–4',semRecomendado:'3–6',acto:'Estabilización financiera'},
+  'NEUROLOGÍA ESTRATÉGICA':     {capas:['C1','C2','C3'],semCritico:'2–6',semRecomendado:'4–8',acto:'Diseño estratégico'},
+  'UNIDAD DE PROCESOS':         {capas:['C0','C2','C3'],semCritico:'1–4',semRecomendado:'3–6',acto:'Rediseño operativo'},
+  'GESTIÓN CLÍNICA':            {capas:['C1','C2','C3'],semCritico:'2–5',semRecomendado:'4–7',acto:'Sistema de control'},
+  'EXCELENCIA OPERATIVA':       {capas:['C2','C3','C4'],semCritico:'2–6',semRecomendado:'4–8',acto:'Optimización de rendimiento'},
+  'RESCATE DE PERSONAS':        {capas:['C1','C3','C4'],semCritico:'1–5',semRecomendado:'3–7',acto:'Intervención de equipo'},
+  'PSIQUIATRÍA ORGANIZACIONAL': {capas:['C3','C4','C5'],semCritico:'2–7',semRecomendado:'4–9',acto:'Transformación cultural'},
+  'TERAPIA DE EXPERIENCIA':     {capas:['C2','C4','C5'],semCritico:'2–6',semRecomendado:'4–8',acto:'Mejora de experiencia cliente'},
+  'CIRUGÍA DE MARCA':           {capas:['C1','C3','C5'],semCritico:'2–6',semRecomendado:'4–9',acto:'Reposicionamiento de marca'},
+  'CARDIOLOGÍA COMERCIAL':      {capas:['C0','C2','C4'],semCritico:'1–5',semRecomendado:'3–7',acto:'Activación comercial'}
+};
+
+let sintomasSeleccionados=[];
+let diagnosticoActual=null;
+let expedienteNumero=null;
+
+/* ══ EKG MONITOR ════════════════════════════════════════════════════ */
+class EKGMonitor {
+  constructor(canvasId){
+    this.canvas=document.getElementById(canvasId);
+    this.ctx=this.canvas.getContext('2d');
+    this.score=100; this.targetScore=100;
+    this.points=[]; this.x=0; this.raf=null;
+    this.resize();
+    window.addEventListener('resize',()=>this.resize());
+    this.start();
+  }
+  resize(){
+    this.canvas.width=this.canvas.offsetWidth||window.innerWidth;
+    this.canvas.height=56;
+    this.points=[]; this.x=0;
+  }
+  getColor(){
+    if(this.score>85)return'#00e676';
+    if(this.score>70)return'#ff9800';
+    return'#f44336';
+  }
+  setScore(v){this.targetScore=Math.max(0,Math.min(100,v));}
+  generateY(x){
+    const W=this.canvas.width,H=this.canvas.height,mid=H/2;
+    const cycle=W/6,pos=x%cycle,norm=pos/cycle;
+    const amp=(1-this.score/100)*20+8;
+    if(norm<0.08)return mid+Math.sin(norm*Math.PI*12)*3;
+    if(norm<0.12)return mid-amp*2.2*Math.sin((norm-0.08)/0.04*Math.PI);
+    if(norm<0.18)return mid+amp*1.4*Math.sin((norm-0.12)/0.06*Math.PI);
+    if(norm<0.22)return mid-amp*0.8*Math.sin((norm-0.18)/0.04*Math.PI);
+    if(norm<0.30)return mid+Math.sin(norm*Math.PI*8)*2;
+    if(norm<0.38)return mid+Math.sin((norm-0.3)*Math.PI*15)*amp*0.4;
+    return mid+Math.sin(norm*Math.PI*3)*2;
+  }
+  draw(){
+    this.score+=(this.targetScore-this.score)*0.04;
+    const W=this.canvas.width,H=this.canvas.height,ctx=this.ctx,color=this.getColor();
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#0F1A35';ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
+    for(let y=0;y<H;y+=16){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    this.x+=2.5;
+    if(this.x>W+100){this.x=0;this.points=[];}
+    this.points.push({x:this.x,y:this.generateY(this.x)});
+    const maxPts=Math.floor(W/2.5)+20;
+    if(this.points.length>maxPts)this.points.shift();
+    ctx.shadowColor=color;ctx.shadowBlur=8;
+    ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=2;
+    ctx.lineJoin='round';ctx.lineCap='round';
+    let started=false;
+    for(let i=0;i<this.points.length;i++){
+      const p=this.points[i];
+      if(!started){ctx.moveTo(p.x,p.y);started=true;}
+      else ctx.lineTo(p.x,p.y);
+    }
+    ctx.stroke();ctx.shadowBlur=0;
+    if(this.points.length>0){
+      const last=this.points[this.points.length-1];
+      ctx.beginPath();ctx.arc(last.x,last.y,3,0,Math.PI*2);
+      ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=14;
+      ctx.fill();ctx.shadowBlur=0;
+    }
+  }
+  start(){const loop=()=>{this.draw();this.raf=requestAnimationFrame(loop);};this.raf=requestAnimationFrame(loop);}
+  stop(){cancelAnimationFrame(this.raf);}
+}
+
+class OverlayEKG {
+  constructor(canvasId){
+    this.canvas=document.getElementById(canvasId);
+    this.ctx=this.canvas.getContext('2d');
+    this.x=0;this.raf=null;
+    this.canvas.width=600;this.canvas.height=80;
+    this.start();
+  }
+  generateY(x){
+    const mid=40,cycle=120,pos=x%cycle;
+    if(pos<8)return mid;
+    if(pos<16)return mid-28;
+    if(pos<20)return mid+12;
+    if(pos<26)return mid;
+    return mid+Math.sin(pos/cycle*Math.PI*2)*3;
+  }
+  draw(){
+    const W=600,H=80,ctx=this.ctx;
+    ctx.clearRect(0,0,W,H);
+    this.x+=2;if(this.x>W+200)this.x=0;
+    ctx.beginPath();ctx.strokeStyle='#B89D52';ctx.lineWidth=2;
+    ctx.shadowColor='#B89D52';ctx.shadowBlur=10;
+    for(let px=0;px<Math.min(this.x,W);px+=2){
+      const py=this.generateY(px+(this.x-Math.min(this.x,W)));
+      px===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    }
+    ctx.stroke();ctx.shadowBlur=0;
+  }
+  start(){const loop=()=>{this.draw();this.raf=requestAnimationFrame(loop);};this.raf=requestAnimationFrame(loop);}
+  stop(){cancelAnimationFrame(this.raf);}
+}
+
+let ekg=null,overlayEkg=null;
+window.addEventListener('load',()=>{
+  ekg=new EKGMonitor('ekgCanvas');
+  overlayEkg=new OverlayEKG('overlayCanvas');
+});
+
+/* ══ SCORE ═══════════════════════════════════════════════════════════ */
+function normalizar(score){return Math.round(score*100/12);}
+function getNivel(score){
+  if(score<=70)return{nivel:'CRÍTICO',emoji:'🔴',clase:'critico',color:'#d90033'};
+  if(score<=85)return{nivel:'RECOMENDADO',emoji:'🟠',clase:'recomendado',color:'#fa8128'};
+  if(score<=95)return{nivel:'OPTIMIZADOR',emoji:'🟢',clase:'optimizador',color:'#21ae52'};
+  return{nivel:'ÉLITE',emoji:'💎',clase:'elite',color:'#1e4fad'};
+}
+
+function calcularScoreGlobal(){
+  const form=document.getElementById('assessmentForm');
+  const areas=['Rentabilidad','Procesos','Tiempos','Personas','Comunicación'];
+  let total=0,count=0;
+  areas.forEach(area=>{
+    let p=area.toLowerCase();
+    if(area==='Tiempos')p='tiempo';
+    if(area==='Comunicación')p='comunicacion';
+    for(let i=1;i<=3;i++){const v=parseInt(form[p+i]?.value||'0');if(v>0){total+=v;count++;}}
+  });
+  if(count===0)return 100;
+  return Math.round((total/(count*4))*100);
+}
+
+function actualizarEKG(){
+  const score=calcularScoreGlobal();
+  if(ekg)ekg.setScore(score);
+  const scoreEl=document.getElementById('ekgScoreLabel');
+  const statusEl=document.getElementById('ekgStatusText');
+  const bar=document.getElementById('ekgBar');
+  if(score>85){
+    scoreEl.style.color='#00e676';scoreEl.textContent='⬤ SALUD: '+score+'%';
+    statusEl.style.color='rgba(0,230,118,0.6)';statusEl.textContent='Cuadro clínico estable';
+    bar.style.borderBottomColor='rgba(0,230,118,0.3)';
+  }else if(score>70){
+    scoreEl.style.color='#ff9800';scoreEl.textContent='⬤ RECOMENDADO: '+score+'%';
+    statusEl.style.color='rgba(255,152,0,0.7)';statusEl.textContent='Intervención recomendada';
+    bar.style.borderBottomColor='rgba(255,152,0,0.3)';
+  }else{
+    scoreEl.style.color='#f44336';scoreEl.textContent='⬤ CRÍTICO: '+score+'%';
+    statusEl.style.color='rgba(244,67,54,0.7)';statusEl.textContent='Cuadro clínico de riesgo';
+    bar.style.borderBottomColor='rgba(244,67,54,0.3)';
+  }
+}
+
+/* ══ PROGRESS ════════════════════════════════════════════════════════ */
+function actualizarProgreso(){
+  const form=document.getElementById('assessmentForm');
+  const areas=['Rentabilidad','Procesos','Tiempos','Personas','Comunicación'];
+  let completas=0;
+  areas.forEach(area=>{
+    let p=area.toLowerCase();
+    if(area==='Tiempos')p='tiempo';
+    if(area==='Comunicación')p='comunicacion';
+    let filled=true;
+    for(let i=1;i<=3;i++){if(!form[p+i]?.value){filled=false;break;}}
+    if(filled)completas++;
+  });
+  document.getElementById('progressBar').style.width=(completas/5*100)+'%';
+  document.getElementById('progressLabel').textContent=completas+'/5 áreas completadas';
+  actualizarEKG();
+}
+
+document.getElementById('assessmentForm').addEventListener('change',actualizarProgreso);
+document.querySelectorAll('.section-header').forEach(h=>{
+  h.addEventListener('click',()=>{
+    h.closest('.section').classList.toggle('collapsed');
+  });
+});
+
+/* ══ NIVEL 1 FLOW ════════════════════════════════════════════════════ */
+function continuarDiagnostico(){
+  const form=document.getElementById('assessmentForm');
+  const nombre=document.getElementById('nombreEmpresa').value.trim();
+  const facturacion=parseFloat(document.getElementById('facturacion').value)||0;
+  const btn=document.getElementById('btnDiagnostico');
+  if(!nombre){alert('Por favor, introduce el nombre de la empresa.');return;}
+  if(facturacion<=0){alert('Por favor, introduce la facturación mensual aproximada.');return;}
+  if(!form.checkValidity()){alert('Por favor, completa todas las preguntas del cuestionario.');return;}
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span> Calculando diagnóstico…';
+  const areas=['Rentabilidad','Procesos','Tiempos','Personas','Comunicación'];
+  let areaScores=[],todasEspecialidades=[];
+  for(const area of areas){
+    let total=0;
+    let p=area.toLowerCase();
+    if(area==='Tiempos')p='tiempo';
+    if(area==='Comunicación')p='comunicacion';
+    for(let i=1;i<=3;i++)total+=parseInt(form[p+i]?.value||'1');
+    const areaScore=normalizar(total);
+    areaScores.push(areaScore);
+    especialidadesMap[area].forEach(esp=>{
+      todasEspecialidades.push({nombre:esp.nombre,descripcion:esp.descripcion,area:area,score:areaScore,nivel:getNivel(areaScore)});
+    });
+  }
+  const criticas_n=todasEspecialidades.filter(e=>e.nivel.nivel==='CRÍTICO').length;
+  const estadoGlobal=criticas_n>=5?'RIESGO CRÍTICO':criticas_n>=3?'ATENCIÓN URGENTE':criticas_n>=1?'INTERVENCIÓN RECOMENDADA':'SALUD ACEPTABLE';
+  diagnosticoActual={nombre,facturacion,areas,areaScores,especialidades:todasEspecialidades,estadoGlobal,timestamp:new Date().toISOString()};
+  expedienteNumero='MAS-'+String(Math.floor(10000+Math.random()*89999));
+  setTimeout(()=>{
+    renderNivel2(todasEspecialidades);
+    btn.disabled=false;
+    btn.innerHTML='<span>⚕</span> Continuar al diagnóstico detallado';
+  },400);
+}
+
+/* ══ NIVEL 2 ══════════════════════════════════════════════════════════ */
+function renderNivel2(todasEspecialidades){
+  const relevantes=todasEspecialidades.filter(e=>e.nivel.nivel==='CRÍTICO'||e.nivel.nivel==='RECOMENDADO');
+  if(relevantes.length===0){emitirInformeOverlay();return;}
+  const cont=document.getElementById('nivel2Bloques');
+  cont.innerHTML='';
+  relevantes.forEach(esp=>{
+    const sintomas=SINTOMAS_NIVEL2[esp.nombre]||[];
+    const bloque=document.createElement('div');
+    bloque.className='nivel2-bloque';
+    bloque.innerHTML=`
+      <div class="nivel2-bloque-header ${esp.nivel.clase}">
+        <span class="nivel2-bloque-nombre">${esp.nombre}</span>
+        <span class="nivel2-bloque-badge ${esp.nivel.clase}">${esp.nivel.nivel}</span>
+      </div>
+      <div class="nivel2-sintomas">
+        ${sintomas.map(s=>`
+          <label class="nivel2-sintoma-item" id="item-${s.id}">
+            <input type="checkbox" id="${s.id}" onchange="toggleSintoma('${s.id}')">
+            <span class="nivel2-sintoma-texto"><span class="nivel2-sintoma-id">${s.id} · ${s.nombre}</span>${s.texto}</span>
+          </label>`).join('')}
+      </div>`;
+    cont.appendChild(bloque);
+  });
+  const n2=document.getElementById('nivel2Section');
+  n2.style.display='block';
+  setTimeout(()=>n2.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+function toggleSintoma(id){
+  const item=document.getElementById('item-'+id);
+  const cb=document.getElementById(id);
+  cb.checked?item.classList.add('selected'):item.classList.remove('selected');
+}
+
+function actualizarSintomas(){
+  sintomasSeleccionados=[];
+  document.querySelectorAll('#nivel2Bloques input[type="checkbox"]:checked').forEach(cb=>sintomasSeleccionados.push(cb.id));
+}
+
+function confirmarNivel2(){
+  actualizarSintomas();
+  document.getElementById('nivel2Section').style.display='none';
+  emitirInformeOverlay();
+}
+
+/* ══ OVERLAY ══════════════════════════════════════════════════════════ */
+function emitirInformeOverlay(){
+  const overlay=document.getElementById('diagnosticOverlay');
+  overlay.classList.add('active');
+  const texts=['Analizando cuadro clínico','Cruzando hallazgos clínicos','Emitiendo diagnóstico'];
+  const subs=['Procesando hallazgos clínicos','Identificando patrones de riesgo','Generando informe MAS@FRAME®'];
+  const textEl=document.querySelector('.overlay-text-1');
+  const subEl=document.querySelector('.overlay-text-2');
+  let count=0;
+  const interval=setInterval(()=>{
+    count++;
+    if(count<texts.length){
+      textEl.innerHTML=texts[count]+'<span id="overlayDots">...</span>';
+      subEl.textContent=subs[count];
+    }
+  },1000);
+  setTimeout(()=>{
+    clearInterval(interval);
+    overlay.classList.remove('active');
+    generarInformeClinico();
+  },3000);
+}
+
+/* ══ INFORME CLINICO ══════════════════════════════════════════════════ */
+function generarInformeClinico(){
+  if(!diagnosticoActual)return;
+  const d=diagnosticoActual;
+  document.getElementById('informeEmpresaNombre').textContent=d.nombre;
+  document.getElementById('informeExpNum').textContent='Expediente · Pendiente de registro';
+  document.getElementById('ctaExpedienteLabel').textContent='Tu diagnóstico MAS@FRAME® está listo';
+  const fecha=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('informeExpFecha').textContent='Emitido el '+fecha;
+  const estadoBadgeMap={
+    'RIESGO CRÍTICO':           {clase:'critico',   icon:'🚨',texto:'RIESGO CRÍTICO'},
+    'ATENCIÓN URGENTE':         {clase:'urgente',   icon:'⚠️', texto:'ATENCIÓN URGENTE'},
+    'INTERVENCIÓN RECOMENDADA': {clase:'recomendado',icon:'⚕',texto:'INTERVENCIÓN RECOMENDADA'},
+    'SALUD ACEPTABLE':          {clase:'aceptable', icon:'✓', texto:'SALUD ACEPTABLE'}
+  };
+  const eInfo=estadoBadgeMap[d.estadoGlobal]||estadoBadgeMap['SALUD ACEPTABLE'];
+  const badgeEl=document.getElementById('informeEstadoBadge');
+  badgeEl.className='informe-estado-badge '+eInfo.clase;
+  badgeEl.innerHTML=`<span>${eInfo.icon}</span> ${eInfo.texto}`;
+  const hallazgoTextos={
+    'RIESGO CRÍTICO':'Tu empresa presenta múltiples áreas en estado crítico. La intervención inmediata es necesaria para estabilizar el cuadro clínico antes de que las tensiones actuales comprometan la viabilidad operativa.',
+    'ATENCIÓN URGENTE':'Tu empresa muestra señales de alerta significativas en varias especialidades. Un plan de intervención estructurado es fundamental para evitar que el cuadro evolucione a fase crítica.',
+    'INTERVENCIÓN RECOMENDADA':'Tu empresa tiene áreas que requieren atención clínica. Actuar ahora con el protocolo adecuado evitará que las tensiones actuales deriven en un escenario de urgencia.',
+    'SALUD ACEPTABLE':'Tu empresa muestra un cuadro clínico estable. Hay oportunidades de optimización que, trabajadas de forma sistemática, pueden marcar la diferencia en el próximo ciclo de crecimiento.'
+  };
+  document.getElementById('informeHallazgoGlobal').textContent=hallazgoTextos[d.estadoGlobal]||'';
+  const criticas=d.especialidades.filter(e=>e.nivel.nivel==='CRÍTICO');
+  const recomendadas=d.especialidades.filter(e=>e.nivel.nivel==='RECOMENDADO');
+  const saludables=d.especialidades.filter(e=>e.nivel.nivel!=='CRÍTICO'&&e.nivel.nivel!=='RECOMENDADO');
+  const intervenir=[...criticas,...recomendadas];
+  const subCount=intervenir.length;
+  document.getElementById('informeEspSubtitle').textContent=
+    subCount>0?`${subCount} especialidad${subCount!==1?'es':''} requiere${subCount!==1?'n':''} intervención clínica`:'Todas las especialidades en buen estado';
+  const espCont=document.getElementById('informeEspecialidades');
+  espCont.innerHTML='';
+  intervenir.forEach(esp=>{
+    const esCritico=esp.nivel.nivel==='CRÍTICO';
+    const proto=PROTOCOLO_MAP[esp.nombre]||{capas:['C1','C2'],semCritico:'1–4',semRecomendado:'3–6',acto:'Intervención clínica'};
+    const semanas=esCritico?proto.semCritico:proto.semRecomendado;
+    const todosCapas=['C0','C1','C2','C3','C4','C5','C6'];
+    const sintomasEsp=(SINTOMAS_NIVEL2[esp.nombre]||[]).filter(s=>sintomasSeleccionados.includes(s.id));
+    const timelineHTML=todosCapas.map(c=>{
+      const isActive=proto.capas.includes(c);
+      const isMain=isActive&&c===proto.capas[0];
+      return`<span class="proto-step ${isMain?'active-gold':(isActive?'active':'')}">${c}</span>`;
+    }).join('');
+    const bloque=document.createElement('div');
+    bloque.className='informe-esp-block';
+    bloque.innerHTML=`
+      <div class="informe-esp-header ${esp.nivel.clase}">
+        <span class="informe-esp-emoji">${esp.nivel.emoji}</span>
+        <span class="informe-esp-nombre">${esp.nombre}</span>
+        <span class="informe-esp-score ${esp.nivel.clase}">${esp.nivel.nivel} · ${esp.score}%</span>
+      </div>
+      <div class="informe-esp-body">
+        ${sintomasEsp.length>0?`
+          <div class="informe-hallazgos-label">Síntomas clínicos detectados</div>
+          ${sintomasEsp.map(s=>`<div class="informe-hallazgo-item"><span class="informe-sintoma-badge">${s.id} · ${s.nombre}</span>${s.texto}"</div>`).join('')}
+        `:`<div class="informe-no-sintomas">Diagnóstico clínico basado en evaluación de Nivel 1. Sin síntomas específicos registrados en Nivel 2.</div>`}
+        <div class="informe-protocolo-preview">
+          <div class="informe-protocolo-label"><span>⚕</span> Protocolo MAS@FRAME® · ${proto.acto}</div>
+          <div class="informe-protocolo-capas-row">
+            <span class="proto-capas-label">Capas activas:</span>
+            <span class="proto-capas-pills">${proto.capas.map(function(c){return '<span class="proto-capa-pill">'+c+'</span>';}).join('<span class="proto-arrow">→</span>')}</span>
+          </div>
+          <div class="informe-protocolo-note">Intervención prevista: <strong>semanas ${semanas}</strong> · Protocolo C0–C6 completo disponible en La Clínica.</div>
+          <a class="informe-protocolo-link" style="display:none;" title="Ver plan de tratamiento completo">⚕ Ver plan de tratamiento completo →</a>
+        </div>
+      </div>`;
+    espCont.appendChild(bloque);
+  });
+  if(saludables.length>0){
+    document.getElementById('informeSaludables').style.display='block';
+    document.getElementById('informeSaludablesList').innerHTML=saludables.map(e=>`<span class="informe-saludable-pill">${e.nombre}</span>`).join('');
+  }
+  const informeEl=document.getElementById('informeSection');
+  informeEl.style.display='block';
+  setTimeout(()=>informeEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+/* ══ EMAIL GATE ═══════════════════════════════════════════════════════ */
+function mostrarEmailGate(){
+  document.getElementById('ctaEmailWrapper').style.display='block';
+  document.getElementById('ctaFinalWrapper').style.display='block';
+  setTimeout(()=>document.getElementById('ctaEmailWrapper').scrollIntoView({behavior:'smooth',block:'start'}),150);
+}
+
+async function enviarDiagnostico(){
+  const emailEl=document.getElementById('emailCliente');
+  const legalEl=document.getElementById('legalCheck');
+  const btnEl=document.getElementById('btnEnviar');
+  const email=emailEl.value.trim();
+  if(!email||!email.includes('@')){emailEl.style.borderColor='#f44336';setTimeout(()=>emailEl.style.borderColor='',2000);return;}
+  if(!legalEl.checked){alert('Para continuar, acepta la Política de Privacidad y el Aviso Legal.');return;}
+  btnEl.disabled=true;
+  btnEl.innerHTML='<span class="spinner"></span> Registrando expediente…';
+  const d=diagnosticoActual||{};
+  const payload={
+    nombre_empresa:d.nombre||'',email,facturacion:d.facturacion||0,
+    estado_global:d.estadoGlobal||'',area_scores:d.areaScores||[],
+    especialidades:(d.especialidades||[]).map(e=>({nombre:e.nombre,score:e.score,nivel:e.nivel.nivel})),
+    sintomas_detectados:sintomasSeleccionados,
+    expediente:expedienteNumero,timestamp:d.timestamp||new Date().toISOString()
+  };
+  try{
+    const res=await fetch('https://masframe-zz8d.onrender.com/ese/diagnostico',{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
+    });
+    if(!res.ok)throw new Error('Server error');
+    const data=await res.json();
+    const codigo=data.codigo||expedienteNumero;
+    mostrarActivacion(codigo);
+    btnEl.innerHTML='✓ Expediente registrado';
+  }catch(err){
+    mostrarActivacion(expedienteNumero);
+    document.getElementById('emailAviso').innerHTML=`Tu expediente clínico ha sido generado como <strong>${expedienteNumero}</strong>. Guarda este código para acceder a La Clínica.`;
+    btnEl.innerHTML='✓ Expediente generado';
+    btnEl.disabled=false;
+  }
+}
+
+function mostrarActivacion(codigo){
+  document.getElementById('activationBox').style.display='block';
+  document.getElementById('codigoExc').textContent=codigo;
+  if(!document.getElementById('emailAviso').textContent){
+    document.getElementById('emailAviso').innerHTML=`Tu expediente clínico ha sido registrado. <strong style="color:var(--gold);">Revisa tu email</strong> — La Clínica de Empresas te está esperando.`;
+  }
+  const btnScanner=document.getElementById('btnScanner');
+  btnScanner.href=`https://masesora.onrender.com/scanner-reception/${codigo}`;
+  btnScanner.style.display='flex';
+  document.querySelectorAll('.informe-protocolo-link').forEach(link=>{
+    link.href=`https://masesora.onrender.com/scanner-reception/${codigo}`;
+    link.style.display='inline-flex';
+  });
+  const expEl=document.getElementById('informeExpNum');
+  if(expEl)expEl.textContent='Expediente Nº '+codigo;
+  const pdfBtn=document.getElementById('btnPdf');
+  if(pdfBtn)pdfBtn.style.display='inline-flex';
+}
+
+/* ══ LEGAL MODAL ══════════════════════════════════════════════════════ */
+const LEGAL_TITLES={privacidad:'Política de Privacidad',aviso:'Aviso Legal',cookies:'Política de Cookies',rgpd:'Información RGPD'};
+function abrirLegal(tab){document.getElementById('legalModal').classList.add('open');cambiarTabLegal(tab);}
+function cerrarLegal(){document.getElementById('legalModal').classList.remove('open');}
+function cambiarTabLegal(tab,btn){
+  document.querySelectorAll('.legal-tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.legal-tab').forEach(el=>el.classList.remove('active'));
+  const content=document.getElementById('legal-'+tab);
+  if(content)content.classList.add('active');
+  if(btn){btn.classList.add('active');}else{
+    const order=['privacidad','aviso','cookies','rgpd'];
+    const idx=order.indexOf(tab);
+    const allTabs=document.querySelectorAll('.legal-tab');
+    if(allTabs[idx])allTabs[idx].classList.add('active');
+  }
+  const titleEl=document.getElementById('legalModalTitle');
+  if(titleEl)titleEl.textContent=LEGAL_TITLES[tab]||'';
+}
+document.getElementById('legalModal').addEventListener('click',function(e){if(e.target===this)cerrarLegal();});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    cerrarLegal();
+    cerrarPopup();
+  }
+});
+
+/* ══ POPUP ENTRADA ═══════════════════════════════════════════════════ */
+function cerrarPopup(){
+  const p=document.getElementById('entradaPopup');
+  p.style.opacity='0';
+  p.style.pointerEvents='none';
+  setTimeout(()=>p.style.display='none',400);
+  try{sessionStorage.setItem('epCerrado','1');}catch(e){}
+}
+document.getElementById('entradaPopup').addEventListener('click',function(e){
+  if(e.target===this)cerrarPopup();
+});
+setTimeout(()=>{
+  try{if(sessionStorage.getItem('epCerrado'))return;}catch(e){}
+  document.getElementById('entradaPopup').classList.add('active');
+},5000);
+</script>
+</body>
+</html>
