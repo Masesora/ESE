@@ -338,16 +338,16 @@ a { text-decoration: none; }
 }
 @media(max-width:520px){ .radio-group{ grid-template-columns: 1fr; } }
 .radio-opt {
-  display: flex; align-items: center; gap: 0;
-  padding: 11px 14px; border-radius: 9px;
+  display: flex; align-items: center;
+  padding: 8px 12px; border-radius: 8px;
   border: 1.5px solid #dde1ee; background: #f9fafc;
-  font-size: .76rem; color: var(--navy); font-weight: 600;
-  line-height: 1.4; text-align: left; cursor: pointer;
+  font-size: .74rem; color: var(--gold); font-weight: 700;
+  line-height: 1.3; text-align: left; cursor: pointer;
   transition: all .15s; font-family: var(--font);
 }
-.radio-opt:hover { border-color: #aab4d4; background: #eef1fa; }
+.radio-opt:hover { border-color: rgba(184,157,82,.5); background: #fffdf5; }
 .radio-opt.selected {
-  border-color: var(--navy); background: var(--navy); color: var(--white);
+  border-color: var(--gold); background: var(--navy); color: var(--gold);
 }
 .opt-letter { display: none; }
 .radio-group.pendiente {
@@ -585,7 +585,7 @@ a { text-decoration: none; }
   opacity:0; transition:opacity .15s;
 }
 .nivel2-sintoma-texto  { font-size:.85rem; color:var(--navy); line-height:1.58; }
-.nivel2-sintoma-nombre { display:block; font-size:.72rem; font-weight:700; color:var(--navy2); margin-top:7px; letter-spacing:.04em; text-transform:uppercase; opacity:.7; }
+.nivel2-sintoma-nombre { display:block; font-size:.72rem; font-weight:800; color:var(--navy); margin-top:7px; letter-spacing:.05em; text-transform:uppercase; }
 .nivel2-sintoma-id-tag { font-size:.6rem; font-weight:700; color:var(--gold); letter-spacing:.1em; text-transform:uppercase; margin-right:5px; opacity:.85; }
 
 .nivel2-footer { text-align:center; margin:36px 0 0; padding-bottom:16px; }
@@ -873,7 +873,7 @@ a { text-decoration: none; }
   .form-area { padding: 12px 14px 10px; }
   .form-area-title { margin: -12px -14px 14px; padding: 9px 14px; font-size: .68rem; }
   .q-text { font-size: .84rem; }
-  .radio-opt { font-size: .72rem; padding: 10px 11px; }
+  .radio-opt { font-size: .7rem; padding: 7px 10px; }
   .btn-primary { font-size: .88rem; padding: 14px 18px; }
 
   /* Nivel 2 */
@@ -1516,23 +1516,34 @@ const API_BASE    = 'https://masframe-zz8d.onrender.com';
 let SINTOMAS_NIVEL2    = {};
 let IMPACT_TREATMENT   = {};
 
-async function cargarCatalogo(){
-  try{
-    const res  = await fetch(`${API_BASE}/specialties/all`);
-    if(!res.ok) throw new Error('api');
-    const symptoms = await res.json();
-    symptoms.forEach(s=>{
-      if(EXCLUDE_IDS.has(s.symptom_id)) return;
-      const sp = s.specialty_id;
-      if(!SINTOMAS_NIVEL2[sp]) SINTOMAS_NIVEL2[sp]=[];
-      SINTOMAS_NIVEL2[sp].push({id:s.symptom_id, nombre:s.symptom_name, texto:s.logica});
-      if(s.impact_treatment) IMPACT_TREATMENT[s.symptom_id]=s.impact_treatment;
-    });
-  }catch(e){
-    console.warn('[ESE] Catálogo no disponible — fetch fallido', e);
-  }
+async function fetchCatalogo(){
+  const res = await fetch(`${API_BASE}/specialties/all`);
+  if(!res.ok) throw new Error(`HTTP ${res.status}`);
+  const symptoms = await res.json();
+  symptoms.forEach(s=>{
+    if(EXCLUDE_IDS.has(s.symptom_id)) return;
+    const sp = s.specialty_id;
+    if(!SINTOMAS_NIVEL2[sp]) SINTOMAS_NIVEL2[sp]=[];
+    SINTOMAS_NIVEL2[sp].push({id:s.symptom_id, nombre:s.symptom_name, texto:s.logica});
+    if(s.impact_treatment) IMPACT_TREATMENT[s.symptom_id]=s.impact_treatment;
+  });
+  console.log(`[ESE] Catálogo cargado — ${symptoms.length} síntomas`);
 }
-cargarCatalogo();
+
+async function cargarCatalogo(){
+  // Intento 1
+  try{ await fetchCatalogo(); return; }
+  catch(e){ console.warn('[ESE] Intento 1 fallido:', e.message); }
+  // Intento 2 — espera 4s (Render cold start)
+  await new Promise(r=>setTimeout(r,4000));
+  try{ await fetchCatalogo(); return; }
+  catch(e){ console.warn('[ESE] Intento 2 fallido:', e.message); }
+  // Intento 3 — espera 6s más
+  await new Promise(r=>setTimeout(r,6000));
+  try{ await fetchCatalogo(); }
+  catch(e){ console.error('[ESE] Catálogo no disponible tras 3 intentos:', e.message); }
+}
+const catalogoListo = cargarCatalogo();
 
 let sintomasSeleccionados = [];
 let diagnosticoActual     = null;
@@ -1606,10 +1617,16 @@ function selectFact(btn){
   cfm.disabled=false; cfm.style.opacity='1'; cfm.style.cursor='pointer';
 }
 
-function confirmarFacturacion(){
+async function confirmarFacturacion(){
   if(!_factValue){ return; }
   diagnosticoActual.facturacion=_factValue;
+  const btnCfm=document.getElementById('btnFactConfirmar');
+  btnCfm.disabled=true;
+  btnCfm.innerHTML='<span class="spinner"></span> Preparando diagnóstico…';
+  await catalogoListo;
   document.getElementById('factScreen').style.display='none';
+  btnCfm.disabled=false;
+  btnCfm.innerHTML='<span></span> Último paso';
   renderNivel2(_pendingEsp);
 }
 
@@ -1721,14 +1738,14 @@ function renderNivel2(todasEspecialidades){
   const nRec =relevantes.filter(e=>e.nivel.nivel==='RECOMENDADO').length;
   if(nCrit>0){
     document.getElementById('nivel2Titulo').textContent=
-      `Tu empresa presenta ${nCrit} área${nCrit>1?'s':''} en estado crítico`;
+      `Tu empresa presenta ${nCrit} especialidad${nCrit>1?'es':''} en estado crítico.`;
     document.getElementById('nivel2Subtitulo').textContent=
-      `Confirma los síntomas que reconoces en cada especialidad. El protocolo de intervención se diseña sobre estos hallazgos — cuanto más preciso, más eficaz.`;
+      `Para ocuparnos de la salud de tu empresa, confirma los síntomas que más le están afectando. Cuanto más preciso seas, más exacto será el protocolo de intervención.`;
   } else {
     document.getElementById('nivel2Titulo').textContent=
-      `${nRec} especialidad${nRec>1?'es':''} require${nRec>1?'n':''} atención clínica`;
+      `${nRec} especialidad${nRec>1?'es':''} require${nRec>1?'n':''} intervención clínica.`;
     document.getElementById('nivel2Subtitulo').textContent=
-      `Selecciona los síntomas que reconoces para que el informe refleje con exactitud el cuadro clínico de tu empresa.`;
+      `Confirma los síntomas que reconoces en tu empresa. Cada uno que selecciones forma parte del protocolo que diseñaremos específicamente para ti.`;
   }
 
   const cont=document.getElementById('nivel2Bloques');
@@ -1759,7 +1776,7 @@ function renderNivel2(todasEspecialidades){
           <span class="nivel2-bloque-badge ${esp.nivel.clase}">${esp.nivel.nivel}</span>
         </div>
         <div class="nivel2-sintomas">
-          ${sintomas.map(s=>`
+          ${sintomas.length===0 ? `<div style="padding:10px 4px;font-size:.76rem;color:rgba(255,255,255,.35);font-style:italic;">Síntomas no disponibles en este momento.</div>` : sintomas.map(s=>`
             <div class="nivel2-sintoma-item" id="item-${s.id}"
               role="checkbox" aria-checked="false" tabindex="0"
               onclick="toggleSintoma('${s.id}')"
@@ -1774,6 +1791,7 @@ function renderNivel2(todasEspecialidades){
               </span>
             </div>`).join('')}
         </div>`;
+
       cont.appendChild(bloque);
     });
   });
@@ -1934,19 +1952,42 @@ async function enviarDiagnostico(){
   btnEl.disabled=true;
   btnEl.innerHTML='<span class="spinner"></span> Registrando expediente…';
   const d=diagnosticoActual||{};
+  const scores=d.areaScores||[0,0,0,0,0];
+  const score_global=scores.length>0?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+  const hallazgos=(d.especialidades||[])
+    .filter(e=>e.nivel.nivel==='CRÍTICO'||e.nivel.nivel==='RECOMENDADO')
+    .map(e=>`${DISPLAY_NAMES[e.nombre]||e.nombre} · ${e.nivel.nivel} · ${e.score}%`);
+  const riesgos=(d.especialidades||[])
+    .filter(e=>e.nivel.nivel==='CRÍTICO')
+    .map(e=>DISPLAY_NAMES[e.nombre]||e.nombre);
+  const palancas=(d.especialidades||[])
+    .filter(e=>e.nivel.nivel!=='CRÍTICO'&&e.nivel.nivel!=='RECOMENDADO')
+    .map(e=>DISPLAY_NAMES[e.nombre]||e.nombre);
   const payload={
-    nombre_empresa:  d.nombre||'',
+    empresa:       d.nombre||'',
     email,
-    facturacion:     d.facturacion||0,
-    estado_global:   d.estadoGlobal||'',
-    area_scores:     d.areaScores||[],
-    especialidades:  (d.especialidades||[]).map(e=>({nombre:e.nombre,score:e.score,nivel:e.nivel.nivel})),
+    facturacion:   d.facturacion||0,
+    estado_global: d.estadoGlobal||'',
+    score_global,
+    scores_areas:{
+      rentabilidad: scores[0]||0,
+      procesos:     scores[1]||0,
+      tiempos:      scores[2]||0,
+      personas:     scores[3]||0,
+      comunicacion: scores[4]||0,
+    },
+    especialidades:(d.especialidades||[]).map(e=>({
+      nombre:      e.nombre,
+      descripcion: e.descripcion||'',
+      score:       e.score,
+      nivel:       e.nivel.nivel,
+    })),
+    insights:{ hallazgos, riesgos, palancas },
     sintomas_detectados: sintomasSeleccionados,
-    expediente:      expedienteNumero,
-    timestamp:       d.timestamp||new Date().toISOString()
+    timestamp: d.timestamp||new Date().toISOString()
   };
   try{
-    const res=await fetch('https://masframe-zz8d.onrender.com/ese/diagnostico',{
+    const res=await fetch('https://masframe-zz8d.onrender.com/ese/submit',{
       method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
     });
     if(!res.ok) throw new Error('server');
