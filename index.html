@@ -651,7 +651,7 @@ a { text-decoration: none; }
 }
 .nivel2-sintoma-item.selected::after { opacity:1; }
 .nivel2-sintoma-texto  { font-size:.85rem; color:var(--navy); line-height:1.58; flex:1; padding-right:80px; }
-.nivel2-sintoma-nombre { display:block; font-size:.72rem; font-weight:800; color:var(--navy); margin-top:7px; letter-spacing:.05em; text-transform:uppercase; }
+.nivel2-sintoma-nombre { display:block; font-size:.72rem; font-weight:800; color:var(--navy); margin-top:7px; letter-spacing:.05em; text-transform:uppercase; text-align:right; }
 .nivel2-sintoma-id-tag { font-size:.6rem; font-weight:700; color:var(--gold); letter-spacing:.1em; text-transform:uppercase; margin-right:5px; opacity:.85; }
 
 .nivel2-footer { text-align:center; margin:36px 0 0; padding-bottom:16px; }
@@ -755,11 +755,10 @@ a { text-decoration: none; }
   background:rgba(15,26,53,.07); padding:2px 8px; border-radius:4px;
   display:inline-block; margin-bottom:2px;
 }
-.informe-no-sintomas { font-size:.8rem; color:#888; font-style:italic; margin-bottom:4px; }
+.informe-no-sintomas { font-size:.8rem; color:var(--gold-a11y); font-weight:700; margin-bottom:4px; line-height:1.65; }
 .informe-impact-treatment {
-  display:block; margin-top:6px;
-  font-size:.78rem; color:var(--navy2); font-weight:600;
-  border-top:1px solid rgba(15,26,53,.07); padding-top:6px;
+  display:block; margin-top:5px;
+  font-size:.83rem; color:#333; font-weight:700;
   line-height:1.55;
 }
 
@@ -2185,7 +2184,7 @@ function generarInformeClinico(){
               ${s.texto}
               ${IMPACT_TREATMENT[s.id] ? `<span class="informe-impact-treatment">→ ${IMPACT_TREATMENT[s.id]}</span>` : ''}
             </div>`).join('')}
-        ` : `<div class="informe-no-sintomas">El escáner detectó señales, pero no indicaste ningún síntoma aquí. En la sesión clínica lo revisamos contigo — o si quieres, puedes <button type="button" onclick="volverANivel2()" style="background:none;border:none;font-size:inherit;color:var(--gold-a11y);font-weight:700;cursor:pointer;text-decoration:underline;font-family:var(--font);padding:0;">confirmar síntomas atrás</button>.</div>`}
+        ` : `<div class="informe-no-sintomas">El escáner detectó señales, pero no indicaste ningún síntoma aquí. En la sesión clínica lo revisamos contigo — o si quieres, puedes <button type="button" onclick="volverANivel2()" style="background:none;border:none;font-size:inherit;color:var(--gold-a11y);font-weight:400;cursor:pointer;text-decoration:underline;font-family:var(--font);padding:0;">confirmar síntomas atrás</button>.</div>`}
       </div>`;
     espCont.appendChild(bloque);
   });
