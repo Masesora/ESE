@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MAS@FRAME® · Escáner de Salud Empresarial — La Clínica de Empresas</title>
-  <meta name="description" content="Diagnostica la salud de tu empresa en 5 minutos. 10 especialidades clínicas, informe detallado y protocolo de intervención C0–C6 gratuito. MAS@FRAME® · MASESORA®.">
+  <meta name="description" content="Diagnostica la salud de tu empresa en 10 minutos. 10 especialidades clínicas, informe detallado y protocolo de intervención C0–C6 gratuito. MAS@FRAME® · MASESORA®.">
   <!-- Canonical -->
   <link rel="canonical" href="https://ese-cc2u.onrender.com">
 
@@ -12,7 +12,7 @@
   <meta property="og:type"        content="website">
   <meta property="og:site_name"   content="MASESORA · La Clínica de Empresas">
   <meta property="og:title"       content="MAS@FRAME® · Escáner de Salud Empresarial">
-  <meta property="og:description" content="Diagnostica tu empresa en 5 minutos. 10 especialidades clínicas, informe con síntomas detectados y protocolo de intervención C0–C6. Gratuito.">
+  <meta property="og:description" content="Diagnostica tu empresa en 10 minutos. 10 especialidades clínicas, informe con síntomas detectados y protocolo de intervención C0–C6. Gratuito.">
   <meta property="og:url"         content="https://ese-cc2u.onrender.com">
   <meta property="og:image"       content="https://ese-cc2u.onrender.com/social-card.png">
   <meta property="og:image:type"  content="image/png">
@@ -24,7 +24,7 @@
   <!-- Twitter / X -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="MAS@FRAME® · Escáner de Salud Empresarial">
-  <meta name="twitter:description" content="Diagnostica tu empresa en 5 minutos. 10 especialidades clínicas, informe con síntomas detectados y protocolo de intervención C0–C6. Gratuito.">
+  <meta name="twitter:description" content="Diagnostica tu empresa en 10 minutos. 10 especialidades clínicas, informe con síntomas detectados y protocolo de intervención C0–C6. Gratuito.">
   <meta name="twitter:image"       content="https://ese-cc2u.onrender.com/social-card.png">
   <meta name="twitter:image:alt"   content="MAS@FRAME® · Escáner de Salud Empresarial">
 
@@ -282,8 +282,8 @@ a { text-decoration: none; }
   letter-spacing: .01em;
 }
 .step-body {
-  font-size: .81rem; color: rgba(15,26,53,.55);
-  line-height: 1.65;
+  font-size: .81rem; color: rgba(15,26,53,.82);
+  line-height: 1.7;
 }
 .step-tag {
   display: inline-block; margin-top: 12px;
@@ -377,8 +377,28 @@ a { text-decoration: none; }
 /* ── FORM SECTION ────────────────────────────────────── */
 .form-section {
   padding: 72px 0 0;
-  border-top: 1px solid rgba(184,157,82,.1);
+  background: #f2f3f5;
+  border-top: 4px solid var(--gold);
+  position: relative;
+  overflow: hidden;
 }
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 160' preserveAspectRatio='none'%3E%3Cpolyline points='0,80 80,80 110,20 140,140 170,50 200,110 230,80 310,80 340,30 370,130 400,55 430,105 460,80 560,80 590,10 620,150 650,40 680,120 710,80 800,80 830,45 860,115 890,60 920,100 950,80 1050,80 1080,25 1110,135 1140,50 1170,110 1200,80' fill='none' stroke='%23b89d52' stroke-width='2' stroke-opacity='0.12'/%3E%3C/svg%3E");
+  background-size: 1200px 160px;
+  background-repeat: repeat;
+  background-position: center 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.form-section .section-inner,
+.form-section .form-header,
+.form-section > * { position: relative; z-index: 1; }
+.form-section .section-eyebrow { color: var(--gold); }
+.form-section .section-title { color: var(--navy); }
+.form-section .section-sub { color: rgba(15,26,53,.7); }
 .form-header { text-align: center; margin-bottom: 40px; }
 .form-header .section-sub { max-width: 520px; margin: 10px auto 0; }
 
@@ -728,9 +748,50 @@ a { text-decoration: none; }
 .informe-hallazgo-global { margin-top:12px; font-size:.86rem; color:#444; line-height:1.75; }
 
 .informe-divider { height:2px; background:linear-gradient(90deg,var(--gold),transparent); margin:0 26px; opacity:.3; }
+.informe-transicion {
+  margin:0 22px 20px;
+  padding:20px 22px;
+  background:linear-gradient(135deg,#0f1a35 0%,#1a2d5a 100%);
+  border-radius:12px;
+  border-left:4px solid var(--gold);
+}
+.informe-transicion-title {
+  font-size:1.05rem; font-weight:800; color:#fff;
+  line-height:1.4; margin-bottom:8px;
+}
+.informe-transicion-sub {
+  font-size:.84rem; color:rgba(255,255,255,.7);
+  line-height:1.65; margin-bottom:14px;
+}
+.informe-transicion-contador {
+  display:flex; gap:16px; flex-wrap:wrap;
+}
+.informe-contador-pill {
+  background:rgba(184,157,82,.18); border:1px solid rgba(184,157,82,.35);
+  border-radius:20px; padding:5px 14px;
+  font-size:.75rem; font-weight:700; color:var(--gold-a11y);
+  letter-spacing:.05em;
+}
 .informe-esp-sec-header { padding:18px 26px 10px; }
 .informe-esp-sec-title { font-size:1rem; font-weight:800; color:var(--navy); }
 .informe-esp-sec-sub   { font-size:.78rem; color:#999; margin-top:2px; }
+.informe-sin-sintomas-card {
+  padding:16px 18px;
+  background:#fffbf2;
+  border-left:3px solid #e8a020;
+  display:flex; flex-direction:column; gap:8px;
+}
+.informe-sin-sintomas-card p {
+  font-size:.86rem; color:#5a4010; line-height:1.6; margin:0;
+}
+.informe-sin-sintomas-btn {
+  display:inline-block; align-self:flex-start;
+  background:none; border:1.5px solid #e8a020; border-radius:20px;
+  padding:6px 16px; font-size:.75rem; font-weight:700;
+  color:#b87a10; cursor:pointer; font-family:var(--font);
+  text-decoration:none; transition:all .18s;
+}
+.informe-sin-sintomas-btn:hover { background:#e8a020; color:#fff; }
 
 .informe-esp-block  { margin:0 22px 14px; border:1px solid #eae6de; border-radius:11px; overflow:hidden; }
 .informe-esp-header { padding:12px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #f0ece4; }
@@ -745,23 +806,30 @@ a { text-decoration: none; }
 .informe-esp-body  { padding:14px 18px 16px; }
 .informe-hallazgos-label { font-size:.63rem; font-weight:700; color:#bbb; letter-spacing:.18em; text-transform:uppercase; margin-bottom:8px; }
 .informe-hallazgo-item {
-  display:flex; flex-direction:column; gap:4px;
-  padding:9px 12px; border-radius:8px;
-  background:#fafafa; border-left:3px solid var(--gold);
-  margin-bottom:6px; font-size:.83rem; color:#333; line-height:1.5;
+  display:flex; flex-direction:column; gap:0;
+  border-radius:12px; overflow:hidden;
+  border:1px solid rgba(15,26,53,.12);
+  margin-bottom:14px;
+  box-shadow:0 2px 12px rgba(15,26,53,.07);
 }
 .informe-sintoma-badge {
-  font-size:.64rem; font-weight:800; color:var(--navy);
-  letter-spacing:.08em; text-transform:uppercase;
-  background:rgba(15,26,53,.07); padding:2px 8px; border-radius:4px;
-  display:inline-block; margin-bottom:2px;
+  font-size:.6rem; font-weight:800; color:rgba(255,255,255,.6);
+  letter-spacing:.14em; text-transform:uppercase;
+  padding:7px 16px 6px;
+  background:var(--navy);
+  display:block;
 }
-.informe-no-sintomas { font-size:.8rem; color:var(--gold-a11y); font-weight:700; margin-bottom:4px; line-height:1.65; }
+.informe-hallazgo-problema { display:none; }
 .informe-impact-treatment {
-  display:block; margin-top:5px;
-  font-size:.83rem; color:#333; font-weight:700;
-  line-height:1.55;
+  display:block;
+  padding:16px 20px 14px;
+  background:#fff;
+  font-size:1.02rem; color:var(--navy); font-weight:700;
+  line-height:1.6;
+  border-left:4px solid var(--gold);
+  display:block; margin-bottom:3px;
 }
+.informe-no-sintomas { font-size:.8rem; color:var(--gold-a11y); font-weight:700; margin-bottom:4px; line-height:1.65; padding:10px 14px; }
 
 .informe-saludables { margin:0 22px 22px; padding:14px 18px; border-radius:11px; background:#f4faf6; border:1px solid rgba(33,174,82,.18); }
 .informe-saludables-title { font-size:.82rem; font-weight:700; color:var(--ok); margin-bottom:8px; }
@@ -1106,13 +1174,45 @@ a { text-decoration: none; }
 .btn-entrada-wa::before { content:'●'; font-size:.55rem; }
 .btn-entrada-wa:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(184,157,82,.52); }
 .entrada-skip {
-  display:block; text-align:center; margin-top:14px;
-  font-size:.74rem; color:rgba(255,255,255,.3);
-  cursor:pointer; transition:color .2s; background:none; border:none;
+  display:block; text-align:center; margin-top:12px;
+  font-size:.82rem; font-weight:600; letter-spacing:.06em;
+  color:rgba(255,255,255,.85);
+  cursor:pointer; transition:all .2s; background:none;
+  border:1.5px solid rgba(255,255,255,.25); border-radius:50px;
+  padding:12px 20px;
   font-family:var(--font); width:100%;
 }
-.entrada-skip:hover { color:rgba(255,255,255,.6); }
+.entrada-skip:hover { color:#fff; border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.05); }
   </style>
+
+  <!-- ══ META PIXEL ══════════════════════════════════════════
+       Sustituye XXXXXXXXXXXXXXXXXX por tu Pixel ID real
+       cuando lo tengas disponible en Meta Business Suite.
+  ════════════════════════════════════════════════════════════ -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'PIXEL_ID_AQUI');   // ← reemplaza con tu Pixel ID
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></noscript>
+
+  <!-- ══ GOOGLE ANALYTICS 4 ══════════════════════════════════
+       Sustituye G-XXXXXXXXXX por tu Measurement ID real
+       (se encuentra en GA4 → Admin → Data Streams).
+  ════════════════════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');   // ← reemplaza con tu Measurement ID
+  </script>
+
 </head>
 <body>
 
@@ -1126,13 +1226,7 @@ a { text-decoration: none; }
     </div>
     <h2 class="entrada-h2" id="entradaTitle">¿Y si lo que frena tu empresa<br><span>tiene nombre clínico?</span></h2>
     <p class="entrada-p">La mayoría de empresarios trabajan con síntomas que no saben nombrar. Nuestra herrameinta, los identifica y te dice exactamente qué le duele a tu negocio — en menos de 10 minutos.</p>
-    <ul class="entrada-bullets">
-      <li>30 síntomas a tratar en 10 especialidades clínicas</li>
-      <li>Informe Clínico Empresarial + Código de acceso a LA CLINICA DE EMPRESAS.   </li>
-      <li>Sistema Masframe, un protocolo de intervención empresarial para mejorar la Salud de tu empresa..</li>
-      <li>Informe de tus sintomas, gratis e inmediato...sin promesas vacías. Sin compromiso. Solo la verdad clínica de tu empresa</li>
-      <li>Y sin compromiso, acceso a LA CLÍNICA DE EMPRESAS donde ponemos solución con resultados medibles. </li>
-    </ul>
+    <p class="entrada-p">Podrás comprobar en cuáles de las <strong>10 especialidades</strong> tu negocio necesita tratar, cuáles de los <strong>30 síntomas</strong> te afectan, y recibirás el informe de la salud de tu empresa. Bienvenida a <strong>LA CLÍNICA DE EMPRESAS</strong> — descubre el Sistema Masframe.</p>
     <div class="entrada-founder">
       <div class="entrada-avatar">MC</div>
       <div class="entrada-founder-info">
@@ -1141,10 +1235,10 @@ a { text-decoration: none; }
         <span class="entrada-founder-msg">¿Prefieres revisarlo conmigo antes de empezar? Te escucho.</span>
       </div>
     </div>
-    <a href="https://wa.me/34609987436" target="_blank" rel="noopener" class="btn-entrada-wa" onclick="cerrarModal()">
-      Hablar con Maite · WhatsApp
+    <button class="btn-entrada-wa" onclick="cerrarModal()">Comprobar la salud de mi negocio →</button>
+    <a href="https://wa.me/34609987436" target="_blank" rel="noopener" class="entrada-skip" onclick="cerrarModal()">
+      · Hablar con Maite · WhatsApp
     </a>
-    <button class="entrada-skip" onclick="cerrarModal()">Prefiero hacer el escáner solo →</button>
   </div>
 </div>
 
@@ -1173,7 +1267,7 @@ a { text-decoration: none; }
 <section class="hero">
   <img src="masframe-logo-light.svg" alt="MAS@FRAME® · Sistema Clínico de Intervención Empresarial" class="hero-masframe-logo" width="480" height="107">
   <h1>Es un sistema que analiza la salud de tu negocio y te dice exactamente,<br><span class="gold">qué hacer para mejorarlo.</span></h1>
-  <p class="hero-sub">Lo qué le pasa a tu negocio y cómo intervenirlo con precisión. <br> Dedíca 5 minutos a nuestro herramienta, un Escáner de Salud Empresarial para que veas lo que somos capaces de diagnosticar en tu NEGOCIO.<br>Te mostraremos el protocolo de intervención exacto que necesitas gracias a nuestra experiencia en consultoría empresarial.</p>
+  <p class="hero-sub">Comprueba con nuestro Escáner de Salud Empresarial lo que le ocurre a tu negocio y cómo intervenirlo con precisión.<br>Dedíca 10 minutos a nuestra herramienta para que compruebes una metodología que ayuda a micropymes y autónomos a diagnosticar su negocio gracias a nuestra experiencia en consultoría empresarial.</p>
   
   <div class="trust-strip">
     <span class="trust-item"><span class="trust-icon">🆓</span> Gratuito</span>
@@ -1199,14 +1293,14 @@ a { text-decoration: none; }
     <div class="como-header">
       <div class="section-eyebrow">El proceso</div>
       <h2 class="section-title">Diagnóstico gratuito</h2>
-      <p class="section-sub">COMPUEBA LA SALUD DE TU NEGOCIO.<br> El resultado en pantalla en menos de 5 minutos.</p>
+      <p class="section-sub">COMPUEBA LA SALUD DE TU NEGOCIO.<br> El resultado en pantalla en menos de 10 minutos.</p>
     </div>
     <div class="steps-grid">
       <div class="step">
         <div class="step-num">EVALUACIÓN</div>
         <div class="step-title">Escáner de Salud Empresarial</div>
         <div class="step-body"> 15 preguntas uso excluso para tu diagnóstico con las que tratamos 5 áreas de tu empresa:<br>RENTABILIDAD<br>PROCESOS<br>TIEMPOS<br>PERSONAS<br>COMUNICACIÓN<br></div>
-        <span class="step-tag">5 minutos</span>
+        <span class="step-tag">10 minutos</span>
       </div>
       <div class="step">
         <div class="step-num">INFORME</div>
@@ -1230,7 +1324,7 @@ a { text-decoration: none; }
     <div class="esp-header">
       <div class="section-eyebrow" style="color:var(--navy);">QUÉ ANALIZA EL ESCÁNER</div>
       <h2 class="section-title" style="color:var(--navy);">10 especialidades clínicas.<br>30 síntomas</h2>
-      <p class="section-sub" style="margin:10px auto 0;max-width:520px;color:rgba(15,26,53,1);">Hemos desarrollado una metodología clínica empresarial. Un protocolo para cada síntoma. A tu propio ritmo de intervención. El escáner detecta cuáles necesitan atención ahora mismo.</p>
+      <p class="section-sub" style="margin:10px auto 0;max-width:580px;color:rgba(15,26,53,1);">La Clínica de Empresas es un modelo de intervención que convierte los problemas de un negocio en síntomas clínicos, los ordena, los prioriza y los trata con un protocolo estructurado, <strong>documentando cada resultado con evidencia real.</strong></p>
     </div>
     <div class="esp-grid">
       <div class="esp-card reveal reveal-d1">
@@ -1548,19 +1642,14 @@ a { text-decoration: none; }
     <div class="informe-global">
       <div class="informe-global-label">Diagnóstico global</div>
       <div id="informeEstadoBadge" class="informe-estado-badge">—</div>
-      <div class="informe-hallazgo-global" id="informeHallazgoGlobal">—</div>
     </div>
     <div class="informe-divider"></div>
-    <div class="informe-esp-sec-header">
-      <div class="informe-esp-sec-title">Hallazgos clínicos por especialidad</div>
-      <div class="informe-esp-sec-sub" id="informeEspSubtitle">Especialidades con intervención recomendada</div>
-    </div>
     <div id="informeEspecialidades"></div>
     <div class="informe-saludables" id="informeSaludables" style="display:none;">
       <div class="informe-saludables-title">✓ Áreas en buen estado clínico</div>
       <div class="informe-saludables-list" id="informeSaludablesList"></div>
     </div>
-    <div class="informe-actions">
+    <div class="informe-actions" id="informeActions">
       <button class="btn-pdf" id="btnPdf" onclick="window.print()" style="display:none;">
         <span>📄</span> Descargar PDF clínico
       </button>
@@ -1573,13 +1662,13 @@ a { text-decoration: none; }
   </div>
 </div>
 
-<!-- ── EMAIL GATE ── -->
 <div id="ctaEmailWrapper">
   <div class="cta-email-card">
     <div class="cta-email-inner">
+      <div id="cierrePersonalTexto" style="display:none;font-size:1.1rem;font-weight:700;color:#fff;line-height:1.65;padding-bottom:16px;margin-bottom:4px;border-bottom:1px solid rgba(184,157,82,.25);">—</div>
       <div class="cta-email-eyebrow" id="ctaExpedienteLabel">Tu diagnóstico requiere tratamiento</div>
-      <h3>Ya sabes lo que le pasa a tu empresa. Ahora necesitas el tratamiento.</h3>
-      <p>Recibe tu Informe Clínico Completo y tu código de acceso a La Clínica de Empresa — donde trabajamos contigo los pasos concretos para cada síntoma detectado. Tú eliges cuidar la salud de tu empresa.</p>
+      <h3>Ya sabes lo que le pasa a tu empresa. Ahora&nbsp;necesitas el tratamiento.</h3>
+      <p>Introduce tu email y recibirás el Informe Clínico Completo ampliado y tu <strong>CÓDIGO&nbsp;DE&nbsp;ACCESO a&nbsp;La&nbsp;Clínica&nbsp;de&nbsp;Empresas</strong>, donde empezamos el tratamiento.</p>
       <div class="cta-legal-check">
         <input type="checkbox" id="legalCheck">
         <label for="legalCheck">He leído y acepto la <a href="#" onclick="abrirLegal('privacidad');return false;">Política de Privacidad</a> y el <a href="#" onclick="abrirLegal('aviso');return false;">Aviso Legal</a> de MASESORA. Entiendo que mis datos se usarán para enviarme el informe clínico y comunicaciones relacionadas con el tratamiento empresarial.</label>
@@ -1694,6 +1783,48 @@ a { text-decoration: none; }
 <script>
 'use strict';
 
+/* ══ DROP-OFF & ANALYTICS TRACKING ══════════════════════ */
+const ESE_API = 'https://masframe-zz8d.onrender.com';
+
+// session_id único por sesión de navegador
+const ESE_SESSION_ID = (()=>{
+  let sid = sessionStorage.getItem('ese_sid');
+  if(!sid){ sid = crypto.randomUUID(); sessionStorage.setItem('ese_sid', sid); }
+  return sid;
+})();
+
+// Helper: envía un evento de drop-off al backend (fire-and-forget)
+function fireDropoff(fase, extra={}){
+  const payload = {
+    session_id:  ESE_SESSION_ID,
+    fase,
+    user_agent:  navigator.userAgent.slice(0,200),
+    ...extra
+  };
+  fetch(`${ESE_API}/ese/dropoff`, {
+    method:  'POST',
+    headers: {'Content-Type':'application/json'},
+    body:    JSON.stringify(payload),
+  }).catch(()=>{});  // silencioso — nunca bloquea el flujo
+}
+
+// Helper: dispara evento GA4 y Meta Pixel (con graceful degradation)
+function fireAnalytics(eventName, params={}){
+  if(typeof gtag === 'function'){
+    gtag('event', eventName, params);
+  }
+  if(typeof fbq === 'function'){
+    if(eventName === 'generate_lead'){
+      fbq('track', 'Lead', params);
+    } else {
+      fbq('trackCustom', eventName, params);
+    }
+  }
+}
+
+// Registrar carga de página
+fireDropoff('page_loaded');
+
 /* ══ MODAL DE ENTRADA ═══════════════════════════════════ */
 function cerrarModal(){
   const m=document.getElementById('entradaModal');
@@ -1763,45 +1894,66 @@ const especialidadesMap = {
   ]
 };
 
-/* ══ CATÁLOGO DINÁMICO — /specialties/all ════════════════ */
-// Estos mapas se construyen en runtime desde el backend.
-// Cualquier cambio en symptoms.json se refleja automáticamente.
-const EXCLUDE_IDS = new Set(['CARDIO-S3','CARDIO-S4']);
+/* ══ CATÁLOGO EMBEBIDO (fuente: symptoms.json) ═══════════ */
+// Siempre disponible — no depende de la API
+const CATALOGO_FALLBACK = {"UCI FINANCIERA": [{"id": "UCI-S1", "nombre": "Obstrucción de Caja", "texto": "El dinero existe, pero está bloqueado dentro de tu propio negocio."}, {"id": "UCI-S2", "nombre": "Fuga Invisible", "texto": "Facturas, cobras, pagas — y a final de mes el beneficio no aparece por ningún lado."}, {"id": "UCI-S3", "nombre": "Anemia de Margen", "texto": "Cobras lo que el mercado aguanta o lo que cobra la competencia — pero nadie ha calculado si ese precio te deja beneficio real."}], "UNIDAD DE PROCESOS": [{"id": "UNI-S1", "nombre": "Esclerosis Operativa", "texto": "Tu operación avanza por inercia, sin diseño — y cada día que pasa ese desorden te cuesta más de lo que crees."}, {"id": "UNI-S2", "nombre": "Colapso de Capacidad", "texto": "Trabajas al límite y siempre hay algo sin hacer — porque el problema no es tu esfuerzo, es cómo está organizado el trabajo."}, {"id": "UNI-S3", "nombre": "Fuga de Calidad Crónica", "texto": "Los mismos errores, las mismas quejas, el mismo retrabajo — porque nadie ha cerrado todavía las brechas que los generan."}], "CARDIOLOGIA COMERCIAL": [{"id": "CARDIO-S1", "nombre": "Atrofia Comercial", "texto": "Tu negocio no genera clientes por sí solo — dependes del boca a boca y de que llegue el momento oportuno."}, {"id": "CARDIO-S2", "nombre": "Arritmia Comercial", "texto": "Un mes bien, el siguiente mal — sin entender por qué cambia ni cómo controlarlo."}, {"id": "CARDIO-S3", "nombre": "Síndrome del Origen", "texto": "Un mes bien, el siguiente mal — sin entender por qué cambia ni cómo controlarlo."}], "NEUROLOGIA ESTRATEGICA": [{"id": "NEURO-S1", "nombre": "Amnesia Estratégica", "texto": "Tu negocio funciona hoy — pero no tienes un plan claro de hacia dónde va, cuánto quieres que valga, ni cómo salir cuando llegue el momento."}, {"id": "NEURO-S2", "nombre": "Dispersión Directiva", "texto": "Tienes demasiados frentes abiertos y ninguno termina — porque cuando todo es prioridad, nada lo es."}, {"id": "NEURO-S3", "nombre": "Ilusión de Crecimiento", "texto": "Facturas más cada año pero no ganas más — porque el modelo no está diseñado para ser rentable, solo para ser grande."}], "GESTION CLINICA": [{"id": "CLI-S1", "nombre": "Ceguera de Control", "texto": "Tomas decisiones con números que ya no son de fiar — y dirigir por intuición en una empresa real no es estrategia."}, {"id": "CLI-S2", "nombre": "Sangría Fiscal", "texto": "Pagas más impuestos de los que te corresponden — y llevas años sin saberlo."}, {"id": "CLI-S3", "nombre": "Atrofia de Roles", "texto": "Todo acaba en el mismo despacho porque nadie sabe exactamente qué le corresponde a quién."}], "CIRUGIA DE MARCA": [{"id": "CIR-S1", "nombre": "Déficit de Imagen Competitiva", "texto": "Tu empresa vale más de lo que parece — el problema es que tu marca todavía no lo transmite."}, {"id": "CIR-S2", "nombre": "Miopía Diferencial", "texto": "Tu cliente no sabe por qué elegirte a ti — y si no lo sabe él, tampoco lo sabe tu equipo comercial."}, {"id": "CIR-S3", "nombre": "Comunicación Inconsistente", "texto": "No hay un plan de comunicación — tu marca habla cuando puede, como puede, y nadie ha medido si funciona."}], "PSIQUIATRIA ORGANIZACIONAL": [{"id": "PSI-S1", "nombre": "Sobrecarga Emocional Operativa", "texto": "Tu equipo vive en modo emergencia permanente — y esa tensión tiene un coste en productividad que no aparece en ninguna cuenta."}, {"id": "PSI-S2", "nombre": "Dislocación de Perfiles", "texto": "Tienes personas válidas en los puestos equivocados — y eso genera fricción, desgaste y dependencia del que siempre resuelve todo."}, {"id": "PSI-S3", "nombre": "Anestesia de Equipo", "texto": "Tu equipo cumple, pero sin energía — y la motivación que se apaga en silencio es la más cara de recuperar."}], "RESCATE DE PERSONAS": [{"id": "RES-S1", "nombre": "Hemorragia de Talento", "texto": "Tus mejores personas están en modo desconexión — y cuando se vayan, el coste será mucho mayor que el de haberlo evitado."}, {"id": "RES-S2", "nombre": "Atrofia de Potencial", "texto": "Tu equipo sabe más, puede más y tiene más que ofrecer de lo que el negocio le está pidiendo — y ese talento lo estás pagando sin aprovecharlo."}, {"id": "RES-S3", "nombre": "Inflamación Interna", "texto": "Hay tensiones silenciosas que contaminan el ambiente cada día — y lo que no se nombra no se puede resolver."}], "TERAPIA DE EXPERIENCIA": [{"id": "TER-S1", "nombre": "Efecto NO-WOW", "texto": "La experiencia que vive tu cliente depende del día o de quién le atiende — y esa variabilidad destruye la reputación que tardaste años en construir."}, {"id": "TER-S2", "nombre": "Necrosis de Cliente", "texto": "Tienes clientes insatisfechos que se van sin decir nada — y cada uno destruye reputación en silencio mientras tú no lo ves."}, {"id": "TER-S3", "nombre": "Bajo Valor Percibido", "texto": "Tu cliente paga pero no siente que vale lo que cuesta — y ese gap impide que te recomienden."}], "EXCELENCIA OPERATIVA": [{"id": "OPE-S1", "nombre": "Parálisis de Integración", "texto": "Cada persona nueva tarda meses en rendir de verdad — y ese tiempo de adaptación lo pagas tú, en dinero y en calidad."}, {"id": "OPE-S2", "nombre": "Dependencia Crítica", "texto": "Si tú no estás, la empresa se para — y eso no es liderazgo, es una trampa."}, {"id": "OPE-S3", "nombre": "Ritmo Operativo Irregular", "texto": "Tu operación va a golpes: picos, parones, urgencias — y esa irregularidad te impide crecer de forma sostenida."}]};
+const IMPACT_FALLBACK = {"UCI-S1": "En menos de 30 días localizamos y liberamos el dinero que ya está en tu negocio pero no puedes usar. Tu caja respira sin necesidad de nuevas ventas.", "UCI-S2": "Identificamos exactamente qué clientes o líneas destruyen tu rentabilidad y por cuánto. El margen real deja de ser una cifra que no cuadra y pasa a ser una palanca que controlas.", "UCI-S3": "Recalculamos tu estructura de costes y rediseñamos el precio para que cada venta tenga margen garantizado. Vender más deja de significar trabajar más para ganar lo mismo.", "UNI-S1": "Rediseñamos tu flujo operativo eliminando el tiempo invisible que consumen los procesos sin protocolo. La misma energía produce resultados medibles, sin rozamiento.", "UNI-S2": "Reorganizamos la carga para que el equipo rinda al límite real de su capacidad, no al de sus urgencias. Crecer deja de significar reventar.", "UNI-S3": "Cerramos las brechas operativas que generan retrabajo, quejas y coste invisible. Cada proceso pasa a funcionar a la primera — sin retroceder.", "CARDIO-S1": "Identificamos qué clientes y productos te dejan más margen y construimos un sistema para atraer más de esos. Dejas de vender lo que llega y empiezas a crecer por diseño.", "CARDIO-S2": "Analizamos por qué hay meses buenos y meses malos, y ponemos en marcha un ritmo comercial que hace que tu facturación deje de ser una sorpresa.", "CARDIO-S3": "Ordenamos el pipeline comercial para que el equipo trabaje con criterio claro, no con urgencias reactivas. El ruido se elimina y las oportunidades reales avanzan.", "NEURO-S1": "Construimos el plan que convierte tu visión en un destino concreto con fechas y métricas. El equipo deja de improvisar y empieza a ejecutar con propósito.", "NEURO-S2": "Priorizamos y cerramos los frentes abiertos en orden de impacto real. El tiempo del líder vuelve a estar donde puede cambiar algo — no donde urge apagar fuegos.", "NEURO-S3": "Rediseñamos el modelo para que cada euro de facturación deje más margen real. Crecer pasa a significar ganar más, no solo facturar más.", "CLI-S1": "Instalamos el cuadro de mando que convierte tus números en señales claras. A partir de ahora tomas decisiones con datos reales, no con sensaciones que te pueden engañar.", "CLI-S2": "Identificamos dónde se va tu carga fiscal, si tu estructura es la óptima y qué gastos legítimos no estás deduciendo. El ahorro potencial suele superar con creces el coste del tratamiento.", "CLI-S3": "Definimos y asignamos responsabilidades con precisión quirúrgica. El equipo resuelve sin necesitarte a ti — y tú recuperas el tiempo que el negocio te había secuestrado.", "CIR-S1": "Reconstruimos la imagen de tu negocio para que transmita el nivel que merece. La primera impresión empieza a abrir puertas en lugar de generar dudas.", "CIR-S2": "Definimos tu diferenciación con la especificidad suficiente para que no tengas que competir por precio. Tu equipo deja de vender con esperanza y empieza a vender con argumento.", "CIR-S3": "Diseñamos el plan de comunicación con cadencia, canales y métricas para que tu marca hable cuando tiene que hablar — y lo que dice convierta.", "PSI-S1": "Reducimos la carga emocional del equipo identificando y eliminando los focos de estrés operativo. El equipo vuelve a rendir con energía real, no con el último combustible que le queda.", "PSI-S2": "Alineamos personas, roles y responsabilidades para que cada uno trabaje donde puede dar su máximo. La fricción desaparece y el equipo empieza a fluir sin que tú tengas que empujarlo.", "PSI-S3": "Diagnosticamos qué apaga la energía de tu equipo y aplicamos el protocolo de reactivación. La motivación vuelve a ser una fuerza real, no un deseo que se escapa entre reuniones.", "RES-S1": "Identificamos y retenemos a las personas que hacen que tu empresa funcione de verdad. Que se vayan deja de ser una sorpresa — pasa a ser una señal que detectamos y revertimos antes.", "RES-S2": "Activamos el talento que tu equipo tiene pero que el negocio no está aprovechando. Crecer con las personas que ya tienes es siempre más rápido y más barato que contratar de nuevo.", "RES-S3": "Nombramos y resolvemos las tensiones que envenenan el ambiente sin que nadie lo diga en alto. El conflicto deja de contaminar en silencio y el equipo vuelve a colaborar sin fricciones.", "TER-S1": "Estandarizamos la experiencia del cliente para que sea excelente independientemente de quién atiende o qué día es. Tu reputación deja de depender del azar y pasa a ser un activo que se construye.", "TER-S2": "Activamos el sistema de detección temprana que identifica a los clientes que se están enfriando antes de que se vayan sin decir nada. Recuperar siempre es más barato que volver a captar.", "TER-S3": "Diseñamos la experiencia para que tu cliente perciba exactamente el valor que le entregas. Cuando siente que vale lo que paga, te recomienda, vuelve y acepta el precio sin regatear.", "OPE-S1": "Reducimos el tiempo de integración de nuevas incorporaciones de meses a semanas con protocolos concretos. El coste invisible de cada nueva persona deja de sangrar el negocio mientras aprende.", "OPE-S2": "Desmontamos la trampa que convierte al dueño en el cuello de botella de su propio negocio. La empresa empieza a funcionar sin ti — y eso es lo que permite que pueda escalar de verdad.", "OPE-S3": "Normalizamos la carga de trabajo mediante sistemas de planificación y distribución de capacidad, convirtiendo los picos de urgencia en entregas predecibles para que el negocio pueda escalar sin colapsar."};
+const OPTIMIZER_FALLBACK = {"UCI-S1": "Liberación inmediata de liquidez sin necesidad de endeudarte.", "UCI-S2": "Incremento inmediato de rentabilidad real sin necesidad de aumentar ventas.", "UCI-S3": "Cada venta empieza a dejar margen real desde el primer día de aplicación.", "UNI-S1": "La misma energía produce más resultados desde la primera semana de protocolo.", "UNI-S2": "El equipo trabaja a plena capacidad real sin necesidad de contratar.", "UNI-S3": "Los procesos funcionan a la primera — sin retrabajo ni coste invisible.", "CARDIO-S1": "Activación inmediata del motor de demanda con el canal de mayor retorno.", "CARDIO-S2": "Estabilidad inmediata del sistema de ventas al establecer cadencia y seguimiento regulares.", "CARDIO-S3": "Aumento inmediato de precisión comercial.", "NEURO-S1": "El equipo ejecuta con propósito desde la primera semana de plan activado.", "NEURO-S2": "El tiempo del líder vuelve a estar donde puede cambiar algo real.", "NEURO-S3": "Cada euro de facturación empieza a dejar más margen real.", "CLI-S1": "Decisiones con datos reales desde el primer cuadro de mando instalado.", "CLI-S2": "El ahorro fiscal supera con creces el coste del tratamiento.", "CLI-S3": "El equipo resuelve sin necesitar al líder — tiempo recuperado desde el día uno.", "CIR-S1": "La primera impresión abre puertas desde el rediseño de imagen.", "CIR-S2": "El equipo vende con argumento — sin competir por precio.", "CIR-S3": "La marca habla cuando tiene que hablar — y lo que dice convierte.", "PSI-S1": "El equipo rinde con energía real desde la primera intervención.", "PSI-S2": "La fricción desaparece y el equipo fluye sin necesidad de empuje.", "PSI-S3": "La motivación vuelve a ser una fuerza real en el equipo.", "RES-S1": "La retención de talento clave se activa antes de que sea tarde.", "RES-S2": "Crecimiento con las personas que ya tienes — más rápido y más barato.", "RES-S3": "El conflicto silencioso deja de contaminar el ambiente del equipo.", "TER-S1": "Experiencia excelente independientemente de quién atiende o qué día es.", "TER-S2": "Los clientes que se enfriaban se detectan y recuperan antes de irse.", "TER-S3": "El cliente percibe el valor, recomienda y acepta el precio sin regatear.", "OPE-S1": "Integración en semanas, no meses — coste invisible eliminado.", "OPE-S2": "La empresa funciona sin el dueño — escala real desde el día uno.", "OPE-S3": "Entregas predecibles — sin picos de urgencia ni colapso operativo."};
+const LEMAS_FALLBACK = {"UCI FINANCIERA": "Controlar el flujo de caja es la clave, y aquí vamos a detener esta hemorragia financiera.", "UNIDAD DE PROCESOS": "Sin un proceso definido, la operación se vuelve lenta y la pérdida se vuelve invisible.", "CARDIOLOGIA COMERCIAL": "¿Boca a boca? ¿web? ¿google?, ¿Cómo vende tu negocio?", "NEUROLOGIA ESTRATEGICA": "Sin dirección clara cualquier esfuerzo se diluye", "GESTION CLINICA": "Reaccionar no es liderar; avanzar con claridad y dirección, sí.", "CIRUGIA DE MARCA": "La diferenciación es el éxito de tu negocio. Si no, te compran por precio.", "PSIQUIATRIA ORGANIZACIONAL": "Crear valores y cultura, y cuidar el entorno y la motivación.", "RESCATE DE PERSONAS": "El talento permanece en negocios de éxito.", "TERAPIA DE EXPERIENCIA": "Clientes que vuelven, te recomiendan.", "EXCELENCIA OPERATIVA": "El crecimiento no ocurre por suerte, ocurre cuando tu empresa funciona con precisión."};
+
+const EXCLUDE_IDS = new Set([]);
 const API_BASE    = 'https://masframe-zz8d.onrender.com';
 
-let SINTOMAS_NIVEL2    = {};
-let IMPACT_TREATMENT   = {};
-let ESP_LEMAS          = {};   // lema clínico por especialidad (desde API)
+const ESP_COLORS = {
+  'UCI FINANCIERA':             {color:'#c0392b', bg:'rgba(192,57,43,.08)'},
+  'NEUROLOGIA ESTRATEGICA':     {color:'#8e44ad', bg:'rgba(142,68,173,.08)'},
+  'UNIDAD DE PROCESOS':         {color:'#e67e22', bg:'rgba(230,126,34,.08)'},
+  'GESTION CLINICA':            {color:'#2980b9', bg:'rgba(41,128,185,.08)'},
+  'EXCELENCIA OPERATIVA':       {color:'#16a085', bg:'rgba(22,160,133,.08)'},
+  'PSIQUIATRIA ORGANIZACIONAL': {color:'#6c3483', bg:'rgba(108,52,131,.08)'},
+  'RESCATE DE PERSONAS':        {color:'#27ae60', bg:'rgba(39,174,96,.08)'},
+  'TERAPIA DE EXPERIENCIA':     {color:'#c0392b', bg:'rgba(192,57,43,.06)'},
+  'CIRUGIA DE MARCA':           {color:'#b89d52', bg:'rgba(184,157,82,.08)'},
+  'CARDIOLOGIA COMERCIAL':      {color:'#e74c3c', bg:'rgba(231,76,60,.08)'},
+};
+
+// Carga inmediata desde fallback embebido
+let SINTOMAS_NIVEL2  = Object.assign({}, CATALOGO_FALLBACK);
+let IMPACT_TREATMENT = Object.assign({}, IMPACT_FALLBACK);
+let OPTIMIZER_IMPACT = Object.assign({}, OPTIMIZER_FALLBACK);
+let ESP_LEMAS        = Object.assign({}, LEMAS_FALLBACK);
 
 async function fetchCatalogo(){
   const res = await fetch(`${API_BASE}/specialties/all`);
   if(!res.ok) throw new Error(`HTTP ${res.status}`);
   const symptoms = await res.json();
+  // Resetea y recarga desde API (datos más frescos)
+  SINTOMAS_NIVEL2  = {};
+  IMPACT_TREATMENT = {};
+  OPTIMIZER_IMPACT = {};
+  ESP_LEMAS        = {};
   symptoms.forEach(s=>{
     if(EXCLUDE_IDS.has(s.symptom_id)) return;
     const sp = s.specialty_id;
     if(!SINTOMAS_NIVEL2[sp]) SINTOMAS_NIVEL2[sp]=[];
     SINTOMAS_NIVEL2[sp].push({id:s.symptom_id, nombre:s.symptom_name, texto:s.logica});
     if(s.impact_treatment) IMPACT_TREATMENT[s.symptom_id]=s.impact_treatment;
+    if(s.optimizer_impact) OPTIMIZER_IMPACT[s.symptom_id]=s.optimizer_impact;
     if(s.lema && !ESP_LEMAS[sp]) ESP_LEMAS[sp]=s.lema;
   });
-  console.log(`[ESE] Catálogo cargado — ${symptoms.length} síntomas`);
+  console.log(`[ESE] Catálogo actualizado desde API — ${symptoms.length} síntomas`);
 }
 
 async function cargarCatalogo(){
-  // Intento 1
+  // Intenta actualizar desde API en background (no bloquea)
   try{ await fetchCatalogo(); return; }
-  catch(e){ console.warn('[ESE] Intento 1 fallido:', e.message); }
-  // Intento 2 — espera 4s (Render cold start)
-  await new Promise(r=>setTimeout(r,4000));
-  try{ await fetchCatalogo(); return; }
-  catch(e){ console.warn('[ESE] Intento 2 fallido:', e.message); }
-  // Intento 3 — espera 6s más
-  await new Promise(r=>setTimeout(r,6000));
+  catch(e){ console.warn('[ESE] API no disponible, usando catálogo embebido:', e.message); }
+  await new Promise(r=>setTimeout(r,15000));
   try{ await fetchCatalogo(); }
-  catch(e){ console.error('[ESE] Catálogo no disponible tras 3 intentos:', e.message); }
+  catch(e){ console.warn('[ESE] Reintento API fallido, catálogo embebido activo.'); }
 }
-const catalogoListo = cargarCatalogo();
+const catalogoListo = Promise.resolve(); // siempre listo — fallback ya cargado
+cargarCatalogo();                        // actualiza en background si la API responde
 
 let sintomasSeleccionados = [];
 let diagnosticoActual     = null;
@@ -1882,6 +2034,8 @@ async function confirmarFacturacion(){
   btnCfm.disabled=true;
   btnCfm.innerHTML='<span class="spinner"></span> Preparando diagnóstico…';
   await catalogoListo;
+  fireDropoff('facturacion_completa', {empresa: diagnosticoActual.nombre, facturacion: _factValue});
+  fireAnalytics('ese_facturacion', {facturacion: _factValue});
   document.getElementById('factScreen').style.display='none';
   btnCfm.disabled=false;
   btnCfm.innerHTML='<span></span> Último paso';
@@ -1969,6 +2123,8 @@ function continuarDiagnostico(){
   _pendingEsp=todasEspecialidades;
   diagnosticoActual={nombre,facturacion:0,areas,areaScores,especialidades:todasEspecialidades,estadoGlobal,timestamp:new Date().toISOString()};
   expedienteNumero='MAS-'+String(Math.floor(10000+Math.random()*89999));
+  fireDropoff('fase1_completa', {empresa: nombre, estado_global: estadoGlobal});
+  fireAnalytics('ese_fase1_completa', {empresa: nombre, estado_global: estadoGlobal});
   setTimeout(()=>{
     document.getElementById('cardForm').style.display='none';
     document.getElementById('factEmpresaNombre').textContent=nombre.toUpperCase();
@@ -2109,6 +2265,8 @@ function confirmarNivel2(){
   document.getElementById('nivel2AvisoCero').style.display='none';
   document.getElementById('nivel2Section').style.display='none';
   document.getElementById('nivel2BarraSticky').classList.remove('activa');
+  fireDropoff('fase2_completa', {empresa: diagnosticoActual?.nombre, n_sintomas: sintomasSeleccionados.length, estado_global: diagnosticoActual?.estadoGlobal});
+  fireAnalytics('ese_fase2_completa', {n_sintomas: sintomasSeleccionados.length});
   emitirInformeOverlay();
 }
 
@@ -2133,6 +2291,13 @@ function generarInformeClinico(){
   document.getElementById('informeEmpresaNombre').textContent=d.nombre;
   document.getElementById('informeExpNum').textContent='Expediente · Pendiente de registro';
   document.getElementById('ctaExpedienteLabel').textContent='Tu diagnóstico MAS@FRAME® está listo';
+  const nSint = sintomasSeleccionados.length;
+  const nEsp = d.especialidades.filter(e=>
+    e.nivel.nivel==='CRÍTICO' || e.nivel.nivel==='RECOMENDADO'
+  ).length;
+  document.getElementById('cierrePersonalTexto').innerHTML=
+    `${d.nombre} requiere intervención en ${nEsp}&nbsp;especialidad${nEsp!==1?'es':''} y tiene ${nSint}&nbsp;síntoma${nSint!==1?'s':''} identificado${nSint!==1?'s':''}. Masesora tiene el tratamiento de intervención concreto para ellos. Los síntomas que acabas de leer no&nbsp;mejoran solos.`;
+  document.getElementById('cierrePersonalTexto').style.display='block';
   const fecha=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
   document.getElementById('informeExpFecha').textContent='Emitido el '+fecha;
 
@@ -2153,39 +2318,34 @@ function generarInformeClinico(){
     'INTERVENCIÓN RECOMENDADA': 'Tu empresa tiene áreas que requieren atención clínica. Actuar ahora con el protocolo adecuado evitará que las tensiones actuales deriven en un escenario de urgencia.',
     'SALUD ACEPTABLE':          'Tu empresa muestra un cuadro clínico estable. Hay oportunidades de optimización que, trabajadas de forma sistemática, pueden marcar la diferencia en el próximo ciclo de crecimiento.'
   };
-  document.getElementById('informeHallazgoGlobal').textContent=hallazgoTextos[d.estadoGlobal]||'';
-
   const criticas=d.especialidades.filter(e=>e.nivel.nivel==='CRÍTICO');
   const recomendadas=d.especialidades.filter(e=>e.nivel.nivel==='RECOMENDADO');
   const saludables=d.especialidades.filter(e=>e.nivel.nivel!=='CRÍTICO'&&e.nivel.nivel!=='RECOMENDADO');
   const intervenir=[...criticas,...recomendadas];
-  const subCount=intervenir.length;
-  document.getElementById('informeEspSubtitle').textContent=
-    subCount>0 ? `${subCount} especialidad${subCount!==1?'es':''} requiere${subCount!==1?'n':''} intervención clínica` : 'Todas las especialidades en buen estado';
 
   const espCont=document.getElementById('informeEspecialidades');
   espCont.innerHTML='';
   intervenir.forEach(esp=>{
-    const esCritico=esp.nivel.nivel==='CRÍTICO';
     const sintomasEsp=(SINTOMAS_NIVEL2[esp.nombre]||[]).filter(s=>sintomasSeleccionados.includes(s.id));
+    if(sintomasEsp.length===0) return; // ocultar especialidades sin síntomas confirmados
     const dn=DISPLAY_NAMES[esp.nombre]||esp.nombre;
     const bloque=document.createElement('div');
     bloque.className='informe-esp-block';
+    const espColor = (ESP_COLORS[esp.nombre]||{color:'#b89d52'}).color;
+    bloque.style.borderColor = espColor;
     bloque.innerHTML=`
-      <div class="informe-esp-header ${esp.nivel.clase}">
+      <div class="informe-esp-header" style="background:${(ESP_COLORS[esp.nombre]||{bg:'rgba(184,157,82,.08)'}).bg};border-bottom:2px solid ${espColor};">
         <span class="informe-esp-emoji">${esp.nivel.emoji}</span>
-        <span class="informe-esp-nombre">${dn}</span>
+        <span class="informe-esp-nombre" style="color:${espColor};">${dn}</span>
         <span class="informe-esp-score ${esp.nivel.clase}">${esp.nivel.nivel} · ${esp.score}%</span>
       </div>
       <div class="informe-esp-body">
-        ${sintomasEsp.length>0 ? `
-          ${sintomasEsp.map(s=>`
-            <div class="informe-hallazgo-item">
-              <span class="informe-sintoma-badge">${s.id} · ${s.nombre}</span>
-              ${s.texto}
-              ${IMPACT_TREATMENT[s.id] ? `<span class="informe-impact-treatment">→ ${IMPACT_TREATMENT[s.id]}</span>` : ''}
-            </div>`).join('')}
-        ` : `<div class="informe-no-sintomas">El escáner detectó señales, pero no indicaste ningún síntoma aquí. En la sesión clínica lo revisamos contigo — o si quieres, puedes <button type="button" onclick="volverANivel2()" style="background:none;border:none;font-size:inherit;color:var(--gold-a11y);font-weight:400;cursor:pointer;text-decoration:underline;font-family:var(--font);padding:0;">confirmar síntomas atrás</button>.</div>`}
+        ${sintomasEsp.map(s=>`
+          <div class="informe-hallazgo-item">
+            <span class="informe-sintoma-badge">${s.id} · ${s.nombre}</span>
+            ${IMPACT_TREATMENT[s.id] ? `<div class="informe-impact-treatment">${IMPACT_TREATMENT[s.id]}</div>` : ''}
+            ${OPTIMIZER_IMPACT[s.id] ? `<div style="padding:10px 20px 12px;background:${(ESP_COLORS[esp.nombre]||{bg:'rgba(184,157,82,.06)'}).bg};border-top:1px solid rgba(0,0,0,.06);font-size:.78rem;font-weight:700;color:${(ESP_COLORS[esp.nombre]||{color:'#b89d52'}).color};letter-spacing:.03em;">▶ ${OPTIMIZER_IMPACT[s.id]}</div>` : ''}
+          </div>`).join('')}
       </div>`;
     espCont.appendChild(bloque);
   });
@@ -2197,6 +2357,8 @@ function generarInformeClinico(){
   }
   const informeEl=document.getElementById('informeSection');
   informeEl.style.display='block';
+  fireDropoff('informe_visible', {empresa: d.nombre, estado_global: d.estadoGlobal, n_sintomas: sintomasSeleccionados.length});
+  fireAnalytics('ese_informe_generado', {estado_global: d.estadoGlobal});
   setTimeout(()=>informeEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
   setTimeout(()=>mostrarEmailGate(),800);
 }
@@ -2246,6 +2408,7 @@ async function enviarDiagnostico(){
   const payload={
     empresa:       d.nombre||'',
     email,
+    session_id:    ESE_SESSION_ID,
     facturacion:   d.facturacion||0,
     estado_global: d.estadoGlobal||'',
     score_global,
@@ -2266,15 +2429,29 @@ async function enviarDiagnostico(){
     sintomas_detectados: sintomasSeleccionados,
     timestamp: d.timestamp||new Date().toISOString()
   };
-  try{
+  const intentar = async () => {
     const res=await fetch('https://masframe-zz8d.onrender.com/ese/submit',{
       method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
     });
     if(!res.ok) throw new Error('server');
-    const data=await res.json();
+    return res.json();
+  };
+  try{
+    let data;
+    try{
+      data=await intentar();
+    }catch(e){
+      // API fría — espera 8s y reintenta una vez
+      btnEl.innerHTML='<span class="spinner"></span> Conectando con el servidor…';
+      await new Promise(r=>setTimeout(r,25000));
+      data=await intentar();
+    }
+    fireDropoff('email_submit', {empresa: d.nombre, estado_global: d.estadoGlobal});
+    fireAnalytics('generate_lead', {empresa: d.nombre, estado_global: d.estadoGlobal});
     mostrarActivacion(data.codigo||expedienteNumero, email);
     btnEl.innerHTML='✓ Expediente registrado';
   }catch(err){
+    // Después de 2 intentos fallidos — muestra igualmente el código local
     mostrarActivacion(expedienteNumero, email);
     btnEl.innerHTML='✓ Expediente generado';
     btnEl.disabled=false;
@@ -2289,6 +2466,12 @@ function mostrarActivacion(codigo, email){
   const expEl=document.getElementById('informeExpNum');
   if(expEl) expEl.textContent='Expediente Nº '+codigo;
   document.getElementById('btnPdf').style.display='inline-flex';
+  // Actualizar enlace de La Clínica con el código como parámetro directo a /login
+  const btnClinica=document.getElementById('btnClinica');
+  if(btnClinica){
+    btnClinica.href=`https://masfront.onrender.com`;
+    btnClinica.innerHTML='Entra a LA CLÍNICA DE EMPRESAS &nbsp;→';
+  }
 }
 
 function copiarCodigo(){
