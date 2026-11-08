@@ -2449,7 +2449,16 @@ async function enviarDiagnostico(){
     }
     fireDropoff('email_submit', {empresa: d.nombre, estado_global: d.estadoGlobal});
     fireAnalytics('generate_lead', {empresa: d.nombre, estado_global: d.estadoGlobal});
-    mostrarActivacion(data.codigo||expedienteNumero, email);
+    if(data.status==='existente'){
+      // El email ya tiene expediente: el servidor no lo toca y no devuelve el
+      // código (es la llave de La Clínica); se lo manda solo a ese email.
+      mostrarExistente(email);
+      btnEl.innerHTML='✓ Ya tienes expediente';
+      return;
+    }
+    // Sin código del servidor no hay expediente: nunca se enseña uno local.
+    if(!data.codigo) throw new Error('sin codigo');
+    mostrarActivacion(data.codigo, email);
     btnEl.innerHTML='✓ Expediente registrado';
   }catch(err){
     // Sin respuesta del servidor NO hay expediente: un código inventado aquí no
@@ -2480,6 +2489,17 @@ function mostrarActivacion(codigo, email){
     btnClinica.href=`https://masfront.onrender.com`;
     btnClinica.innerHTML='Entra a LA CLÍNICA DE EMPRESAS &nbsp;→';
   }
+}
+
+function mostrarExistente(email){
+  document.getElementById('activationBox').style.display='block';
+  document.getElementById('codigoExc').textContent='';
+  const copyRow=document.querySelector('.codigo-copy-row');
+  if(copyRow) copyRow.style.display='none';
+  const eyebrow=document.querySelector('.activation-eyebrow');
+  if(eyebrow) eyebrow.textContent='Ya perteneces a La Clínica de Empresas MAS@FRAME®';
+  document.getElementById('emailAviso').innerHTML=
+    `Este email ya tiene un expediente abierto en La Clínica de Empresas, así que no hemos creado otro ni hemos cambiado nada del que tienes. <strong style="color:var(--gold-l);">Te hemos enviado tu código de acceso a ${email.replace(/[<>&"]/g,'')}</strong>.`;
 }
 
 function copiarCodigo(){
