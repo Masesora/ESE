@@ -2381,6 +2381,7 @@ async function enviarDiagnostico(){
   errLegal.style.display='none';
   if(!email||!email.includes('@')){
     emailEl.style.borderColor='#f44336';
+    errEmail.textContent='⚠ Introduce un email válido para recibir tu informe.';
     errEmail.style.display='block';
     setTimeout(()=>{ emailEl.style.borderColor=''; },2200);
     errEmail.scrollIntoView({behavior:'smooth',block:'center'});
@@ -2451,10 +2452,17 @@ async function enviarDiagnostico(){
     mostrarActivacion(data.codigo||expedienteNumero, email);
     btnEl.innerHTML='✓ Expediente registrado';
   }catch(err){
-    // Después de 2 intentos fallidos — muestra igualmente el código local
-    mostrarActivacion(expedienteNumero, email);
-    btnEl.innerHTML='✓ Expediente generado';
+    // Sin respuesta del servidor NO hay expediente: un código inventado aquí no
+    // existe en la base de datos y el login de La Clínica lo rechaza con 401.
+    // Se dice qué ha fallado y se ofrece reintentar; nunca se enseña un código.
+    btnEl.innerHTML='Reintentar <span>→</span>';
     btnEl.disabled=false;
+    const errEl=document.getElementById('errEmail');
+    if(errEl){
+      errEl.innerHTML='⚠ No hemos podido registrar tu expediente: el servidor no ha respondido. '
+        +'Tus respuestas siguen aquí. Pulsa Reintentar en unos segundos o escríbenos a info@masesora.com.';
+      errEl.style.display='block';
+    }
   }
 }
 
