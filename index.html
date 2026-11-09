@@ -966,7 +966,7 @@ a { text-decoration: none; }
 .footer-copy { font-size:.66rem; color:rgba(255,255,255,.24); letter-spacing:.05em; }
 
 /* ── LEGAL MODAL ─────────────────────────────────────── */
-#legalModal { display:none; position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.75); align-items:center; justify-content:center; padding:20px; }
+#legalModal { display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,.75); align-items:center; justify-content:center; padding:20px; }
 #legalModal.open { display:flex; }
 .legal-box { background:#fff; border-radius:16px; max-width:580px; width:100%; max-height:82vh; overflow-y:auto; padding:28px 24px; box-shadow:0 30px 60px rgba(0,0,0,.5); }
 .legal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
@@ -1183,33 +1183,169 @@ a { text-decoration: none; }
   font-family:var(--font); width:100%;
 }
 .entrada-skip:hover { color:#fff; border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.05); }
+
+/* ── BANNER DE COOKIES ───────────────────────────────── */
+.cookie-banner {
+  position:fixed; left:0; right:0; bottom:0; z-index:10000;
+  background:linear-gradient(135deg,#0F1A35,#1a2d5a);
+  border-top:2px solid var(--gold);
+  box-shadow:0 -10px 32px rgba(0,0,0,.45);
+  padding:18px 24px;
+  max-height:90vh; overflow-y:auto;
+}
+.cookie-banner[hidden] { display:none; }
+.cookie-banner:focus { outline:none; }
+.cookie-inner { max-width:1080px; margin:0 auto; display:flex; align-items:center; gap:24px; }
+.cookie-text { flex:1; min-width:0; }
+.cookie-title { font-size:.8rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-s); margin-bottom:6px; }
+.cookie-text p { font-size:.82rem; line-height:1.55; color:rgba(255,255,255,.88); }
+.cookie-text p a { color:var(--gold-s); text-decoration:underline; text-underline-offset:3px; font-weight:600; }
+.cookie-text p a:hover { color:#fff; }
+.cookie-text p.cookie-state { margin-top:6px; font-weight:600; color:var(--gold-s); }
+.cookie-actions { display:flex; gap:12px; flex-shrink:0; }
+/* Aceptar y Rechazar comparten exactamente el mismo estilo (misma prominencia) */
+.cookie-btn {
+  min-width:130px; padding:12px 24px; border-radius:50px;
+  background:var(--gold); color:var(--navy); border:2px solid var(--gold);
+  font-family:var(--font); font-size:.85rem; font-weight:700; letter-spacing:.03em;
+  cursor:pointer; transition:background .15s, border-color .15s;
+}
+.cookie-btn:hover { background:var(--gold-s); border-color:var(--gold-s); }
+.cookie-btn:focus-visible { outline:2.5px solid #fff; outline-offset:3px; }
+@media(max-width:680px){
+  .cookie-banner { padding:16px 16px calc(16px + env(safe-area-inset-bottom)); }
+  .cookie-inner { flex-direction:column; align-items:stretch; gap:14px; }
+  .cookie-actions { width:100%; }
+  .cookie-btn { flex:1; min-width:0; padding:13px 12px; }
+}
+@media print { .cookie-banner { display:none !important; } }
   </style>
 
-  <!-- ══ META PIXEL ══════════════════════════════════════════
-       Sustituye XXXXXXXXXXXXXXXXXX por tu Pixel ID real
-       cuando lo tengas disponible en Meta Business Suite.
-  ════════════════════════════════════════════════════════════ -->
+  <!-- ══ CONSENTIMIENTO DE COOKIES · META PIXEL + GOOGLE ANALYTICS 4 ═════
+       Ni el Píxel de Meta (4359415267704371) ni GA4 (G-62L9S89H53) se cargan
+       ni envían nada hasta que la persona pulsa «Aceptar» en el banner.
+       - Mientras no haya consentimiento, window.fbq y window.gtag son
+         funciones vacías: fireAnalytics() y cualquier llamada directa son
+         seguras y no hacen nada.
+       - Sin JavaScript no se puede pedir consentimiento, así que se ha
+         eliminado el <noscript> con la imagen de seguimiento de Facebook.
+       - La elección se guarda en localStorage (clave ese_cookie_consent).
+       - «Configurar cookies» (pie de página) reabre el banner.
+  ═══════════════════════════════════════════════════════════════════════ -->
   <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '4359415267704371');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4359415267704371&ev=PageView&noscript=1"/></noscript>
+  (function(w,d){
+    var FB_ID='4359415267704371', GA_ID='G-62L9S89H53';
+    var KEY='ese_cookie_consent', MAX_AGE=365*24*60*60*1000; // se vuelve a preguntar a los 12 meses
+    var noop=function(){};
+    var realFbq=null, realGtag=null, loaded=false;
 
-  <!-- ══ GOOGLE ANALYTICS 4 ══════════════════════════════════
-       Mismo Measurement ID que la landing principal (www.masesora.com).
-  ════════════════════════════════════════════════════════════ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-62L9S89H53"></script>
-  <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-62L9S89H53');
+    // Estado inicial seguro: sin consentimiento todo son no-ops
+    w.fbq=noop; w.gtag=noop;
+
+    function readChoice(){
+      try{
+        var o=JSON.parse(w.localStorage.getItem(KEY)||'null');
+        if(o && (o.c==='granted'||o.c==='denied') && (Date.now()-o.t)<MAX_AGE) return o.c;
+      }catch(e){}
+      return null;
+    }
+    function saveChoice(c){
+      try{ w.localStorage.setItem(KEY, JSON.stringify({c:c,t:Date.now()})); }catch(e){}
+    }
+
+    function loadTrackers(){
+      w['ga-disable-'+GA_ID]=false;
+      if(loaded){ // ya se habían cargado en esta visita y se reactivan
+        w.fbq=realFbq; w.gtag=realGtag;
+        try{ realFbq('consent','grant'); realGtag('consent','update',{analytics_storage:'granted'}); }catch(e){}
+        return;
+      }
+      loaded=true;
+      // Píxel de Meta (snippet oficial)
+      delete w.fbq;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(w,
+      d,'script','https://connect.facebook.net/en_US/fbevents.js');
+      realFbq=w.fbq;
+      realFbq('init', FB_ID);
+      realFbq('track', 'PageView');
+      // Google Analytics 4
+      w.dataLayer=w.dataLayer||[];
+      realGtag=w.gtag=function(){ w.dataLayer.push(arguments); };
+      realGtag('js', new Date());
+      realGtag('config', GA_ID);
+      var g=d.createElement('script');
+      g.async=true; g.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+      d.head.appendChild(g);
+    }
+
+    function clearCookies(){
+      var host=w.location.hostname, parts=host.split('.'), doms=[null,host,'.'+host];
+      for(var i=1;i<parts.length-1;i++){ var dm=parts.slice(i).join('.'); doms.push(dm,'.'+dm); }
+      d.cookie.split(';').forEach(function(c){
+        var n=c.split('=')[0].replace(/^\s+/,'');
+        if(!/^(_ga|_gid|_gat|_fbp|_fbc)/.test(n)) return;
+        doms.forEach(function(dm){
+          d.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+(dm?'; domain='+dm:'');
+        });
+      });
+    }
+
+    function stopTrackers(){
+      if(loaded){
+        try{ realFbq('consent','revoke'); realGtag('consent','update',{analytics_storage:'denied'}); }catch(e){}
+        w['ga-disable-'+GA_ID]=true;
+      }
+      w.fbq=noop; w.gtag=noop;
+      clearCookies();
+    }
+
+    function apply(c){ if(c==='granted') loadTrackers(); else stopTrackers(); }
+
+    /* ── Banner ── */
+    var banner, state, opener=null, current=readChoice();
+    function el(id){ return d.getElementById(id); }
+    function show(fromUser){
+      banner=banner||el('cookieBanner'); if(!banner) return;
+      state=state||el('cookieState');
+      state.textContent = current==='granted' ? 'Tu elección actual: cookies aceptadas.'
+                        : current==='denied'  ? 'Tu elección actual: cookies rechazadas.' : '';
+      state.style.display = current ? 'block' : 'none';
+      opener = fromUser ? d.activeElement : null;
+      banner.hidden=false;
+      try{ banner.focus({preventScroll:true}); }catch(e){}
+    }
+    function hide(){
+      if(!banner) return;
+      banner.hidden=true;
+      if(opener && opener.focus){ try{ opener.focus(); }catch(e){} }
+      opener=null;
+    }
+    function choose(c){
+      current=c; saveChoice(c); apply(c); hide();
+    }
+
+    w.eseCookies={
+      open:function(){ show(true); },
+      accept:function(){ choose('granted'); },
+      reject:function(){ choose('denied'); }
+    };
+
+    apply(current);                       // 'granted' → carga; 'denied'/null → no-ops
+    function init(){
+      banner=el('cookieBanner');
+      el('cookieAccept').addEventListener('click',function(){ choose('granted'); });
+      el('cookieReject').addEventListener('click',function(){ choose('denied'); });
+      d.addEventListener('keydown',function(e){
+        // Escape solo cierra el banner si ya hay una elección guardada (no cuenta como consentimiento)
+        if(e.key==='Escape' && current && banner && !banner.hidden) hide();
+      });
+      if(current===null) show(false);
+    }
+    if(d.readyState==='loading') d.addEventListener('DOMContentLoaded',init); else init();
+  })(window,document);
   </script>
 
 </head>
@@ -1717,6 +1853,7 @@ a { text-decoration: none; }
     <a href="#" onclick="abrirLegal('privacidad');return false;">Política de Privacidad</a>
     <a href="#" onclick="abrirLegal('aviso');return false;">Aviso Legal</a>
     <a href="#" onclick="abrirLegal('cookies');return false;">Política de Cookies</a>
+    <a href="#" onclick="eseCookies.open();return false;">Configurar cookies</a>
     <a href="#" onclick="abrirLegal('rgpd');return false;">RGPD</a>
     <a href="https://www.masesora.com" target="_blank" rel="noopener">masesora.com</a>
   </div>
@@ -1775,6 +1912,21 @@ a { text-decoration: none; }
         <p><strong>No se recogen:</strong> Datos especialmente protegidos, datos de menores ni información financiera sensible.</p>
         <p><strong>Derecho a reclamación:</strong> Puedes presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BANNER DE COOKIES ── -->
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-modal="false" aria-label="Consentimiento de cookies" aria-describedby="cookieDesc" tabindex="-1" hidden>
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <div class="cookie-title">Cookies</div>
+      <p id="cookieDesc">Usamos cookies propias y de terceros (Meta y Google Analytics) para medir cómo se usa esta página. Puedes aceptarlas o rechazarlas (el escáner funciona igual) y cambiarlo cuando quieras en «Configurar cookies», al final de la página. Más información en la <a href="#" onclick="abrirLegal('cookies');return false;">Política de Cookies</a>.</p>
+      <p class="cookie-state" id="cookieState" aria-live="polite" style="display:none"></p>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn" id="cookieReject">Rechazar</button>
+      <button type="button" class="cookie-btn" id="cookieAccept">Aceptar</button>
     </div>
   </div>
 </div>
