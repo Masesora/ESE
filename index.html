@@ -1302,7 +1302,10 @@ a { text-decoration: none; }
       clearCookies();
     }
 
-    function apply(c){ if(c==='granted') loadTrackers(); else stopTrackers(); }
+    function apply(c){
+      if(c==='granted') loadTrackers(); else stopTrackers();
+      try{ w.dispatchEvent(new CustomEvent('ese:consent',{detail:c})); }catch(e){}
+    }
 
     /* ── Banner ── */
     var banner, state, opener=null, current=readChoice();
@@ -1959,17 +1962,31 @@ a { text-decoration: none; }
 /* ══ DROP-OFF & ANALYTICS TRACKING ══════════════════════ */
 const ESE_API = 'https://masframe-zz8d.onrender.com';
 
-// session_id único por sesión de navegador
-const ESE_SESSION_ID = (()=>{
-  let sid = sessionStorage.getItem('ese_sid');
-  if(!sid){ sid = crypto.randomUUID(); sessionStorage.setItem('ese_sid', sid); }
-  return sid;
-})();
+// ese_sid (identificador de visita) SOLO existe si la persona ha aceptado las cookies.
+// Sin consentimiento no se crea, no se envía ningún evento de abandono y el servidor
+// no recibe nada hasta que la persona envía su email.
+const ESE_CONSENT_KEY = 'ese_cookie_consent';
+function eseConsent(){
+  try{
+    const o = JSON.parse(localStorage.getItem(ESE_CONSENT_KEY)||'null');
+    return !!(o && o.c==='granted' && (Date.now()-o.t) < 365*24*60*60*1000);
+  }catch(e){ return false; }
+}
+function eseSid(){
+  if(!eseConsent()) return null;
+  try{
+    let sid = sessionStorage.getItem('ese_sid');
+    if(!sid){ sid = crypto.randomUUID(); sessionStorage.setItem('ese_sid', sid); }
+    return sid;
+  }catch(e){ return null; }
+}
 
 // Helper: envía un evento de drop-off al backend (fire-and-forget)
 function fireDropoff(fase, extra={}){
+  const sid = eseSid();
+  if(!sid) return;   // sin consentimiento no se envía nada
   const payload = {
-    session_id:  ESE_SESSION_ID,
+    session_id:  sid,
     fase,
     user_agent:  navigator.userAgent.slice(0,200),
     ...extra
@@ -1982,7 +1999,10 @@ function fireDropoff(fase, extra={}){
 }
 
 // Helper: dispara evento GA4 y Meta Pixel (con graceful degradation)
+// Nunca se envían a Google ni a Meta el nombre de la empresa ni el email.
 function fireAnalytics(eventName, params={}){
+  params = Object.assign({}, params);
+  delete params.empresa; delete params.email; delete params.facturacion;
   if(typeof gtag === 'function'){
     gtag('event', eventName, params);
   }
@@ -1995,8 +2015,13 @@ function fireAnalytics(eventName, params={}){
   }
 }
 
-// Registrar carga de página
-fireDropoff('page_loaded');
+// Registrar carga de página (solo con consentimiento). Si la persona acepta después,
+// el aviso de cookies avisa con el evento 'ese:consent'.
+if(eseConsent()) fireDropoff('page_loaded');
+window.addEventListener('ese:consent', function(e){
+  if(e.detail==='granted'){ if(!sessionStorage.getItem('ese_sid')) fireDropoff('page_loaded'); }
+  else { try{ sessionStorage.removeItem('ese_sid'); }catch(err){} }
+});
 
 /* ══ MODAL DE ENTRADA ═══════════════════════════════════ */
 function cerrarModal(){
@@ -2208,7 +2233,7 @@ async function confirmarFacturacion(){
   btnCfm.innerHTML='<span class="spinner"></span> Preparando diagnóstico…';
   await catalogoListo;
   fireDropoff('facturacion_completa', {empresa: diagnosticoActual.nombre, facturacion: _factValue});
-  fireAnalytics('ese_facturacion', {facturacion: _factValue});
+  fireAnalytics('ese_facturacion');
   document.getElementById('factScreen').style.display='none';
   btnCfm.disabled=false;
   btnCfm.innerHTML='<span></span> Último paso';
@@ -2297,7 +2322,7 @@ function continuarDiagnostico(){
   diagnosticoActual={nombre,facturacion:0,areas,areaScores,especialidades:todasEspecialidades,estadoGlobal,timestamp:new Date().toISOString()};
   expedienteNumero='MAS-'+String(Math.floor(10000+Math.random()*89999));
   fireDropoff('fase1_completa', {empresa: nombre, estado_global: estadoGlobal});
-  fireAnalytics('ese_fase1_completa', {empresa: nombre, estado_global: estadoGlobal});
+  fireAnalytics('ese_fase1_completa', {estado_global: estadoGlobal});
   setTimeout(()=>{
     document.getElementById('cardForm').style.display='none';
     document.getElementById('factEmpresaNombre').textContent=nombre.toUpperCase();
@@ -2582,7 +2607,7 @@ async function enviarDiagnostico(){
   const payload={
     empresa:       d.nombre||'',
     email,
-    session_id:    ESE_SESSION_ID,
+    session_id:    eseSid(),
     facturacion:   d.facturacion||0,
     estado_global: d.estadoGlobal||'',
     score_global,
@@ -2621,7 +2646,7 @@ async function enviarDiagnostico(){
       data=await intentar();
     }
     fireDropoff('email_submit', {empresa: d.nombre, estado_global: d.estadoGlobal});
-    fireAnalytics('generate_lead', {empresa: d.nombre, estado_global: d.estadoGlobal});
+    fireAnalytics('generate_lead', {estado_global: d.estadoGlobal});
     if(data.status==='existente'){
       // El email ya tiene expediente: el servidor no lo toca y no devuelve el
       // código (es la llave de La Clínica); se lo manda solo a ese email.
