@@ -45,7 +45,7 @@
     <g transform="translate(164,44)">
       <text x="0" y="52" font-family="Georgia,serif" font-size="46" font-weight="700" fill="#F9F7F2" letter-spacing="4">MASFRAME</text>
       <rect x="0" y="62" width="510" height="1" fill="url(#logo_gld)" opacity="0.55"/>
-      <text x="0" y="82" font-family="Georgia,serif" font-size="11" fill="#B89D52" letter-spacing="4.5">SISTEMA CLINICO DE INTERVENCION EMPRESARIAL</text>
+      <text x="0" y="82" font-family="Georgia,serif" font-size="11" fill="#B89D52" letter-spacing="4.5">SISTEMA CLÍNICO DE INTERVENCIÓN EMPRESARIAL</text>
     </g>
   </g>
 
@@ -53,14 +53,14 @@
   <line x1="100" y1="158" x2="700" y2="158" stroke="url(#sc_gld)" stroke-width="1" opacity="0.18"/>
 
   <!-- Tagline -->
-  <text x="100" y="198" font-family="Georgia,serif" font-size="12.5" fill="#B89D52" letter-spacing="5.5" opacity="0.85">MASESORA - LA CLINICA DE EMPRESAS</text>
+  <text x="100" y="198" font-family="Georgia,serif" font-size="12.5" fill="#B89D52" letter-spacing="5.5" opacity="0.85">MASESORA · LA CLÍNICA DE EMPRESAS</text>
 
   <!-- Titular principal -->
-  <text x="100" y="318" font-family="Georgia,serif" font-size="76" font-weight="700" fill="#FFFFFF" letter-spacing="-1.5">Escaner de Salud</text>
+  <text x="100" y="318" font-family="Georgia,serif" font-size="76" font-weight="700" fill="#FFFFFF" letter-spacing="-1.5">Escáner de Salud</text>
   <text x="100" y="408" font-family="Georgia,serif" font-size="76" font-weight="700" fill="url(#sc_gld)" letter-spacing="-1.5">Empresarial</text>
 
   <!-- Subtitulo -->
-  <text x="100" y="466" font-family="Georgia,serif" font-size="21" fill="#FFFFFF" opacity="0.52">10 especialidades clinicas - Diagnostico gratuito - Protocolo C0-C6</text>
+  <text x="100" y="466" font-family="Georgia,serif" font-size="21" fill="#FFFFFF" opacity="0.52">10 especialidades clínicas · 30 síntomas · Diagnóstico gratuito</text>
 
   <!-- Divisor -->
   <line x1="100" y1="496" x2="420" y2="496" stroke="url(#sc_gld)" stroke-width="1" opacity="0.25"/>
@@ -68,7 +68,7 @@
   <!-- Badge -->
   <rect x="100" y="514" width="230" height="34" rx="6" fill="url(#sc_gld)" opacity="0.12"/>
   <rect x="100" y="514" width="230" height="34" rx="6" fill="none" stroke="url(#sc_gld)" stroke-width="1" opacity="0.38"/>
-  <text x="215" y="536" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#B89D52" text-anchor="middle" letter-spacing="3.5">MAS@FRAME</text>
+  <text x="215" y="536" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#B89D52" text-anchor="middle" letter-spacing="3.5">GRATIS · 10 MIN</text>
 
   <!-- Acento esquina -->
   <line x1="1090" y1="558" x2="1150" y2="585" stroke="url(#sc_gld)" stroke-width="0.9" opacity="0.22"/>
